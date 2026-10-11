@@ -20,6 +20,8 @@
       what: 'Verificación en dos pasos en tema claro: cuatro casillas que se llenan dígito a dígito, botón que se activa al completar, estado "Verificado" y salto al panel.' },
     { id: 'nexera-login-panel-deslizante', title: 'Acceso · Panel deslizante', brand: 'Nexera', dur: '10.5 s', spec: '1920 × 1080 · 60 fps',
       what: 'Tarjeta partida en dos: el panel se desliza entre "Iniciar sesión" y "Crear cuenta" sobre un fondo de planos angulares; termina con el logo y "Hola, María. Ya estás dentro".' },
+    { id: 'nexera-agentes-contabilidad', title: 'Agentes de contabilidad', brand: 'Nexera', dur: '30 s', spec: '1920 × 1080 · 60 fps',
+      what: 'Siete agentes con rol propio llevan la contabilidad de una empresa con mil facturas al mes: recepción, archivo, pagos, facturación, cobranza, conciliación y un orquestador que escala a una persona lo que necesita decisión. Escenario de ejemplo.' },
   ];
 
   const grid = $('#pieces');
