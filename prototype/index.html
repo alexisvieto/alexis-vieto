@@ -156,7 +156,7 @@
         </ul>
       </div>
       <div class="side">
-        <div class="blk"><h4>Qué cambia y cómo los construimos</h4><p>La automatización clásica se rompe cuando el caso no está previsto; un agente lee el caso, consulta lo que necesita y propone qué hacer, y la persona pasa de capturar a aprobar. Los construimos con modelos de Claude y herramientas acotadas por rol (solo lectura donde debe serlo), permisos en la base de datos, registro de cada acción y un umbral claro: lo que el agente no puede sostener con evidencia, lo escala. Nunca decide un pago ni un despido; prepara la decisión.</p></div>
+        <div class="blk"><h4>Qué cambia y cómo los construimos</h4><p>La automatización clásica se rompe cuando el caso no está previsto. Un agente lee el caso, consulta lo que necesita y propone qué hacer; la persona pasa de capturar a aprobar. Los construimos con modelos de Claude y herramientas acotadas por rol (solo lectura donde debe serlo), permisos en la base de datos y registro de cada acción, y el agente escala lo que no puede sostener con evidencia. Nunca decide un pago ni un despido; prepara la decisión.</p></div>
         <div class="blk"><h4>Dónde ya funcionan y qué entrega</h4>
           <ul class="where">
             <li><b>Atrio</b> · asistente del administrador con 12 herramientas de solo lectura, limitadas por RLS; redacción de comunicados con la voz del PH.</li>
@@ -173,11 +173,11 @@
   <ol class="notes" aria-label="Notas de lámina">
     <li><h3>Para qué se hizo</h3><p>Los pedidos llegaban por llamada y WhatsApp y se recapturaban a mano en cotizaciones, inventario y despacho. Había que responder y cobrar a cualquier hora sin sumar personal.</p></li>
     <li><h3>Cómo lo hace</h3><p>Partimos de los procesos manuales reales. WhatsApp Business y telefonía con asistente IA, extracción de datos con Claude, inventario y clientes en Supabase con RLS, Yappy y tarjeta con confirmación automática.</p></li>
-    <li><h3>Qué entrega</h3><p>Flujo en producción con monitoreo. Panel de pedidos y cobros. Reglas de negocio documentadas. Traspaso al equipo del cliente.</p></li>
-    <li><h3>Resultados</h3><p>80% menos horas de trabajo en el proceso comercial. Cobro confirmado antes de despachar. Cero recapturas: el pedido viaja de WhatsApp a la entrega sin volver a escribirse.</p></li>
+    <li><h3>Qué entrega</h3><p>El flujo corriendo en producción con monitoreo, su panel de pedidos y cobros, las reglas de negocio por escrito y el traspaso al equipo de la distribuidora.</p></li>
+    <li><h3>Resultados</h3><p>80% menos horas de trabajo en el proceso comercial. Cobro confirmado antes de despachar. El pedido viaja de WhatsApp a la entrega sin volver a escribirse.</p></li>
   </ol>
 
-  <p class="flow-close">Este flujo sirve para la mayoría de las empresas. <em>Cambian los productos, no las piezas.</em></p>
+  <p class="flow-close">Con otro inventario y otra lista de precios, <em>el mismo flujo sirve para una ferretería o una farmacia.</em></p>
 
   <div class="titleblock">
     <div class="tb-big"><small>Proyecto</small><b>Portafolio · Alexis Vieto</b></div>
