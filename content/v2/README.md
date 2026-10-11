@@ -45,9 +45,9 @@ Las fórmulas (SPI, valor ganado, tasa de cobro y umbral 93 %, horas ahorradas a
 
 ## Textos que violan las reglas (corregir antes de reutilizar)
 
-Reglas revisadas sobre todos los valores de `texts.json`, `dashboards.ts` y los SVG: INGESOFT, Power BI, PMP, título de telecomunicaciones, inglés C1, calorías por foto, "Tino" con mayúscula, SUPRA.
+Reglas revisadas sobre todos los valores de `texts.json`, `dashboards.ts` y los SVG: la empresa actual (nombre omitido), Power BI, PMP, título de telecomunicaciones, inglés C1, calorías por foto, "Tino" con mayúscula, SUPRA.
 
-Resultado: **0 violaciones directas.** No aparece INGESOFT, Power BI, PMP, C1, calorías, "Tino" (siempre `tino` en minúscula: `h3.lc`, aria-label del logo, dominio contratacontino.com) ni SUPRA.
+Resultado: **0 violaciones directas.** No aparece la empresa actual (nombre omitido), Power BI, PMP, C1, calorías, "Tino" (siempre `tino` en minúscula: `h3.lc`, aria-label del logo, dominio contratacontino.com) ni SUPRA.
 
 Menciones a revisar (no son un título profesional, pero contienen la palabra "telecomunicaciones"):
 

@@ -40,7 +40,7 @@
 - **No** presentar a Alexis como programador a mano. Su código escrito a mano es básico; su valor es saber qué construir, cómo debe comportarse y cómo verificarlo. Construye con Claude Code y lo dice abiertamente.
 - **No** afirmar título de ingeniero en telecomunicaciones, PMP ni inglés C1. Inglés: lectura técnica y escrito fuertes, conversación intermedia.
 - **No** afirmar experiencia con Power BI.
-- **Nunca** nombrar a INGESOFT. Si hace falta referirse al empleo actual o a herramientas internas: "una empresa de ingeniería, telecomunicaciones y sistemas especiales".
+- **Nunca** nombrar a la empresa actual (nombre omitido). Si hace falta referirse al empleo actual o a herramientas internas: "una empresa de ingeniería, telecomunicaciones y sistemas especiales".
 - La empresa de producto es **Nexera** (no SUPRA). Proytel = empresa propia 2006–2023. Nada de temas personales.
 - Para NutriSoft no listar "paquetes/citas adicionales" como pendientes.
 - Los datos de demos son ficticios y deben verse ficticios (nombres inventados, sin datos reales de clientes).
@@ -231,7 +231,7 @@ Los repos locales son la fuente de verdad. Confirma cada número contra el códi
 - El visitante pega la descripción de un puesto (o URL de texto plano).
 - Una ruta API (`app/api/match/route.ts`) llama a la **API de Claude** con un system prompt que contiene **solo** un perfil verificado de Alexis (`content/profile.json`: experiencia, productos, stack, evidencias con links).
 - Respuesta estructurada (JSON validado con Zod): por cada requisito → `cumple | parcial | no`, evidencia concreta con link a la lámina/caso, y una nota honesta para los "no". Resumen final.
-- **Reglas del prompt:** no inventar experiencia; si no hay evidencia, decir "no" o "parcial"; nunca afirmar Power BI, título de telecom, PMP ni C1; nunca mencionar INGESOFT.
+- **Reglas del prompt:** no inventar experiencia; si no hay evidencia, decir "no" o "parcial"; nunca afirmar Power BI, título de telecom, PMP ni C1; nunca mencionar la empresa actual (nombre omitido).
 - UI: tabla animada que se llena requisito por requisito (streaming), con botón "Descargar como PDF" y "Contactar a Alexis".
 
 ### 8.2 "Pregúntale a mi portafolio" (chat)
@@ -293,7 +293,7 @@ Los repos locales son la fuente de verdad. Confirma cada número contra el códi
 ---
 
 ## 11. Checklist de calidad final
-- [ ] Ninguna mención a INGESOFT, Power BI, PMP, título de telecom, C1, ni calorías por foto.
+- [ ] Ninguna mención a la empresa actual (nombre omitido), Power BI, PMP, título de telecom, C1, ni calorías por foto.
 - [ ] "tino" en minúscula en todo el sitio.
 - [ ] EN y ES completos, sin textos mezclados.
 - [ ] Texto revisado con no-ai-slop.
