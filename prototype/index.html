@@ -128,6 +128,49 @@
     </div>
   </div>
 
+  <!-- 02.5b · Agentes de automatización -->
+  <section class="agents" id="agents" aria-labelledby="agents-title">
+    <div class="agents-head">
+      <h3 id="agents-title">Agentes de automatización<span>Tus agentes trabajan. Tu equipo decide.</span></h3>
+      <p>Un flujo sigue pasos fijos. Un agente recibe un objetivo, usa herramientas acotadas, decide el siguiente paso y, cuando no está seguro, escala a una persona. El video muestra un equipo de siete agentes que lleva la contabilidad de una empresa con mil facturas al mes.</p>
+    </div>
+    <div class="agents-grid">
+      <div>
+        <div class="screen">
+          <video preload="metadata" muted playsinline loop poster="media/nexera-agentes-contabilidad.jpg" aria-label="Agentes de contabilidad · Nexera">
+            <source src="media/nexera-agentes-contabilidad.mp4" type="video/mp4">
+          </video>
+          <div class="bar"><i></i></div>
+          <button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w1" d="M16 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M18.5 7a7 7 0 0 1 0 10"/></svg></button>
+          <span class="state" aria-live="polite"></span>
+        </div>
+        <p class="vcap"><b>Agentes de contabilidad · Nexera</b> · 30 s · 1920 × 1080 · escenario de ejemplo: 1,000 facturas recibidas, 1,000 emitidas, 98.6% conciliado sin intervención</p>
+        <ul class="roles" aria-label="Los siete agentes">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg><div><b>Recepción</b><small>Lee, valida y clasifica cada factura.</small></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 2h10v10H3z"/></svg><div><b>Archivo</b><small>Organiza y responde consultas en segundos.</small></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><div><b>Pagos</b><small>Programa pagos a proveedores.</small></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg><div><b>Facturación</b><small>Emite a clientes.</small></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4z"/><path d="M10 21h4"/></svg><div><b>Cobranza</b><small>Da seguimiento a cada cobro.</small></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg><div><b>Conciliación</b><small>Cruza el banco todos los días; lo que no cuadra va al contador.</small></div></li>
+          <li class="orq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><div><b>Orquestador</b><small>Coordina, reparte el trabajo entre los seis y escala a una persona lo que necesita decisión.</small></div></li>
+        </ul>
+      </div>
+      <div class="side">
+        <div class="blk"><h4>Qué cambia con agentes</h4><p>La automatización clásica se rompe cuando el caso no está previsto. Un agente lee el caso, consulta lo que necesita y propone qué hacer. La persona deja de capturar y pasa a aprobar.</p></div>
+        <div class="blk"><h4>Cómo los construimos</h4><p>Modelos de Claude con herramientas acotadas por rol (solo lectura donde debe serlo), permisos en la base de datos, registro de cada acción y un umbral claro: lo que el agente no puede sostener con evidencia, lo escala. Nunca decide un pago ni un despido; prepara la decisión.</p></div>
+        <div class="blk"><h4>Dónde ya funcionan</h4>
+          <ul class="where">
+            <li><b>Atrio</b> · asistente del administrador con 12 herramientas de solo lectura, limitadas por RLS; redacción de comunicados con la voz del PH.</li>
+            <li><b>tino</b> · lectura de CV y evaluación contra el perfil de cargo con evidencia citada; el reclutador decide.</li>
+            <li><b>Modus PM</b> · análisis de pliegos por lotes con cita de página y panel de riesgos; conteo de planos con confirmación humana.</li>
+            <li><b>NexGuard360</b> · novedades dictadas por voz refinadas a informe técnico y enviadas cada madrugada.</li>
+          </ul>
+        </div>
+        <div class="blk"><h4>Qué entrega</h4><p>Un equipo de agentes con roles definidos, sus herramientas y permisos, un panel de lo que hicieron y de lo que escalaron, y el traspaso al equipo que los supervisa.</p></div>
+      </div>
+    </div>
+  </section>
+
   <ol class="notes" aria-label="Notas de lámina">
     <li><h3>Para qué se hizo</h3><p>Los pedidos llegaban por llamada y WhatsApp y se recapturaban a mano en cotizaciones, inventario y despacho. Había que responder y cobrar a cualquier hora sin sumar personal.</p></li>
     <li><h3>Cómo lo hace</h3><p>Partimos de los procesos manuales reales. WhatsApp Business y telefonía con asistente IA, extracción de datos con Claude, inventario y clientes en Supabase con RLS, Yappy y tarjeta con confirmación automática.</p></li>
@@ -289,5 +332,6 @@
 <script src="app.js"></script>
 <script src="flow.js"></script>
 <script src="gallery.js"></script>
+<script src="agents.js"></script>
 </body>
 </html>
