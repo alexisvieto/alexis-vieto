@@ -19,8 +19,8 @@
     const plot = fig.querySelector('.plot');
     const svg = el('svg', { class: 'ssvg', tabindex: '0', role: 'img', 'aria-label': fig.querySelector('figcaption').textContent + ` · curva en S hasta ${cfg.target}% ${cfg.unit}` });
     plot.append(svg);
-    const state = { p: RM ? 1 : 0, hover: null, w: 640, h: 250 };
-    const PADL = 44, PADR = 24, PADT = 28, PADB = 40;
+    const state = { p: RM ? 1 : 0, hover: null, w: 640, h: 278 };
+    const PADL = 44, PADR = 24, PADT = 56, PADB = 40;
     let pts = [], guide, tip, marker, mlabel, mnote, curve, area;
 
     function geometry() {
@@ -63,8 +63,11 @@
       const q = at(state.p); const pct = Math.round(q.y);
       marker.setAttribute('transform', `translate(${q.px} ${q.py})`);
       const right = q.px > state.w * .62;
-      mlabel.setAttribute('x', q.px + (right ? -14 : 14)); mlabel.setAttribute('y', q.py - 24); mlabel.setAttribute('text-anchor', right ? 'end' : 'start'); mlabel.textContent = cfg.fmt(pct);
-      mnote.setAttribute('x', q.px + (right ? -14 : 14)); mnote.setAttribute('y', q.py - 10); mnote.setAttribute('text-anchor', right ? 'end' : 'start'); mnote.textContent = cfg.unit + ' · ' + cfg.note(pct);
+      // Si el marcador está cerca del borde superior, la etiqueta va debajo del punto para que nunca se recorte
+      const below = q.py < PADT + 34;
+      const ly = below ? q.py + 30 : q.py - 24, ny = below ? q.py + 44 : q.py - 10;
+      mlabel.setAttribute('x', q.px + (right ? -14 : 14)); mlabel.setAttribute('y', ly); mlabel.setAttribute('text-anchor', right ? 'end' : 'start'); mlabel.textContent = cfg.fmt(pct);
+      mnote.setAttribute('x', q.px + (right ? -14 : 14)); mnote.setAttribute('y', ny); mnote.setAttribute('text-anchor', right ? 'end' : 'start'); mnote.textContent = cfg.unit + ' · ' + cfg.note(pct);
       fig.querySelector('.now').textContent = cfg.fmt(pct);
     }
     function hover(week) {

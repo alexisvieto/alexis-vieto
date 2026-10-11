@@ -588,3 +588,5 @@ html{scrollbar-color:var(--rule) var(--bp)}
   .flow-wrap{padding:12px 10px 10px}
   .flow-detail div{padding:10px 12px}
 }
+.ssvg{overflow:visible}
+.chart .plot{padding-top:6px}
