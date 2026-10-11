@@ -6,9 +6,9 @@ Pedido de Alexis (11-oct-2026): setup con dos pantallas de 26" con código en ej
 
 | Parte | Herramienta | Por qué |
 |---|---|---|
-| Tomas 1 a 3 (setup real, órbita, entrada a la pantalla) | Generador de video con IA: Kling 2.x, Runway Gen-4 o Veo 3 | Único camino a fotorrealismo sin rodaje |
+| Tomas 1 a 3 (setup real, órbita, entrada a la pantalla) | **Veo dentro de Gemini, con la cuenta de Google de Alexis (sin costo adicional)**, como se hizo el comercial de Atrio (`C:\dev-atrio-web\Instagram\comercial-60s\prompts-veo.md`) | Único camino a fotorrealismo sin rodaje; ya probado |
 | Toma 4 (dentro del código, servicios en 3D) | HyperFrames + Three.js, por código | La IA deforma el texto; por código las letras son legibles y editables |
-| Unión, speed ramp, color, grano, encodes | HyperFrames + ffmpeg | Control total del ritmo y del peso del archivo |
+| Unión, speed ramp, color, grano, encodes | HyperFrames + ffmpeg | Control total del ritmo y del peso del archivo (el comercial de Atrio se unió en Remotion; aquí se usa HyperFrames, el mismo motor de la galería de Animación) |
 
 Duración total objetivo: 22 a 26 s. Formatos: 16:9 (hero) y 9:16 (móvil y redes).
 
@@ -29,12 +29,16 @@ Nota: sin persona en el encuadre. Si más adelante quieres aparecer, se graba un
 | 3 · Entrada | 6 s | Push-in frontal hasta atravesar el monitor derecho | `From the front view, the camera pushes in slowly toward the right monitor, the code editor fills the frame, the push continues until the screen pixels fill the view and the camera passes through the glass into the glowing code, lines of code rushing past like a tunnel of light, ending in a dark space with floating glowing code fragments.` |
 | 4 · Servicios 3D | 8 s | Dentro del código (por código, HyperFrames) | No se genera con IA. Ver sección siguiente. |
 
-Generar mínimo 3 variantes por toma; elegir por consistencia del escritorio entre tomas (misma lámpara, mismo teclado, mismos monitores). Para la toma 2 usar la opción "imagen a video" con el último fotograma de la toma 1 como primer fotograma. Para la toma 3, idem con el último fotograma de la toma 2.
+## Flujo en Gemini (el mismo del robot de Atrio)
 
-Ajustes por herramienta:
-- **Kling 2.x:** modo Professional, 1080p, 5 o 10 s; usar "Elements" con un fotograma del escritorio para fijar el setup entre tomas.
-- **Runway Gen-4:** usar la imagen del escritorio como referencia en las tres tomas; "camera control" con orbit para 1 y 2 y dolly-in para 3.
-- **Veo 3:** desactivar audio generado (el audio se hace aparte); pedir 24 fps y escalar después.
+1. **Fotograma de referencia del setup** con la herramienta de imagen de Gemini: pegar el bloque fijo de escena más `Still frame, front view at shoulder height, both monitors facing the camera`. Regenerar hasta que el escritorio convenza; descargar como `setup-ref.png` y guardarlo en `referenceideoaw`.
+2. **Cada toma** se genera con la herramienta de video (Veo) adjuntando esa imagen como primer fotograma y pegando bloque fijo + prompt de cámara. Dos o tres intentos por toma; quedarse con la que mantenga lámpara, teclado y monitores iguales.
+3. Para la toma 2, adjuntar en vez de la referencia el último fotograma de la toma 1 elegida (captura de pantalla sirve); para la toma 3, el último fotograma de la toma 2.
+4. Si Gemini solo ofrece 720p a 24 fps, es suficiente: se escala en posproducción como en el comercial.
+
+Reglas de oro (de `prompts-veo.md` de Atrio): nada de texto legible ni interfaces reales en el clip; un solo movimiento de cámara por clip; si sale mal, regenerar sin cambiar el prompt y ajustar solo tras tres fallos.
+
+Alternativas de pago solo si Veo en Gemini no diera la órbita: Kling 2.x (más barato por segundo) o Runway Gen-4 (mejor control de cámara).
 
 ## Toma 4 · dentro del código, servicios en 3D (HyperFrames)
 
