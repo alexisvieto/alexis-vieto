@@ -459,3 +459,4 @@ html{scrollbar-color:var(--rule, #2f4373) var(--bp)}
   .agents-head,.agents-grid{grid-template-columns:1fr}
   .roles{grid-template-columns:1fr}
 }
+.agents .vcap{margin-bottom:14px}
