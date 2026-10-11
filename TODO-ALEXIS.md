@@ -20,6 +20,10 @@ Lo mínimo que solo Alexis puede dar. Todo lo demás lo saco de los repos. Cuand
 - **NutriSoft:** cifras reales mejores que las del playbook: 189 migraciones (no 179) y 729 pruebas (no 696). La app Expo está archivada; lo que existe es la PWA de la paciente empaquetada para Play Store. **Ojo:** la landing de NutriSoft (`apps/web/src/app/page.tsx` L167) anuncia el conteo de calorías por foto, que no está construido; conviene quitarlo de ahí.
 - **Modus PM:** `public/` contiene el logo de un cliente real; no se usará en capturas. Solo 21 migraciones versionadas (el resto del esquema se aplicó por MCP) y sin pruebas de RLS en el repo; no se afirmará "RLS verificado" para Modus.
 
+## Lámina 02.5 · Automatización (proyecto confidencial, 11-oct-2026)
+- [ ] **Cifra de costos:** me diste "costos operativos reducidos en un 365%". Una reducción no puede superar el 100%, así que no la publiqué. ¿Qué significa el 365? Opciones probables: retorno de la inversión de 365% (se ganó 3.65 veces lo invertido), costos reducidos en 36.5%, o costos de 3.65× menores (una reducción del 73%). Con tu respuesta la agrego al párrafo y a "Resultados". El 80% menos horas sí está publicado.
+- [ ] Confirmar si puedo decir el rubro con esa precisión ("distribución de carne nacional e importada") o prefieres algo más genérico ("distribuidora de alimentos").
+
 ## Lámina 02.7 · Animación (agregada 11-oct-2026)
 - [ ] **Más piezas:** deja cada video en `C:\dev-portafolio\prototype\media\` (o dime la ruta) y yo lo registro con título, marca, duración y descripción. Formato ideal: 1920×1080 o 1080×1920, H.264, con audio si lo tiene.
 - [ ] **CenterFit:** confirma si es un cliente real (y si su logo puede mostrarse) o una marca de muestra. Hoy aparece como nombre de marca en la pieza 02.
