@@ -1,4 +1,4 @@
-/* Lámina 02.5 · Flujo de automatización estilo n8n. Datos ficticios (Alquileres Bahía Azul, S.A.). */
+/* Lámina 02.5 · Flujo de automatización estilo n8n. Proyecto confidencial: distribuidora de carne. Clientes, cortes, precios y pedidos son ficticios. */
 (() => {
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
@@ -28,24 +28,24 @@
     { id: 'call', x: COL(0), y: 96, type: 'trigger', ic: 'phone', t: 'Llamada', s: 'Trigger · voz', what: 'Un asistente contesta la llamada, saluda con el nombre de la empresa y transcribe el pedido.', how: 'Telefonía con asistente de voz (voz a texto) que dispara el flujo.', where: 'Patrón nuevo; la extracción posterior es la misma de tino.' },
     { id: 'wa', x: COL(0), y: 232, type: 'trigger', ic: 'chat', t: 'WhatsApp', s: 'Trigger · webhook', what: 'El mensaje del cliente llega por WhatsApp y un webhook lo recibe.', how: 'WhatsApp Business API → webhook en función serverless.', where: 'Webhook GPS autenticado (HMAC) en NexGuard360; mensajes por correo y WhatsApp en tino.' },
     { id: 'ai', x: COL(1), y: 164, ic: 'ai', t: 'Asistente IA', s: 'Claude · extrae el pedido', what: 'Claude lee el texto y extrae producto, cantidad, fecha y lugar. Si falta algo, pregunta.', how: 'API de Claude con salida estructurada (JSON schema) validada con Zod.', where: 'Extracción de CV y evaluación en tino; asistente con 12 herramientas en Atrio.' },
-    { id: 'db', x: COL(2), y: 164, ic: 'db', t: 'Supabase', s: 'Inventario · cliente', what: 'Consulta disponibilidad por fecha, precios vigentes e historial del cliente, con RLS por empresa.', how: 'PostgreSQL con políticas RLS deny-by-default.', where: '45/45 tablas con RLS en NexGuard360; 49/49 en NutriSoft con prueba de cobertura.' },
-    { id: 'if', x: COL(3), y: 164, type: 'if', ic: 'split', t: '¿Hay stock?', s: 'IF · stock por fecha', what: 'Decide la rama: si hay stock, cotiza; si no, ofrece una alternativa.', how: 'Regla de negocio en el flujo, sin IA.', where: 'Lógica de decisión en todos los productos.' },
-    { id: 'alt', x: COL(4), y: 300, ic: 'alt', t: 'Alternativa', s: 'Equipo equivalente', what: 'Busca un equipo equivalente disponible y lo propone al cliente.', how: 'Consulta de sustitutos + mensaje por el mismo canal.', where: 'Sugerencias del banco de talento en tino (mismo patrón).' },
-    { id: 'quote', x: COL(5), y: 164, ic: 'doc', t: 'Cotización PDF', s: 'Precio · ITBMS · envío', what: 'Arma la cotización línea por línea, con transporte e ITBMS, y la envía con PDF.', how: 'PDF con marca generado en servidor y enviado por WhatsApp.', where: '11 PDFs corporativos en Atrio; cotizaciones a Excel con fórmulas vivas en Modus PM.' },
-    { id: 'pay', x: COL(6), y: 164, ic: 'pay', t: 'Esperar pago', s: 'Yappy · tarjeta', what: 'El cliente paga. La confirmación llega sola y el pedido pasa a "Pagado".', how: 'Yappy + IPN (firma HMAC) o pasarela de tarjeta.', where: 'Edge Functions yappy-orden / yappy-ipn en NutriSoft.' },
-    { id: 'go', x: COL(7), y: 164, type: 'final', ic: 'truck', t: 'Entrega', s: 'Ruta · foto · firma', what: 'Se genera la orden de despacho con ruta. El chofer confirma con foto y firma.', how: 'Mapa con GPS en vivo, reportes con foto, push al cliente.', where: 'Rastreo de flota y reportes con foto en NexGuard360.' },
+    { id: 'db', x: COL(2), y: 164, ic: 'db', t: 'Supabase', s: 'Inventario · cliente', what: 'Consulta el inventario por corte y origen (nacional o importado), la lista de precios del cliente y su estado de crédito, con RLS por empresa.', how: 'PostgreSQL con políticas RLS deny-by-default.', where: '45/45 tablas con RLS en NexGuard360; 49/49 en NutriSoft con prueba de cobertura.' },
+    { id: 'if', x: COL(3), y: 164, type: 'if', ic: 'split', t: '¿Hay stock?', s: 'IF · stock por fecha', what: 'Decide la rama: si hay kilos del corte pedido, cotiza; si no, ofrece un corte equivalente.', how: 'Regla de negocio en el flujo, sin IA.', where: 'Lógica de decisión en todos los productos.' },
+    { id: 'alt', x: COL(4), y: 300, ic: 'alt', t: 'Alternativa', s: 'Corte equivalente', what: 'Busca un corte equivalente con existencia (otro origen o pieza similar) y lo propone al cliente.', how: 'Consulta de sustitutos + mensaje por el mismo canal.', where: 'Sugerencias del banco de talento en tino (mismo patrón).' },
+    { id: 'quote', x: COL(5), y: 164, ic: 'doc', t: 'Cotización PDF', s: 'Precio por kg · lista del cliente', what: 'Arma la cotización por kilo con la lista de precios de ese cliente y la envía con PDF por el mismo canal.', how: 'PDF con marca generado en servidor y enviado por WhatsApp.', where: '11 PDFs corporativos en Atrio; cotizaciones a Excel con fórmulas vivas en Modus PM.' },
+    { id: 'pay', x: COL(6), y: 164, ic: 'pay', t: 'Esperar pago', s: 'Yappy · tarjeta · crédito', what: 'El cliente paga o usa su crédito aprobado. La confirmación llega sola y el pedido pasa a "Pagado".', how: 'Yappy + IPN (firma HMAC) o pasarela de tarjeta.', where: 'Edge Functions yappy-orden / yappy-ipn en NutriSoft.' },
+    { id: 'go', x: COL(7), y: 164, type: 'final', ic: 'truck', t: 'Entrega', s: 'Ruta refrigerada · firma', what: 'Se genera la orden de despacho en la ruta refrigerada. El chofer confirma con foto y firma.', how: 'Mapa con GPS en vivo, reportes con foto, push al cliente.', where: 'Rastreo de flota y reportes con foto en NexGuard360.' },
   ];
   const EDGES = [
     ['call', 'ai'], ['wa', 'ai'], ['ai', 'db'], ['db', 'if'],
     ['if', 'quote', 'a'], ['if', 'alt', 'b'], ['alt', 'quote'], ['quote', 'pay'], ['pay', 'go'],
   ];
   const ORDERS = [
-    { id: 'A', name: 'Laura Mendoza', total: 551.05, trigger: 'wa', branch: 'a', payWait: true, cash: '$551.05 · Yappy',
-      steps: { wa: 'Laura M. · 10 carpas 3×3 + 80 sillas', ai: '2 ítems · 18-oct · Costa del Este', db: 'CAR-3x3 18/24 · SIL-PLE 310/400', if: 'Stock OK → sí', quote: 'Total $551.05 · PDF enviado', pay: 'Yappy · YP-48213 · pagado', go: 'Entregado sáb 08:40 · foto + firma' } },
-    { id: 'B', name: 'Carlos Pitti', total: 561.75, trigger: 'call', branch: 'a', cash: '$561.75 · tarjeta',
-      steps: { call: '+507 6xxx-xxxx · transcrito', ai: 'Preguntó cantidad → 150 sillas', db: 'GEN 3/4 · SON 2/5 · SIL 160/400', if: 'Stock OK → sí', quote: 'Total $561.75 · PDF enviado', pay: 'Tarjeta · aut. 004417 · pagado', go: 'Entregado vie 14:25 · foto + firma' } },
-    { id: 'C', name: 'Rosa Quintero', total: 280.34, trigger: 'wa', branch: 'b', cash: '$280.34 · Yappy',
-      steps: { wa: 'Rosa Q. · carpa grande + 6 mesas', ai: 'CAR-6x6 ×1 · MES-RED ×6 · 19-oct', db: 'CAR-6x6 0/6 el 19-oct', if: 'Sin stock → no', alt: 'Ofrece 4 × 3×3 · cliente acepta', quote: 'Total $280.34 · PDF enviado', pay: 'Yappy · YP-48227 · pagado', go: 'Entregado dom 08:05 · foto + firma' } },
+    { id: 'A', name: 'Carnicería La Central', total: 1235.00, trigger: 'wa', branch: 'a', payWait: true, cash: '$1,235.00 · Yappy',
+      steps: { wa: 'La Central · 40 kg lomo nac. + 25 kg costilla imp.', ai: '2 cortes · jue 16-oct · San Miguelito', db: 'Lomo nac. 320 kg · Costilla imp. 180 kg · crédito al día', if: 'Hay kilos → sí', quote: 'Total $1,235.00 · lista mayorista · PDF enviado', pay: 'Yappy · YP-48213 · pagado', go: 'Entregado jue 06:30 · ruta 2 · firma' } },
+    { id: 'B', name: 'Restaurante Punta Mar', total: 612.00, trigger: 'call', branch: 'a', cash: '$612.00 · tarjeta',
+      steps: { call: '+507 6xxx-xxxx · transcrito', ai: 'Preguntó origen → picaña importada · 30 kg', db: 'Picaña imp. 95 kg · cliente nuevo', if: 'Hay kilos → sí', quote: 'Total $612.00 · lista restaurantes · PDF enviado', pay: 'Tarjeta · aut. 004417 · pagado', go: 'Entregado vie 05:45 · ruta 1 · firma' } },
+    { id: 'C', name: 'Minisúper Doña Ana', total: 171.00, trigger: 'wa', branch: 'b', cash: '$171.00 · Yappy',
+      steps: { wa: 'Doña Ana · 15 kg bife ancho importado', ai: '1 corte · sáb 18-oct · Las Cumbres', db: 'Bife ancho imp. 0 kg el 18-oct', if: 'Sin kilos → no', alt: 'Ofrece bife ancho nacional · cliente acepta', quote: 'Total $171.00 · lista minoristas · PDF enviado', pay: 'Yappy · YP-48227 · pagado', go: 'Entregado sáb 06:10 · ruta 3 · firma' } },
   ];
 
   /* ---------- Render ---------- */

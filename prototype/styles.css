@@ -415,3 +415,6 @@ html{scrollbar-color:var(--rule, #2f4373) var(--bp)}
   .viewer .vfoot{flex-direction:column}
   .viewer .vprev,.viewer .vnext{opacity:1}
 }
+
+/* Rótulo de proyecto confidencial en la cabecera de lámina */
+.chapter-head .conf{display:block;font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px}

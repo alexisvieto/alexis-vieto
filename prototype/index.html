@@ -95,7 +95,7 @@
 
   <div class="chapter-head">
     <h2>Automatización</h2>
-    <p>Una empresa de alquiler ficticia atiende un pedido completo sin que nadie toque un teclado: llamada, WhatsApp, verificación, precio, cobro y entrega. Cada nodo usa una pieza que ya funciona en producción en mis productos. Toca un nodo para ver dónde.</p>
+    <p><strong class="conf">Proyecto confidencial.</strong> Una empresa panameña de distribución de carne nacional e importada necesitaba automatizar su proceso comercial. Construimos la automatización a partir de sus procesos manuales y redujimos las horas de trabajo en un 80%. Abajo, el flujo con datos ficticios: llamada, WhatsApp, verificación, precio, cobro y entrega. Toca un nodo para ver con qué está construido.</p>
   </div>
 
   <div class="flow-wrap">
@@ -105,13 +105,12 @@
         <div>Respuesta promedio<b id="c-time">41 s</b></div>
         <div>Cobros confirmados<b id="c-cash" class="red">$0</b></div>
       </div>
-      <span class="sim">Simulación · datos ficticios</span>
       <div class="flow-controls">
         <button class="btn" id="flow-toggle" aria-pressed="false">Pausar</button>
       </div>
     </div>
 
-    <div class="exec" id="exec" aria-live="polite"><span class="dot"></span><span id="exec-text">Esperando ejecución…</span><span class="t" id="exec-time"></span><span class="wf">Alquileres Bahía Azul, S.A. · workflow pedido-a-entrega · v3</span></div>
+    <div class="exec" id="exec" aria-live="polite"><span class="dot"></span><span id="exec-text">Esperando ejecución…</span><span class="t" id="exec-time"></span><span class="wf">Distribuidora de carne · nombre reservado · workflow pedido-a-entrega · v3</span></div>
     <div class="canvas-wrap" id="canvas-wrap">
       <div class="canvas" id="canvas">
         <svg id="edges" width="1600" height="420" aria-hidden="true"></svg>
@@ -130,10 +129,10 @@
   </div>
 
   <ol class="notes" aria-label="Notas de lámina">
-    <li><h3>Para qué se hizo</h3><p>Para que la empresa responda y cobre a cualquier hora sin sumar personal. Los pedidos llegan por el canal que el cliente prefiere.</p></li>
-    <li><h3>Cómo lo hace</h3><p>WhatsApp Business y telefonía con asistente IA. Extracción de datos con Claude. Inventario y clientes en Supabase con RLS. Yappy y tarjeta con confirmación automática.</p></li>
+    <li><h3>Para qué se hizo</h3><p>Los pedidos llegaban por llamada y WhatsApp y se recapturaban a mano en cotizaciones, inventario y despacho. Había que responder y cobrar a cualquier hora sin sumar personal.</p></li>
+    <li><h3>Cómo lo hace</h3><p>Partimos de los procesos manuales reales. WhatsApp Business y telefonía con asistente IA, extracción de datos con Claude, inventario y clientes en Supabase con RLS, Yappy y tarjeta con confirmación automática.</p></li>
     <li><h3>Qué entrega</h3><p>Flujo en producción con monitoreo. Panel de pedidos y cobros. Reglas de negocio documentadas. Traspaso al equipo del cliente.</p></li>
-    <li><h3>Resultados</h3><p>Respuesta en segundos a cualquier hora. Cobro confirmado antes de despachar. Cero recapturas: el pedido viaja de WhatsApp a la entrega sin volver a escribirse.</p></li>
+    <li><h3>Resultados</h3><p>80% menos horas de trabajo en el proceso comercial. Cobro confirmado antes de despachar. Cero recapturas: el pedido viaja de WhatsApp a la entrega sin volver a escribirse.</p></li>
   </ol>
 
   <p class="flow-close">Este flujo sirve para la mayoría de las empresas. <em>Cambian los productos, no las piezas.</em></p>
