@@ -566,3 +566,19 @@ html{scrollbar-color:var(--rule) var(--bp)}
 .notes .steps-list li{padding:2px 0;list-style:decimal}
 .notes .steps-list li::marker{color:var(--red);font:700 12px var(--mono)}
 .notes > li{align-content:start}
+
+/* ---------- Móvil: piso táctil de 44 px y piso de texto de 11 px ---------- */
+.audio[hidden]{display:none}
+@media (max-width:700px){
+  #flow-toggle,.btn{min-height:44px}
+  .snd,.agents .snd,.viewer .vctl button,.viewer .vclose{width:44px;height:44px}
+  .titleblock small{font-size:10px}
+  .titleblock b{font-size:11px}
+  .counters div{font-size:11px}
+  .counters div em{font-size:10px}
+  .flow-detail h3,.notes h3,.card .cap small,.card .dur,.chart-top span,.charts-hint,.agents .vcap,.exec,.exec .t,.legend li,.contacts small,.pieces-note{font-size:11px}
+  .sheet-title{font-size:11px}
+}
+
+.flow-wrap.vmode #pay-btn{position:sticky;left:0;bottom:12px;width:calc(100% - 68px);margin-top:10px}
+.flow-wrap.vmode .canvas-wrap{overflow:hidden}

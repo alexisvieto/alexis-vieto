@@ -28,6 +28,7 @@
   const LAYOUT = {
     h: { w: 1600, h: 420, pos: { call: [COL(0), 96], wa: [COL(0), 232], ai: [COL(1), 164], db: [COL(2), 164], if: [COL(3), 164], alt: [COL(4), 300], quote: [COL(5), 164], pay: [COL(6), 164], go: [COL(7), 164] } },
     v: { w: 360, h: 760, pos: { call: [12, 12], wa: [184, 12], ai: [96, 106], db: [96, 200], if: [96, 294], alt: [184, 388], quote: [96, 482], pay: [96, 576], go: [96, 670] } },
+    vs: { w: 300, h: 854, pos: { call: [66, 12], wa: [66, 106], ai: [66, 200], db: [66, 294], if: [66, 388], alt: [120, 482], quote: [66, 576], pay: [66, 670], go: [66, 764] } },
   };
   const NODES = [
     { id: 'call', type: 'trigger', ic: 'phone', t: 'Llamada', s: 'Trigger · voz', what: 'Un asistente contesta la llamada, saluda con el nombre de la empresa y transcribe el pedido.', how: 'Telefonía con asistente de voz (voz a texto) que dispara el flujo.', where: 'Patrón nuevo; la extracción posterior es la misma de tino.' },
@@ -77,9 +78,10 @@
 
   let mode = 'h', scale = 1;
   function layout() {
-    mode = NARROW.matches ? 'v' : 'h';
+    mode = wrap.clientWidth < 860 ? (wrap.clientWidth < 340 ? 'vs' : 'v') : 'h'; // horizontal solo si cabe legible
+    flowWrap.classList.toggle('vmode', mode !== 'h');
     const L = LAYOUT[mode];
-    canvas.classList.toggle('vertical', mode === 'v');
+    canvas.classList.toggle('vertical', mode !== 'h');
     canvas.style.width = L.w + 'px'; canvas.style.height = L.h + 'px';
     svg.setAttribute('width', L.w); svg.setAttribute('height', L.h);
     NODES.forEach(n => { const [x, y] = L.pos[n.id]; nodeEl[n.id].style.left = x + 'px'; nodeEl[n.id].style.top = y + 'px'; });
@@ -103,7 +105,7 @@
   // Botón de pago fuera del lienzo escalado: siempre ≥ 44 px
   const payBtn = $('#pay-btn');
   function placePay() {
-    if (mode === 'v') { payBtn.style.left = ''; payBtn.style.top = ''; payBtn.style.width = ''; return; }
+    if (mode !== 'h') { payBtn.style.left = ''; payBtn.style.top = ''; payBtn.style.width = ''; return; }
     const [x, y] = LAYOUT.h.pos.pay;
     const top = wrap.offsetTop + (y + H) * scale + 10 - wrap.scrollTop;
     const bw = Math.max(236, W * scale);
