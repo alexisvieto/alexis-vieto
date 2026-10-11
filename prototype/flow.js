@@ -46,8 +46,8 @@
       steps: { wa: 'La Central · 40 kg lomo nac. + 25 kg costilla imp.', ai: '2 cortes · jue 16-oct · San Miguelito', db: 'Lomo nac. 320 kg · Costilla imp. 180 kg · crédito al día', if: 'Hay kilos → sí', quote: 'Total $1,235.00 · lista mayorista · PDF enviado', pay: 'Yappy · YP-48213 · pagado', go: 'Entregado jue 06:30 · ruta 2 · firma' } },
     { id: 'B', name: 'Restaurante Punta Mar', total: 612.00, trigger: 'call', branch: 'a', cash: '$612.00 · tarjeta',
       steps: { call: '+507 6xxx-xxxx · transcrito', ai: 'Preguntó origen → picaña importada · 30 kg', db: 'Picaña imp. 95 kg · cliente nuevo', if: 'Hay kilos → sí', quote: 'Total $612.00 · lista restaurantes · PDF enviado', pay: 'Tarjeta · aut. 004417 · pagado', go: 'Entregado vie 05:45 · ruta 1 · firma' } },
-    { id: 'C', name: 'Minisúper Doña Ana', total: 171.00, trigger: 'wa', branch: 'b', cash: '$171.00 · Yappy',
-      steps: { wa: 'Doña Ana · 15 kg bife ancho importado', ai: '1 corte · sáb 18-oct · Las Cumbres', db: 'Bife ancho imp. 0 kg el 18-oct', if: 'Sin kilos → no', alt: 'Ofrece bife ancho nacional · cliente acepta', quote: 'Total $171.00 · lista minoristas · PDF enviado', pay: 'Yappy · YP-48227 · pagado', go: 'Entregado sáb 06:10 · ruta 3 · firma' } },
+    { id: 'C', name: 'Hotel Bahía Grande', total: 171.00, trigger: 'wa', branch: 'b', cash: '$171.00 · Yappy',
+      steps: { wa: 'Bahía Grande · 15 kg bife ancho importado', ai: '1 corte · sáb 18-oct · Las Cumbres', db: 'Bife ancho imp. 0 kg el 18-oct', if: 'Sin kilos → no', alt: 'Ofrece bife ancho nacional · cliente acepta', quote: 'Total $171.00 · lista minoristas · PDF enviado', pay: 'Yappy · YP-48227 · pagado', go: 'Entregado sáb 06:10 · ruta 3 · firma' } },
   ];
   const PAY_WAIT = 10; // segundos que el visitante tiene para confirmar el pago
 
