@@ -1,6 +1,7 @@
 /* Lámina 02.5 · Flujo de automatización estilo n8n. Proyecto confidencial: distribuidora de carne. Clientes, cortes, precios y pedidos son ficticios. */
 (() => {
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NARROW = matchMedia('(max-width: 700px)');
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const NS = 'http://www.w3.org/2000/svg';
@@ -22,73 +23,100 @@
   };
   const icon = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${I[k]}</svg>`;
 
-  /* ---------- Grafo ---------- */
+  /* ---------- Grafo: dos distribuciones (horizontal y vertical) ---------- */
   const W = 168, H = 64, COL = x => 30 + x * 196;
+  const LAYOUT = {
+    h: { w: 1600, h: 420, pos: { call: [COL(0), 96], wa: [COL(0), 232], ai: [COL(1), 164], db: [COL(2), 164], if: [COL(3), 164], alt: [COL(4), 300], quote: [COL(5), 164], pay: [COL(6), 164], go: [COL(7), 164] } },
+    v: { w: 360, h: 760, pos: { call: [12, 12], wa: [184, 12], ai: [96, 106], db: [96, 200], if: [96, 294], alt: [184, 388], quote: [96, 482], pay: [96, 576], go: [96, 670] } },
+  };
   const NODES = [
-    { id: 'call', x: COL(0), y: 96, type: 'trigger', ic: 'phone', t: 'Llamada', s: 'Trigger · voz', what: 'Un asistente contesta la llamada, saluda con el nombre de la empresa y transcribe el pedido.', how: 'Telefonía con asistente de voz (voz a texto) que dispara el flujo.', where: 'Patrón nuevo; la extracción posterior es la misma de tino.' },
-    { id: 'wa', x: COL(0), y: 232, type: 'trigger', ic: 'chat', t: 'WhatsApp', s: 'Trigger · webhook', what: 'El mensaje del cliente llega por WhatsApp y un webhook lo recibe.', how: 'WhatsApp Business API → webhook en función serverless.', where: 'Webhook GPS autenticado (HMAC) en NexGuard360; mensajes por correo y WhatsApp en tino.' },
-    { id: 'ai', x: COL(1), y: 164, ic: 'ai', t: 'Agente IA', s: 'Extrae el pedido', what: 'El Agente IA lee el texto y extrae el producto, cantidad, fecha y lugar. Si falta algo, pregunta.', how: 'API de Claude con salida estructurada (JSON schema) validada con Zod.', where: 'Extracción de CV y evaluación en tino; asistente con 12 herramientas en Atrio.' },
-    { id: 'db', x: COL(2), y: 164, ic: 'db', t: 'Supabase', s: 'Inventario · cliente', what: 'Consulta el inventario por corte y origen (nacional o importado), la lista de precios del cliente y su estado de crédito, con RLS por empresa.', how: 'PostgreSQL con políticas RLS deny-by-default.', where: '45/45 tablas con RLS en NexGuard360; 49/49 en NutriSoft con prueba de cobertura.' },
-    { id: 'if', x: COL(3), y: 164, type: 'if', ic: 'split', t: '¿Hay stock?', s: 'IF · stock por fecha', what: 'Decide la rama: si hay kilos del corte pedido, cotiza; si no, ofrece un corte equivalente.', how: 'Regla de negocio en el flujo, sin IA.', where: 'Lógica de decisión en todos los productos.' },
-    { id: 'alt', x: COL(4), y: 300, ic: 'alt', t: 'Alternativa', s: 'Corte equivalente', what: 'Busca un corte equivalente con existencia (otro origen o pieza similar) y lo propone al cliente.', how: 'Consulta de sustitutos + mensaje por el mismo canal.', where: 'Sugerencias del banco de talento en tino (mismo patrón).' },
-    { id: 'quote', x: COL(5), y: 164, ic: 'doc', t: 'Cotización PDF', s: 'Precio por kg · lista del cliente', what: 'Arma la cotización por kilo con la lista de precios de ese cliente y la envía con PDF por el mismo canal.', how: 'PDF con marca generado en servidor y enviado por WhatsApp.', where: '11 PDFs corporativos en Atrio; cotizaciones a Excel con fórmulas vivas en Modus PM.' },
-    { id: 'pay', x: COL(6), y: 164, ic: 'pay', t: 'Esperar pago', s: 'Yappy · tarjeta · crédito', what: 'El cliente paga o usa su crédito aprobado. La confirmación llega sola y el pedido pasa a "Pagado".', how: 'Yappy + IPN (firma HMAC) o pasarela de tarjeta.', where: 'Edge Functions yappy-orden / yappy-ipn en NutriSoft.' },
-    { id: 'go', x: COL(7), y: 164, type: 'final', ic: 'truck', t: 'Entrega', s: 'Ruta refrigerada · firma', what: 'Se genera la orden de despacho en la ruta refrigerada. El chofer confirma con foto y firma.', how: 'Mapa con GPS en vivo, reportes con foto, push al cliente.', where: 'Rastreo de flota y reportes con foto en NexGuard360.' },
+    { id: 'call', type: 'trigger', ic: 'phone', t: 'Llamada', s: 'Trigger · voz', what: 'Un asistente contesta la llamada, saluda con el nombre de la empresa y transcribe el pedido.', how: 'Telefonía con asistente de voz (voz a texto) que dispara el flujo.', where: 'Patrón nuevo; la extracción posterior es la misma de tino.' },
+    { id: 'wa', type: 'trigger', ic: 'chat', t: 'WhatsApp', s: 'Trigger · webhook', what: 'El mensaje del cliente llega por WhatsApp y un webhook lo recibe.', how: 'WhatsApp Business API → webhook en función serverless.', where: 'Webhook GPS autenticado (HMAC) en NexGuard360; mensajes por correo y WhatsApp en tino.' },
+    { id: 'ai', ic: 'ai', t: 'Agente IA', s: 'Extrae el pedido', what: 'El Agente IA lee el texto y extrae el producto, cantidad, fecha y lugar. Si falta algo, pregunta.', how: 'API de Claude con salida estructurada (JSON schema) validada con Zod.', where: 'Extracción de CV y evaluación en tino; asistente con 12 herramientas en Atrio.' },
+    { id: 'db', ic: 'db', t: 'Supabase', s: 'Inventario · cliente', what: 'Consulta el inventario por corte y origen (nacional o importado), la lista de precios del cliente y su estado de crédito, con RLS por empresa.', how: 'PostgreSQL con políticas RLS deny-by-default.', where: '45/45 tablas con RLS en NexGuard360; 49/49 en NutriSoft con prueba de cobertura.' },
+    { id: 'if', type: 'if', ic: 'split', t: '¿Hay stock?', s: 'IF · stock por fecha', what: 'Decide la rama: si hay kilos del corte pedido, cotiza; si no, ofrece un corte equivalente.', how: 'Regla de negocio en el flujo, sin IA.', where: 'Lógica de decisión en todos los productos.' },
+    { id: 'alt', ic: 'alt', t: 'Alternativa', s: 'Corte equivalente', what: 'Busca un corte equivalente con existencia (otro origen o pieza similar) y lo propone al cliente.', how: 'Consulta de sustitutos + mensaje por el mismo canal.', where: 'Sugerencias del banco de talento en tino (mismo patrón).' },
+    { id: 'quote', ic: 'doc', t: 'Cotización PDF', s: 'Precio por kg · lista del cliente', what: 'Arma la cotización por kilo con la lista de precios de ese cliente y la envía con PDF por el mismo canal.', how: 'PDF con marca generado en servidor y enviado por WhatsApp.', where: '11 PDFs corporativos en Atrio; cotizaciones a Excel con fórmulas vivas en Modus PM.' },
+    { id: 'pay', ic: 'pay', t: 'Esperar pago', s: 'Yappy · tarjeta · crédito', what: 'El cliente paga o usa su crédito aprobado. La confirmación llega sola y el pedido pasa a "Pagado".', how: 'Yappy + IPN (firma HMAC) o pasarela de tarjeta.', where: 'Edge Functions yappy-orden / yappy-ipn en NutriSoft.' },
+    { id: 'go', type: 'final', ic: 'truck', t: 'Entrega', s: 'Ruta refrigerada · firma', what: 'Se genera la orden de despacho en la ruta refrigerada. El chofer confirma con foto y firma.', how: 'Mapa con GPS en vivo, reportes con foto, push al cliente.', where: 'Rastreo de flota y reportes con foto en NexGuard360.' },
   ];
-  const EDGES = [
-    ['call', 'ai'], ['wa', 'ai'], ['ai', 'db'], ['db', 'if'],
-    ['if', 'quote', 'a'], ['if', 'alt', 'b'], ['alt', 'quote'], ['quote', 'pay'], ['pay', 'go'],
-  ];
+  const EDGES = [['call', 'ai'], ['wa', 'ai'], ['ai', 'db'], ['db', 'if'], ['if', 'quote', 'a'], ['if', 'alt', 'b'], ['alt', 'quote'], ['quote', 'pay'], ['pay', 'go']];
   const ORDERS = [
-    { id: 'A', name: 'Carnicería La Central', total: 1235.00, trigger: 'wa', branch: 'a', payWait: true, cash: '$1,235.00 · Yappy',
+    { id: 'A', name: 'Carnicería La Central', total: 1235.00, trigger: 'wa', branch: 'a', cash: '$1,235.00 · Yappy',
       steps: { wa: 'La Central · 40 kg lomo nac. + 25 kg costilla imp.', ai: '2 cortes · jue 16-oct · San Miguelito', db: 'Lomo nac. 320 kg · Costilla imp. 180 kg · crédito al día', if: 'Hay kilos → sí', quote: 'Total $1,235.00 · lista mayorista · PDF enviado', pay: 'Yappy · YP-48213 · pagado', go: 'Entregado jue 06:30 · ruta 2 · firma' } },
     { id: 'B', name: 'Restaurante Punta Mar', total: 612.00, trigger: 'call', branch: 'a', cash: '$612.00 · tarjeta',
       steps: { call: '+507 6xxx-xxxx · transcrito', ai: 'Preguntó origen → picaña importada · 30 kg', db: 'Picaña imp. 95 kg · cliente nuevo', if: 'Hay kilos → sí', quote: 'Total $612.00 · lista restaurantes · PDF enviado', pay: 'Tarjeta · aut. 004417 · pagado', go: 'Entregado vie 05:45 · ruta 1 · firma' } },
     { id: 'C', name: 'Minisúper Doña Ana', total: 171.00, trigger: 'wa', branch: 'b', cash: '$171.00 · Yappy',
       steps: { wa: 'Doña Ana · 15 kg bife ancho importado', ai: '1 corte · sáb 18-oct · Las Cumbres', db: 'Bife ancho imp. 0 kg el 18-oct', if: 'Sin kilos → no', alt: 'Ofrece bife ancho nacional · cliente acepta', quote: 'Total $171.00 · lista minoristas · PDF enviado', pay: 'Yappy · YP-48227 · pagado', go: 'Entregado sáb 06:10 · ruta 3 · firma' } },
   ];
+  const PAY_WAIT = 10; // segundos que el visitante tiene para confirmar el pago
 
   /* ---------- Render ---------- */
-  const canvas = $('#canvas'), wrap = $('#canvas-wrap'), svg = $('#edges');
+  const canvas = $('#canvas'), wrap = $('#canvas-wrap'), svg = $('#edges'), flowWrap = $('#flow-wrap');
   const nodeEl = {}, edgeEl = {};
   NODES.forEach(n => {
     const d = document.createElement('div');
     d.className = `node ${n.type || ''}`; d.id = 'n-' + n.id; d.tabIndex = 0; d.setAttribute('role', 'button');
-    d.style.left = n.x + 'px'; d.style.top = n.y + 'px';
     d.innerHTML = `<span class="ic">${icon(n.ic)}</span><span class="tx"><b>${n.t}</b><small data-default="${n.s}">${n.s}</small></span>
       <i class="st"><em class="spin"></em><em class="ok">${icon('check')}</em></i>
       ${n.type === 'trigger' ? '<i class="bolt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></i>' : '<i class="port in"></i>'}
       ${n.type === 'if' ? '<i class="port out a"><u>sí</u></i><i class="port out b"><u>no</u></i>' : n.type === 'final' ? '' : '<i class="port out"></i>'}`;
     canvas.append(d); nodeEl[n.id] = d;
     const show = () => { $('#fd-what').textContent = n.what; $('#fd-how').textContent = n.how; $('#fd-where').textContent = n.where; $$('.node').forEach(x => x.classList.remove('sel')); d.classList.add('sel'); };
-    d.addEventListener('click', show); d.addEventListener('keydown', e => e.key === 'Enter' && show());
+    d.addEventListener('click', show);
+    d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); } });
   });
   const byId = Object.fromEntries(NODES.map(n => [n.id, n]));
-  const outPt = (n, port) => ({ x: n.x + W, y: n.type === 'if' ? n.y + (port === 'a' ? 20 : 44) : n.y + H / 2 });
-  const inPt = n => ({ x: n.x, y: n.y + H / 2 });
-  EDGES.forEach(([a, b, port]) => {
-    const p1 = outPt(byId[a], port), p2 = inPt(byId[b]);
-    const dx = Math.max(50, Math.abs(p2.x - p1.x) * .45);
-    const d = `M${p1.x} ${p1.y} C${p1.x + dx} ${p1.y}, ${p2.x - dx} ${p2.y}, ${p2.x} ${p2.y}`;
+  EDGES.forEach(([a, b]) => {
     const g = svgEl('g', { class: 'edge', id: `e-${a}-${b}` });
-    const path = svgEl('path', { d, class: 'line' });
-    const mid = svgEl('text', { class: 'lbl', x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 - 8, 'text-anchor': 'middle' }, '1 item');
+    const path = svgEl('path', { class: 'line' });
+    const mid = svgEl('text', { class: 'lbl', 'text-anchor': 'middle' }, '1 pedido');
     g.append(path, mid); svg.append(g); edgeEl[`${a}-${b}`] = { g, path, mid };
   });
   const pulse = svgEl('circle', { class: 'pulse', r: 5, cx: -20, cy: -20 }); svg.append(pulse);
 
-  // Escala del lienzo
-  const fit = () => { const s = Math.max(.62, Math.min(1, wrap.clientWidth / 1600)); canvas.style.transform = `scale(${s})`; canvas.style.width = '1600px'; wrap.style.height = (420 * s) + 'px'; wrap.scrollLeft = 0; };
-  fit(); addEventListener('resize', fit);
-
+  let mode = 'h', scale = 1;
+  function layout() {
+    mode = NARROW.matches ? 'v' : 'h';
+    const L = LAYOUT[mode];
+    canvas.classList.toggle('vertical', mode === 'v');
+    canvas.style.width = L.w + 'px'; canvas.style.height = L.h + 'px';
+    svg.setAttribute('width', L.w); svg.setAttribute('height', L.h);
+    NODES.forEach(n => { const [x, y] = L.pos[n.id]; nodeEl[n.id].style.left = x + 'px'; nodeEl[n.id].style.top = y + 'px'; });
+    const P = id => L.pos[id];
+    const outPt = (id, port) => { const [x, y] = P(id); const t = byId[id].type;
+      if (mode === 'h') return { x: x + W, y: t === 'if' ? y + (port === 'a' ? 20 : 44) : y + H / 2 };
+      return { x: t === 'if' ? x + (port === 'a' ? W * .3 : W * .7) : x + W / 2, y: y + H }; };
+    const inPt = id => { const [x, y] = P(id); return mode === 'h' ? { x, y: y + H / 2 } : { x: x + W / 2, y }; };
+    EDGES.forEach(([a, b, port]) => {
+      const p1 = outPt(a, port), p2 = inPt(b); let d;
+      if (mode === 'h') { const dx = Math.max(50, Math.abs(p2.x - p1.x) * .45); d = `M${p1.x} ${p1.y} C${p1.x + dx} ${p1.y}, ${p2.x - dx} ${p2.y}, ${p2.x} ${p2.y}`; }
+      else { const dy = Math.max(24, Math.abs(p2.y - p1.y) * .5); d = `M${p1.x} ${p1.y} C${p1.x} ${p1.y + dy}, ${p2.x} ${p2.y - dy}, ${p2.x} ${p2.y}`; }
+      const e = edgeEl[`${a}-${b}`]; e.path.setAttribute('d', d);
+      e.mid.setAttribute('x', (p1.x + p2.x) / 2 + (mode === 'v' ? 44 : 0)); e.mid.setAttribute('y', (p1.y + p2.y) / 2 - (mode === 'h' ? 8 : -4));
+    });
+    scale = Math.min(1, wrap.clientWidth / L.w);
+    canvas.style.transform = `scale(${scale})`; wrap.style.height = (L.h * scale) + 'px';
+    placePay();
+    if (window.master) window.master.invalidate();
+  }
+  // Botón de pago fuera del lienzo escalado: siempre ≥ 44 px
+  const payBtn = $('#pay-btn');
+  function placePay() {
+    if (mode === 'v') { payBtn.style.left = ''; payBtn.style.top = ''; payBtn.style.width = ''; return; }
+    const [x, y] = LAYOUT.h.pos.pay;
+    const top = wrap.offsetTop + (y + H) * scale + 10 - wrap.scrollTop;
+    const bw = Math.max(236, W * scale);
+    payBtn.style.left = (wrap.offsetLeft + (x + W / 2) * scale - wrap.scrollLeft - bw / 2) + 'px'; payBtn.style.top = top + 'px'; payBtn.style.width = bw + 'px';
+  }
+  layout(); addEventListener('resize', layout); NARROW.addEventListener('change', layout);
+  wrap.addEventListener('scroll', placePay, { passive: true });
   $('#n-ai').click();
-  payBtn0();
-  function payBtn0(){ const b = $('#pay-btn'); b.style.left = byId.pay.x + 'px'; b.style.top = (byId.pay.y + H + 12) + 'px'; }
 
-  /* ---------- Estado y contadores ---------- */
+  /* ---------- Estado y contadores (de esta sesión, desde cero) ---------- */
   const execText = $('#exec-text'), execTime = $('#exec-time'), exec = $('#exec'), done = $('#done'), doneSub = $('#done-sub');
-  const cOrders = $('#c-orders'), cCash = $('#c-cash'), cTime = $('#c-time'), payBtn = $('#pay-btn');
-  let orders = 1248, cash = 0, execNo = 1249;
+  const cOrders = $('#c-orders'), cCash = $('#c-cash'), cTime = $('#c-time'), payCount = $('#pay-count');
+  let orders = 0, cash = 0, execNo = 1, times = [];
   const fmt = n => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const setSub = (id, txt) => { const s = $('small', nodeEl[id]); s.textContent = txt ?? s.dataset.default; };
   const reset = () => {
@@ -96,26 +124,23 @@
     NODES.forEach(n => setSub(n.id));
     Object.values(edgeEl).forEach(e => e.g.classList.remove('active', 'done'));
     exec.className = 'exec'; execTime.textContent = '';
+    payBtn.classList.remove('show'); payBtn.disabled = true;
   };
 
   if (RM) { // estado final estático del pedido A
     const o = ORDERS[0]; const path = ['wa', 'ai', 'db', 'if', 'quote', 'pay', 'go'];
     path.forEach(id => { nodeEl[id].classList.add('ok'); setSub(id, o.steps[id]); });
     ['wa-ai', 'ai-db', 'db-if', 'if-quote', 'quote-pay', 'pay-go'].forEach(k => edgeEl[k].g.classList.add('done'));
-    done.classList.add('show'); doneSub.textContent = 'Pedido A · 21.6 s · $551.05 cobrado';
+    done.classList.add('show'); doneSub.textContent = `Pedido A · 14.2 s · ${o.cash}`;
     execText.textContent = 'Completado · Pedido A'; exec.classList.add('ok');
-    cCash.textContent = '$551.05';
+    cOrders.textContent = '1'; cCash.textContent = '$' + fmt(o.total); cTime.textContent = '14 s';
     return;
   }
 
   /* ---------- Línea de tiempo ---------- */
-  let resumeTimer = null, pendingResume = null;
-  const master = gsap.timeline({ repeat: -1, repeatDelay: .4 });
+  const master = window.master = gsap.timeline({ repeat: -1, repeatDelay: .4, paused: true });
   const toggle = $('#flow-toggle');
-  const setToggle = () => {
-    if (pendingResume) { toggle.textContent = 'Esperando pago…'; toggle.disabled = true; return; }
-    toggle.disabled = false; toggle.textContent = master.paused() ? 'Reanudar' : 'Pausar'; toggle.setAttribute('aria-pressed', master.paused());
-  };
+  const setToggle = () => { toggle.textContent = master.paused() ? 'Reanudar' : 'Pausar'; toggle.setAttribute('aria-pressed', master.paused()); flowWrap.classList.toggle('paused', master.paused()); };
 
   function travel(tl, key, dur = .7) {
     const e = edgeEl[key];
@@ -123,27 +148,21 @@
     tl.to(pulse, { duration: dur, ease: 'power1.inOut', motionPath: { path: e.path, align: e.path, alignOrigin: [.5, .5] } });
     tl.add(() => { e.g.classList.remove('active'); e.g.classList.add('done'); gsap.set(pulse, { opacity: 0 }); });
   }
-  const follow = id => {
-    if (wrap.scrollWidth <= wrap.clientWidth + 4) return;
-    const s = canvas.getBoundingClientRect().width / 1600;
-    wrap.scrollTo({ left: Math.max(0, (byId[id].x + W / 2) * s - wrap.clientWidth / 2), behavior: 'smooth' });
-  };
   function run(tl, id, txt, dur) {
-    tl.add(() => { nodeEl[id].classList.add('running'); setSub(id, txt); follow(id); });
+    tl.add(() => { nodeEl[id].classList.add('running'); setSub(id, txt); });
     tl.to({}, { duration: dur });
     tl.add(() => { nodeEl[id].classList.remove('running'); nodeEl[id].classList.add('ok'); });
   }
 
+  let skipped = 0; // segundos saltados al confirmar el pago antes de tiempo (el reloj muestra tiempo real)
   ORDERS.forEach(o => {
     const tl = gsap.timeline();
     const t0 = { t: 0 };
     tl.add(() => {
-      reset();
-      execText.textContent = `Ejecución #${execNo.toLocaleString('en-US')} · Pedido ${o.id} · ${o.name}`;
+      reset(); skipped = 0;
+      execText.textContent = `Ejecución #${execNo} · Pedido ${o.id} · ${o.name}`;
       exec.classList.add('live');
-      gsap.fromTo(t0, { t: 0 }, { t: 24, duration: 24, ease: 'none', onUpdate: () => execTime.textContent = t0.t.toFixed(1) + ' s' });
     });
-    // Trigger
     tl.add(() => nodeEl[o.trigger].classList.add('lit'));
     tl.to({}, { duration: .5 });
     run(tl, o.trigger, o.steps[o.trigger], 1.2);
@@ -153,59 +172,64 @@
     run(tl, 'db', o.steps.db, 1.3);
     travel(tl, 'db-if');
     run(tl, 'if', o.steps.if, .9);
-    if (o.branch === 'a') {
-      travel(tl, 'if-quote', .9);
-    } else {
-      travel(tl, 'if-alt', .8);
-      run(tl, 'alt', o.steps.alt, 1.8);
-      travel(tl, 'alt-quote', .9);
-    }
+    if (o.branch === 'a') travel(tl, 'if-quote', .9);
+    else { travel(tl, 'if-alt', .8); run(tl, 'alt', o.steps.alt, 1.8); travel(tl, 'alt-quote', .9); }
     run(tl, 'quote', o.steps.quote, 1.5);
     travel(tl, 'quote-pay');
-    // Pago: el pedido A espera al visitante hasta 4 s (addPause: la pausa y su reanudación viven en un solo lugar)
-    tl.add(() => { nodeEl.pay.classList.add('running'); setSub('pay', o.payWait ? 'Esperando confirmación…' : o.steps.pay); });
-    if (o.payWait) {
-      tl.to({}, { duration: .05 });
-      tl.add(() => {
-        master.pause();
-        payBtn.classList.add('show');
-        pendingResume = () => { clearTimeout(resumeTimer); pendingResume = null; payBtn.classList.remove('show'); setSub('pay', o.steps.pay); master.play(); setToggle(); };
-        resumeTimer = setTimeout(pendingResume, 4000);
-        setToggle();
-      });
-      tl.to({}, { duration: .8 });
-    } else {
-      tl.to({}, { duration: 1.4 });
-    }
+    // Espera de pago: el visitante tiene PAY_WAIT s para confirmar; si no, se confirma solo. Pausar sigue activo.
+    const cd = { n: PAY_WAIT };
+    tl.add(() => { nodeEl.pay.classList.add('running'); setSub('pay', 'Esperando confirmación…'); payBtn.classList.add('show'); payBtn.disabled = false; placePay(); });
+    tl.fromTo(cd, { n: PAY_WAIT }, { n: 0, duration: PAY_WAIT, ease: 'none', onUpdate: () => { payCount.textContent = Math.ceil(cd.n) + ' s'; } });
+    tl.addLabel('paid');
+    tl.add(() => { payBtn.classList.remove('show'); payBtn.disabled = true; setSub('pay', o.steps.pay); });
+    tl.to({}, { duration: .8 });
     tl.add(() => { nodeEl.pay.classList.remove('running'); nodeEl.pay.classList.add('ok'); cash += o.total; cCash.textContent = '$' + fmt(cash); });
     travel(tl, 'pay-go');
     run(tl, 'go', o.steps.go, 1.4);
     // Cierre: todo en verde + sello
+    const closeAt = tl.duration();
     tl.add(() => {
-      gsap.killTweensOf(t0);
       exec.classList.remove('live'); exec.classList.add('ok');
       execText.textContent = `Completado · Pedido ${o.id} · ${o.name}`;
       doneSub.textContent = `Pedido ${o.id} · ${execTime.textContent} · ${o.cash}`;
-      orders++; cOrders.textContent = orders.toLocaleString('en-US');
-      cTime.textContent = (38 + Math.round(Math.random() * 6)) + ' s';
+      orders++; cOrders.textContent = String(orders);
+      times.push(Math.max(0, t0.t - skipped)); cTime.textContent = Math.round(times.reduce((a, b) => a + b, 0) / times.length) + ' s';
       execNo++;
+      if (mode === 'h') follow('go');
     });
-    tl.add(() => follow('go'));
     tl.fromTo(done, { opacity: 0 }, { opacity: 1, duration: .25 });
     tl.fromTo('#done .stamp', { scale: 1.35, rotate: -2 }, { scale: 1, rotate: -4, duration: .5, ease: 'back.out(2.5)' }, '<');
     tl.fromTo('#n-go', { boxShadow: '0 0 0 0 rgba(79,194,138,.6)' }, { boxShadow: '0 0 0 22px rgba(79,194,138,0)', duration: 1.2, ease: 'power2.out' }, '<');
-    tl.to({}, { duration: 2.4 });
+    tl.to({}, { duration: 3 });
     tl.to(done, { opacity: 0, duration: .4 });
     tl.to({}, { duration: .5 });
+    // Reloj de la ejecución dentro de la línea de tiempo: se detiene con Pausar y corre hasta el sello
+    tl.fromTo(t0, { t: 0 }, { t: closeAt, duration: closeAt, ease: 'none', onUpdate: () => execTime.textContent = Math.max(0, t0.t - skipped).toFixed(1) + ' s' }, 0);
     master.add(tl);
   });
 
-  payBtn.addEventListener('click', () => pendingResume && pendingResume());
+  // Confirmar el pago: salta al final de la espera del pedido en curso
+  payBtn.addEventListener('click', () => {
+    const cur = master.getChildren(false, false, true).find(t => master.time() >= t.startTime() && master.time() < t.startTime() + t.duration());
+    if (!cur || cur.labels.paid == null) return;
+    const target = cur.startTime() + cur.labels.paid;
+    if (master.time() < target) { skipped += target - master.time(); master.seek(target, false); }
+  });
 
-  // Pausar / reanudar y auto-pausa fuera de viewport
-  let userPaused = false, visible = false;
-  const sync = () => { if (pendingResume) return; (userPaused || !visible) ? master.pause() : master.play(); setToggle(); };
+  // Seguimiento del nodo activo cuando el lienzo horizontal desborda (no pelea con el dedo)
+  let lastTouch = 0;
+  wrap.addEventListener('pointerdown', () => lastTouch = Date.now(), { passive: true });
+  function follow(id) {
+    if (mode !== 'h' || wrap.scrollWidth <= wrap.clientWidth + 4 || Date.now() - lastTouch < 2000) return;
+    const [x] = LAYOUT.h.pos[id];
+    wrap.scrollTo({ left: Math.max(0, (x + W / 2) * scale - wrap.clientWidth / 2), behavior: 'smooth' });
+  }
+
+  // Pausar / reanudar, visibilidad del viewport y de la pestaña
+  let userPaused = false, visible = false, started = false;
+  const sync = () => { const shouldPlay = !userPaused && visible && !document.hidden; shouldPlay ? master.play() : master.pause(); setToggle(); };
   toggle.addEventListener('click', () => { userPaused = !userPaused; sync(); });
-  new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; sync(); }), { threshold: 0 }).observe(wrap);
-  master.pause(); setToggle();
+  new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; if (visible && !started) { started = true; master.seek(0, false); } sync(); }), { threshold: .5 }).observe(wrap);
+  document.addEventListener('visibilitychange', sync);
+  setToggle();
 })();

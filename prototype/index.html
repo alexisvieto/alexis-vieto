@@ -23,7 +23,6 @@
       <div class="desk"></div>
     </div>
     <div class="vignette"></div>
-    <div class="video-note">Marcador · aquí va el video IA (órbita 360° · speed ramp)</div>
 
     <!-- Capa de anotaciones sincronizada con el tiempo del video -->
     <svg id="annot" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -72,7 +71,7 @@
     <h1>Sistemas que<br><em>reemplazan</em> el Excel.</h1>
     <p class="lede">Web inteligente, aplicaciones, móvil, inteligencia de negocios y automatización. 20 años dirigiendo operaciones reales; hoy construyo el software que esas operaciones necesitaban.</p>
     <div class="cta">
-      <a class="btn primary" href="#flow-sheet">Ver servicios →</a>
+      <a class="btn primary" href="#flow-wrap">Ver la automatización →</a>
       <a class="btn" href="#contact">Hablemos</a>
     </div>
   </div>
@@ -98,12 +97,12 @@
     <p><strong class="conf">Proyecto confidencial.</strong> Una empresa panameña de distribución de carne nacional e importada necesitaba automatizar su proceso comercial. Construimos la automatización a partir de sus procesos manuales y redujimos las horas de trabajo en un 80%. Abajo, el flujo con datos ficticios: llamada, WhatsApp, verificación, precio, cobro y entrega. Toca un nodo para ver con qué está construido.</p>
   </div>
 
-  <div class="flow-wrap">
+  <div class="flow-wrap" id="flow-wrap">
     <div class="flow-top">
       <div class="counters">
-        <div>Pedidos atendidos<b id="c-orders">1,248</b></div>
-        <div>Respuesta promedio<b id="c-time">41 s</b></div>
-        <div>Cobros confirmados<b id="c-cash" class="red">$0</b></div>
+        <div>Pedidos atendidos<b id="c-orders">0</b><em>en esta sesión</em></div>
+        <div>Tiempo por pedido<b id="c-time">—</b><em>promedio real</em></div>
+        <div>Cobros confirmados<b id="c-cash">$0.00</b><em>en esta sesión</em></div>
       </div>
       <div class="flow-controls">
         <button class="btn" id="flow-toggle" aria-pressed="false">Pausar</button>
@@ -114,13 +113,13 @@
     <div class="canvas-wrap" id="canvas-wrap">
       <div class="canvas" id="canvas">
         <svg id="edges" width="1600" height="420" aria-hidden="true"></svg>
-        <button class="pay-btn" id="pay-btn" type="button">Pagar con Yappy</button>
         <div class="done" id="done" aria-live="polite">
           <div class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Proceso completado</b><span id="done-sub"></span></div></div>
         </div>
       </div>
     </div>
 
+    <button class="pay-btn" id="pay-btn" type="button" disabled>Pagar con Yappy <span class="cd" id="pay-count" aria-live="off">10 s</span></button>
     <div class="flow-detail" id="flow-detail">
       <div><h3>Qué pasa aquí</h3><p id="fd-what">Toca un nodo para ver el detalle.</p></div>
       <div><h3>Con qué se construye</h3><p id="fd-how">—</p></div>
@@ -131,7 +130,7 @@
   <!-- 02.5b · Agentes de automatización -->
   <section class="agents" id="agents" aria-labelledby="agents-title">
     <div class="agents-head">
-      <h3 id="agents-title">Agentes de automatización<span>Tus agentes trabajan. Tu equipo decide.</span></h3>
+      <h3 id="agents-title"><span class="sub">Detalle B · Lámina 02.5b</span>Agentes de automatización<span>Tus agentes trabajan. Tu equipo decide.</span></h3>
       <p>Un flujo sigue pasos fijos. Un agente recibe un objetivo, usa herramientas acotadas, decide el siguiente paso y, cuando no está seguro, escala a una persona. El video muestra un equipo de siete agentes que lleva la contabilidad de una empresa con mil facturas al mes.</p>
     </div>
     <div class="agents-grid">
@@ -156,17 +155,16 @@
         </ul>
       </div>
       <div class="side">
-        <div class="blk"><h4>Qué cambia con agentes</h4><p>La automatización clásica se rompe cuando el caso no está previsto. Un agente lee el caso, consulta lo que necesita y propone qué hacer. La persona deja de capturar y pasa a aprobar.</p></div>
-        <div class="blk"><h4>Cómo los construimos</h4><p>Modelos de Claude con herramientas acotadas por rol (solo lectura donde debe serlo), permisos en la base de datos, registro de cada acción y un umbral claro: lo que el agente no puede sostener con evidencia, lo escala. Nunca decide un pago ni un despido; prepara la decisión.</p></div>
-        <div class="blk"><h4>Dónde ya funcionan</h4>
+        <div class="blk"><h4>Qué cambia y cómo los construimos</h4><p>La automatización clásica se rompe cuando el caso no está previsto; un agente lee el caso, consulta lo que necesita y propone qué hacer, y la persona pasa de capturar a aprobar. Los construimos con modelos de Claude y herramientas acotadas por rol (solo lectura donde debe serlo), permisos en la base de datos, registro de cada acción y un umbral claro: lo que el agente no puede sostener con evidencia, lo escala. Nunca decide un pago ni un despido; prepara la decisión.</p></div>
+        <div class="blk"><h4>Dónde ya funcionan y qué entrega</h4>
           <ul class="where">
             <li><b>Atrio</b> · asistente del administrador con 12 herramientas de solo lectura, limitadas por RLS; redacción de comunicados con la voz del PH.</li>
             <li><b>tino</b> · lectura de CV y evaluación contra el perfil de cargo con evidencia citada; el reclutador decide.</li>
             <li><b>Modus PM</b> · análisis de pliegos por lotes con cita de página y panel de riesgos; conteo de planos con confirmación humana.</li>
             <li><b>NexGuard360</b> · novedades dictadas por voz refinadas a informe técnico y enviadas cada madrugada.</li>
           </ul>
+          <p style="margin-top:10px">Entrega: un equipo de agentes con roles definidos, sus herramientas y permisos, un panel de lo que hicieron y de lo que escalaron, y el traspaso al equipo que los supervisa.</p>
         </div>
-        <div class="blk"><h4>Qué entrega</h4><p>Un equipo de agentes con roles definidos, sus herramientas y permisos, un panel de lo que hicieron y de lo que escalaron, y el traspaso al equipo que los supervisa.</p></div>
       </div>
     </div>
   </section>
@@ -323,7 +321,7 @@
 
 <footer>
   <span>Alexis Vieto · Rev. 2026.10 · Según construido</span>
-  <span>Prototipo de dirección · F0</span>
+  <span>Panamá · Nexera</span>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

@@ -233,7 +233,7 @@ h2 span{display:block;font:600 clamp(18px,2.2vw,28px)/1.1 var(--display);letter-
 .node.sel{outline:1px dashed var(--red);outline-offset:4px}
 @keyframes rot{to{transform:rotate(360deg)}}
 /* botón de pago y sello */
-.pay-btn{position:absolute;left:1236px;top:240px;width:168px;padding:8px 0;background:var(--red);color:var(--bp);font:700 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;border-radius:4px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:.25s}
+.pay-btn{padding:8px 0;background:var(--red);color:var(--bp);font:700 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;border-radius:4px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:.25s}
 .pay-btn.show{opacity:1;pointer-events:auto;transform:none;animation:ping 1s 3}
 .done{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-start;padding-top:10px;pointer-events:none;opacity:0}
 .done.show{opacity:1}
@@ -460,3 +460,40 @@ html{scrollbar-color:var(--rule, #2f4373) var(--bp)}
   .roles{grid-template-columns:1fr}
 }
 .agents .vcap{margin-bottom:14px}
+
+/* ---------- Ronda 2 · P0/P1 ---------- */
+/* Escena del hero sin andamiaje: la terminal falsa se oculta bajo 1600 px para no cruzarse con el titular */
+@media (max-width:1600px){ .mon.l::after{display:none} }
+.person{display:none}
+/* Botón de pago fuera del lienzo escalado (≥ 44 px), con cuenta regresiva */
+.flow-wrap{position:relative}
+#pay-btn{position:absolute;z-index:5;left:0;top:0;min-height:44px;padding:0 14px;display:none;align-items:center;justify-content:center;gap:10px;transform:none}
+#pay-btn.show{display:inline-flex;opacity:1;pointer-events:auto;animation:ping 1s 2}
+#pay-btn .cd{font:700 11px var(--mono);letter-spacing:.08em;color:var(--bp);opacity:.75;font-variant-numeric:tabular-nums}
+/* Estado pausado: se congelan las animaciones del lienzo */
+.flow-wrap.paused .exec.live .dot,.flow-wrap.paused .node .st .spin,.flow-wrap.paused #edges .edge.active .line{animation-play-state:paused}
+.flow-wrap.paused .exec::after{content:"Pausado";margin-left:8px;font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);padding:2px 6px}
+.counters div em{display:block;font-style:normal;font:500 9px var(--mono);letter-spacing:.12em;color:var(--ink3);margin-top:4px;text-transform:uppercase}
+/* Lienzo en modo vertical (pantallas angostas): puertos arriba y abajo */
+.canvas.vertical .node .port.in{left:50%;top:-6px;transform:translateX(-50%)}
+.canvas.vertical .node .port.out{right:auto;left:50%;top:auto;bottom:-6px;transform:translateX(-50%)}
+.canvas.vertical .node.if .port.out.a{left:30%}
+.canvas.vertical .node.if .port.out.b{left:70%}
+.canvas.vertical .node .port u{left:50%;top:14px;transform:translateX(-50%)}
+.canvas.vertical .node .bolt{left:50%;top:-14px;transform:translateX(-50%)}
+.canvas.vertical .done{align-items:center}
+.canvas.vertical .stamp{transform:rotate(-3deg) scale(.82)}
+.flow-wrap{scroll-margin-top:16px}
+/* Agentes como subsección, no como capítulo nuevo */
+.agents-head h3{font-size:clamp(28px,3.2vw,40px)}
+.agents-head h3 span{font-size:clamp(15px,1.6vw,19px)}
+.agents .sub{display:block;font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+@media (max-width:700px){
+  .canvas-wrap{overflow:hidden}
+  #pay-btn{position:sticky;left:0;bottom:12px;width:100%;margin-top:10px}
+}
+
+.canvas.vertical .node .tx b{font-size:15px}
+.canvas.vertical .node .tx small{font-size:12px}
+.canvas.vertical .node .port u{font-size:11px}
+#pay-btn{white-space:nowrap}
