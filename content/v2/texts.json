@@ -1,0 +1,1034 @@
+{
+  "$meta": {
+    "source": "portfolio-v2.html",
+    "extracted": "2026-10-11",
+    "languages": [
+      "en",
+      "es"
+    ],
+    "notes": [
+      "i18n: keys from the page JS dictionary `I` (data-i = textContent, data-ih / html:true = innerHTML allowed).",
+      "static: language-neutral strings read from the markup (names, numbers, URLs, stacks, aria labels).",
+      "type:\"template\" entries were arrow functions in the source; {x} are the parameters, `source` keeps the original JS."
+    ]
+  },
+  "hero": {
+    "i18n": {
+      "nWhy": {
+        "en": "Why me",
+        "es": "Por qué yo"
+      },
+      "nLive": {
+        "en": "Live demo",
+        "es": "Demo en vivo"
+      },
+      "nWork": {
+        "en": "Products",
+        "es": "Productos"
+      },
+      "nContact": {
+        "en": "Contact",
+        "es": "Contacto"
+      },
+      "hEye": {
+        "en": "Full-stack product builder <i>·</i> Panama",
+        "es": "Constructor de productos full stack <i>·</i> Panamá",
+        "html": true
+      },
+      "hTitle": {
+        "en": "20 years running engineering projects. <em>Now I build the software they needed.</em>",
+        "es": "20 años dirigiendo proyectos de ingeniería. <em>Ahora construyo el software que les faltaba.</em>",
+        "html": true
+      },
+      "hLead": {
+        "en": "I know budgets, crews, clients and deadlines from the inside. I turn that into software with AI, from the data model to the payment button, and I put it in production.",
+        "es": "Conozco por dentro los presupuestos, las cuadrillas, los clientes y las fechas de entrega. Eso lo convierto en software con IA, desde el modelo de datos hasta el botón de pago, y lo pongo en producción."
+      },
+      "hCta1": {
+        "en": "Try a live dashboard",
+        "es": "Prueba un dashboard en vivo"
+      },
+      "hCta2": {
+        "en": "Get in touch",
+        "es": "Contáctame"
+      },
+      "tb1": {
+        "en": "Project",
+        "es": "Proyecto"
+      },
+      "tb1v": {
+        "en": "Alexis Vieto, portfolio",
+        "es": "Alexis Vieto, portafolio"
+      },
+      "tb2": {
+        "en": "Drawn by",
+        "es": "Dibujó"
+      },
+      "tb2v": {
+        "en": "A. Vieto with Claude Code",
+        "es": "A. Vieto con Claude Code"
+      },
+      "tb3": {
+        "en": "Scale",
+        "es": "Escala"
+      },
+      "tb4": {
+        "en": "Revision",
+        "es": "Revisión"
+      },
+      "tb5": {
+        "en": "Sheets",
+        "es": "Hojas"
+      },
+      "tb6": {
+        "en": "Status",
+        "es": "Estado"
+      },
+      "tb6v": {
+        "en": "As-built",
+        "es": "Según construido"
+      },
+      "tb7": {
+        "en": "Builder",
+        "es": "Constructor"
+      },
+      "k1": {
+        "en": "years delivering field projects",
+        "es": "años entregando proyectos de campo"
+      },
+      "k2": {
+        "en": "projects delivered at my own company",
+        "es": "proyectos entregados con mi propia empresa"
+      },
+      "k3": {
+        "en": "SaaS products built at Nexera",
+        "es": "productos SaaS construidos en Nexera"
+      },
+      "k4": {
+        "en": "dashboards built into real apps",
+        "es": "dashboards construidos dentro de apps reales"
+      }
+    },
+    "static": {
+      "htmlLang": "en",
+      "pageTitle": "Alexis Vieto",
+      "metaDescription": "Alexis Vieto: full-stack product builder in Panama. 20 years running engineering projects, now building SaaS products with AI.",
+      "markName": "Alexis Vieto",
+      "markSub": "NEXERA · PANAMÁ",
+      "langButtons": [
+        {
+          "id": "l-en",
+          "label": "EN"
+        },
+        {
+          "id": "l-es",
+          "label": "ES"
+        }
+      ],
+      "ariaTitleBlock": "Title block",
+      "ariaLanguage": "Language",
+      "titleBlockFixed": {
+        "tb3v": "1:1",
+        "tb4v": "2026.10",
+        "tb5v": "01 / 06",
+        "tb7v": "NEXERA"
+      },
+      "dims": [
+        {
+          "value": "20+",
+          "labelKey": "k1"
+        },
+        {
+          "value": "300+",
+          "labelKey": "k2"
+        },
+        {
+          "value": "5",
+          "labelKey": "k3"
+        },
+        {
+          "value": "20+",
+          "labelKey": "k4"
+        }
+      ]
+    }
+  },
+  "why": {
+    "i18n": {
+      "wEye": {
+        "en": "Why me",
+        "es": "Por qué yo"
+      },
+      "wTitle": {
+        "en": "I've run the kind of business my software is built for",
+        "es": "He dirigido el tipo de negocio para el que construyo software"
+      },
+      "wLead": {
+        "en": "Four reasons, each with proof on this page.",
+        "es": "Cuatro razones, cada una con su prueba en esta página."
+      },
+      "w1t": {
+        "en": "I understand the operation before I write a line",
+        "es": "Entiendo la operación antes de escribir una línea"
+      },
+      "w1p": {
+        "en": "I founded Proytel with $500 and grew it to more than $2.5 million in revenue in 2019, with over 40 people and ISO 9001 certification. Every product I build starts from a problem I lived: Excel files nobody trusts, reports written at night, payments chased by phone.",
+        "es": "Fundé Proytel con 500 dólares y la llevé a facturar más de 2.5 millones en 2019, con más de 40 colaboradores y certificación ISO 9001. Cada producto que construyo nace de un problema que viví: Excel en los que nadie confía, reportes escritos de noche, cobros persiguiendo a la gente por teléfono."
+      },
+      "w1x": {
+        "en": "17 years running my own company",
+        "es": "17 años dirigiendo mi propia empresa"
+      },
+      "w2t": {
+        "en": "I finish complete products",
+        "es": "Termino productos completos"
+      },
+      "w2p": {
+        "en": "Login, roles, payments, accounting, PDFs, mobile apps, email and monitoring. Three of my products are live, and one of them runs 696 automated tests.",
+        "es": "Inicio de sesión, roles, pagos, contabilidad, PDFs, apps móviles, correos y monitoreo. Tres de mis productos están en línea, y uno corre 696 pruebas automatizadas."
+      },
+      "w2x": {
+        "en": "5 products · 3 live",
+        "es": "5 productos · 3 en línea"
+      },
+      "w3t": {
+        "en": "I use AI with judgment",
+        "es": "Uso la IA con criterio"
+      },
+      "w3p": {
+        "en": "I build with Claude Code, and I put AI inside my products where it saves hours: daily reports, bid analysis, CV screening. The AI proposes and a person decides. Money and nutrition math run on deterministic code.",
+        "es": "Construyo con Claude Code y meto IA en mis productos donde ahorra horas: reportes diarios, análisis de pliegos, evaluación de hojas de vida. La IA propone y una persona decide. Los cálculos de dinero y de nutrición corren con código exacto."
+      },
+      "w3x": {
+        "en": "A person approves every AI output",
+        "es": "Una persona aprueba todo lo que produce la IA"
+      },
+      "w4t": {
+        "en": "I protect the data",
+        "es": "Protejo los datos"
+      },
+      "w4p": {
+        "en": "Row-level security on every table, so one client never sees another's data. Closed accounting months are locked in the database. The system enforces candidate consent and deletes expired data on schedule.",
+        "es": "Seguridad por fila en cada tabla, para que un cliente nunca vea los datos de otro. Los meses contables cerrados quedan bloqueados en la base de datos. El sistema exige el consentimiento de los candidatos y borra a tiempo los datos vencidos."
+      },
+      "w4x": {
+        "en": "Security rules live in the database",
+        "es": "Las reglas de seguridad viven en la base de datos"
+      }
+    },
+    "static": {
+      "sheetNo": "02/06"
+    }
+  },
+  "live": {
+    "i18n": {
+      "dEye": {
+        "en": "Live demo",
+        "es": "Demo en vivo"
+      },
+      "dTitle": {
+        "en": "Three dashboards you can use right now",
+        "es": "Tres dashboards que puedes usar ahora mismo"
+      },
+      "dLead": {
+        "en": "Change the project, the period or the vacancy and the numbers update. They're drawn with plain code inside this page, the same way I build dashboards into my products. No BI license required.",
+        "es": "Cambia el proyecto, el periodo o la vacante y los números se actualizan. Están dibujados con código dentro de esta página, igual que los dashboards que construyo en mis productos. Sin licencias de BI."
+      },
+      "tab1": {
+        "en": "Project control",
+        "es": "Control de proyecto"
+      },
+      "tab2": {
+        "en": "Building finances",
+        "es": "Finanzas del edificio"
+      },
+      "tab3": {
+        "en": "Recruiting",
+        "es": "Reclutamiento"
+      },
+      "pjT": {
+        "en": "Schedule and cost, planned against actual",
+        "es": "Cronograma y costos, planificado contra real"
+      },
+      "pjC1": {
+        "en": "S-curve: cumulative progress",
+        "es": "Curva S: avance acumulado"
+      },
+      "pjC2": {
+        "en": "Cost by category (USD thousands)",
+        "es": "Costo por categoría (miles de USD)"
+      },
+      "lgPlan": {
+        "en": "Planned",
+        "es": "Planificado"
+      },
+      "lgAct": {
+        "en": "Actual",
+        "es": "Real"
+      },
+      "lgToday": {
+        "en": "Today",
+        "es": "Hoy"
+      },
+      "lgBud": {
+        "en": "Budget",
+        "es": "Presupuesto"
+      },
+      "lgSpent": {
+        "en": "Spent",
+        "es": "Gastado"
+      },
+      "fnT": {
+        "en": "Monthly fees: billed, collected and overdue",
+        "es": "Cuotas mensuales: facturado, cobrado y en mora"
+      },
+      "fnC1": {
+        "en": "Billed vs collected (USD)",
+        "es": "Facturado vs cobrado (USD)"
+      },
+      "fnC2": {
+        "en": "Units with overdue fees, by months late",
+        "es": "Unidades en mora, por meses de atraso"
+      },
+      "lgBilled": {
+        "en": "Billed",
+        "es": "Facturado"
+      },
+      "lgColl": {
+        "en": "Collected",
+        "es": "Cobrado"
+      },
+      "hrT": {
+        "en": "From applications to a shortlist, with the reason for each",
+        "es": "De las postulaciones a la lista corta, con la razón de cada una"
+      },
+      "hrC1": {
+        "en": "Hiring funnel",
+        "es": "Embudo de selección"
+      },
+      "hrC2": {
+        "en": "Top candidates by match",
+        "es": "Mejores candidatos por compatibilidad"
+      },
+      "thC": {
+        "en": "Candidate",
+        "es": "Candidato"
+      },
+      "thM": {
+        "en": "Match",
+        "es": "Compat."
+      },
+      "thR": {
+        "en": "AI says",
+        "es": "La IA dice"
+      },
+      "demoB": {
+        "en": "Demo data",
+        "es": "Datos de demostración"
+      },
+      "demoT": {
+        "en": "Every project, building and candidate here is invented. The charts and the math are real code.",
+        "es": "Todos los proyectos, edificios y candidatos son inventados. Los gráficos y los cálculos son código real."
+      },
+      "k_prog": {
+        "en": "Actual progress",
+        "es": "Avance real"
+      },
+      "k_spi": {
+        "en": "Schedule index",
+        "es": "Índice de cronograma"
+      },
+      "k_cost": {
+        "en": "Spent of budget",
+        "es": "Gastado del presupuesto"
+      },
+      "k_week": {
+        "en": "Week",
+        "es": "Semana"
+      },
+      "ahead": {
+        "en": "ahead",
+        "es": "adelantado"
+      },
+      "behind": {
+        "en": "behind",
+        "es": "atrasado"
+      },
+      "onb": {
+        "en": "on budget",
+        "es": "en presupuesto"
+      },
+      "over": {
+        "en": "over",
+        "es": "excedido"
+      },
+      "weekL": {
+        "en": "Wk",
+        "es": "Sem"
+      },
+      "tipS": {
+        "en": "Week {w} · planned {p}% · actual {a}%",
+        "es": "Semana {w} · planificado {p}% · real {a}%",
+        "type": "template",
+        "params": [
+          "w",
+          "p",
+          "a"
+        ],
+        "na": {
+          "en": "n/a",
+          "es": "n/d"
+        },
+        "source": {
+          "en": "(w,p,a)=>`Week ${w} · planned ${p}% · actual ${a==null?'n/a':a+'%'}`",
+          "es": "(w,p,a)=>`Semana ${w} · planificado ${p}% · real ${a==null?'n/d':a+'%'}`"
+        }
+      },
+      "cats": {
+        "en": [
+          "Equipment",
+          "Labor",
+          "Subcontracts",
+          "Logistics"
+        ],
+        "es": [
+          "Equipos",
+          "Mano de obra",
+          "Subcontratos",
+          "Logística"
+        ]
+      },
+      "projs": {
+        "en": [
+          "Datacenter rollout",
+          "Airport weather stations",
+          "Office building BMS"
+        ],
+        "es": [
+          "Despliegue de datacenter",
+          "Estaciones meteorológicas",
+          "BMS de edificio de oficinas"
+        ]
+      },
+      "k_coll": {
+        "en": "Collection rate",
+        "es": "Tasa de cobro"
+      },
+      "k_billed": {
+        "en": "Billed",
+        "es": "Facturado"
+      },
+      "k_overdue": {
+        "en": "Units overdue",
+        "es": "Unidades en mora"
+      },
+      "k_cash": {
+        "en": "Collected",
+        "es": "Cobrado"
+      },
+      "per": {
+        "en": [
+          "Last 6 months",
+          "Last 12 months"
+        ],
+        "es": [
+          "Últimos 6 meses",
+          "Últimos 12 meses"
+        ]
+      },
+      "months": {
+        "en": [
+          "Nov",
+          "Dec",
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct"
+        ],
+        "es": [
+          "Nov",
+          "Dic",
+          "Ene",
+          "Feb",
+          "Mar",
+          "Abr",
+          "May",
+          "Jun",
+          "Jul",
+          "Ago",
+          "Sep",
+          "Oct"
+        ]
+      },
+      "tipF": {
+        "en": "{m} · billed ${b} · collected ${c} ({pct}%)",
+        "es": "{m} · facturado ${b} · cobrado ${c} ({pct}%)",
+        "type": "template",
+        "params": [
+          "m",
+          "b",
+          "c"
+        ],
+        "source": {
+          "en": "(m,b,c)=>`${m} · billed $${b.toLocaleString('en-US')} · collected $${c.toLocaleString('en-US')} (${Math.round(c/b*100)}%)`",
+          "es": "(m,b,c)=>`${m} · facturado $${b.toLocaleString('en-US')} · cobrado $${c.toLocaleString('en-US')} (${Math.round(c/b*100)}%)`"
+        }
+      },
+      "aging": {
+        "en": [
+          "1 month",
+          "2 months",
+          "3 months",
+          "4+ months"
+        ],
+        "es": [
+          "1 mes",
+          "2 meses",
+          "3 meses",
+          "4+ meses"
+        ]
+      },
+      "units": {
+        "en": "units",
+        "es": "unidades"
+      },
+      "vac": {
+        "en": [
+          "Accounting assistant",
+          "Field technician",
+          "Sales executive"
+        ],
+        "es": [
+          "Asistente contable",
+          "Técnico de campo",
+          "Ejecutivo de ventas"
+        ]
+      },
+      "stages": {
+        "en": [
+          "Applied",
+          "Evaluated by AI",
+          "Shortlisted",
+          "Interviewed",
+          "Hired"
+        ],
+        "es": [
+          "Postularon",
+          "Evaluados por IA",
+          "Lista corta",
+          "Entrevistados",
+          "Contratado"
+        ]
+      },
+      "k_apps": {
+        "en": "Applications",
+        "es": "Postulaciones"
+      },
+      "k_short": {
+        "en": "Shortlisted",
+        "es": "En lista corta"
+      },
+      "k_time": {
+        "en": "Avg. time to score",
+        "es": "Tiempo prom. de evaluación"
+      },
+      "k_saved": {
+        "en": "Reading hours saved",
+        "es": "Horas de lectura ahorradas"
+      },
+      "adv": {
+        "en": "Advance",
+        "es": "Avanzar"
+      },
+      "rev": {
+        "en": "Review",
+        "es": "Revisar"
+      },
+      "low": {
+        "en": "Not a priority",
+        "es": "No prioritario"
+      }
+    },
+    "static": {
+      "sheetNo": "03/06",
+      "ariaTablist": "Dashboards",
+      "charts": [
+        {
+          "id": "pj-s",
+          "viewBox": "0 0 520 240",
+          "ariaLabel": "S-curve"
+        },
+        {
+          "id": "pj-b",
+          "viewBox": "0 0 340 240",
+          "ariaLabel": "Cost by category"
+        },
+        {
+          "id": "fn-b",
+          "viewBox": "0 0 520 240",
+          "ariaLabel": "Billed vs collected"
+        },
+        {
+          "id": "fn-a",
+          "viewBox": "0 0 340 240",
+          "ariaLabel": "Overdue aging"
+        },
+        {
+          "id": "hr-f",
+          "viewBox": "0 0 520 240",
+          "ariaLabel": "Funnel"
+        }
+      ],
+      "tabs": [
+        {
+          "tabId": "t-proj",
+          "labelKey": "tab1"
+        },
+        {
+          "tabId": "t-fin",
+          "labelKey": "tab2"
+        },
+        {
+          "tabId": "t-hire",
+          "labelKey": "tab3"
+        }
+      ]
+    }
+  },
+  "work": {
+    "i18n": {
+      "prEye": {
+        "en": "What I've built",
+        "es": "Lo que he construido"
+      },
+      "prTitle": {
+        "en": "Five products, each from a problem I saw in the field",
+        "es": "Cinco productos, cada uno nacido de un problema que vi en el campo"
+      },
+      "a0": {
+        "en": "Condominium management for administrators, gatehouse and residents",
+        "es": "Administración de propiedad horizontal para la administración, la garita y los residentes"
+      },
+      "a1": {
+        "en": "<b>Online payments with Yappy</b> that post to each resident's statement automatically.",
+        "es": "<b>Pagos en línea con Yappy</b> que se reflejan solos en el estado de cuenta de cada residente.",
+        "html": true
+      },
+      "a2": {
+        "en": "<b>Full accounting cycle</b> with monthly charges on the 1st and closed months locked in the database.",
+        "es": "<b>Ciclo contable completo</b> con cargos mensuales el día 1 y meses cerrados bloqueados en la base de datos.",
+        "html": true
+      },
+      "a3": {
+        "en": "<b>AI assistant</b> that answers the administrator's questions about finances and operations, with read-only access.",
+        "es": "<b>Asistente con IA</b> que responde las preguntas del administrador sobre finanzas y operación, con acceso de solo lectura.",
+        "html": true
+      },
+      "a4": {
+        "en": "<b>QR visitor passes, packages and a panic button</b>, plus Android and iOS apps.",
+        "es": "<b>Pases de visita con QR, paquetería y botón de pánico</b>, más apps para Android e iOS.",
+        "html": true
+      },
+      "n0": {
+        "en": "Clinic web app and patient mobile app for nutritionists",
+        "es": "Web de la clínica y app móvil del paciente para nutricionistas"
+      },
+      "n1": {
+        "en": "<b>React Native patient app</b> with the meal plan, progress and messages to the nutritionist.",
+        "es": "<b>App del paciente en React Native</b> con su plan de alimentación, su progreso y mensajes a la nutricionista.",
+        "html": true
+      },
+      "n2": {
+        "en": "<b>Deterministic nutrition engine</b> in its own TypeScript package, so every calculation is exact and tested.",
+        "es": "<b>Motor nutricional determinista</b> en su propio paquete de TypeScript, así cada cálculo es exacto y está probado.",
+        "html": true
+      },
+      "n3": {
+        "en": "<b>Yappy payments</b> run in Edge Functions, so payment secrets never reach the browser.",
+        "es": "<b>Pagos con Yappy</b> en Edge Functions, así las llaves de pago nunca llegan al navegador.",
+        "html": true
+      },
+      "n4": {
+        "en": "<b>Clinic operations:</b> online booking, records, cash register, payroll and sales.",
+        "es": "<b>Operación de la clínica:</b> reservas en línea, expedientes, caja, planilla y ventas.",
+        "html": true
+      },
+      "g0": {
+        "en": "ERP for private security companies",
+        "es": "ERP para empresas de seguridad privada"
+      },
+      "g1": {
+        "en": "<b>Guard check-in with QR and GPS</b>, verified against the post and the shift.",
+        "es": "<b>Marcación con QR y GPS</b>, verificada contra el puesto y el turno.",
+        "html": true
+      },
+      "g2": {
+        "en": "<b>Live fleet map</b> fed by a GPS provider webhook.",
+        "es": "<b>Mapa de flota en vivo</b> alimentado por el webhook del proveedor GPS.",
+        "html": true
+      },
+      "g3": {
+        "en": "<b>Biweekly payroll</b> from clock-ins, matched to the cent against the Excel it replaced.",
+        "es": "<b>Planilla quincenal</b> desde las marcaciones, cuadrada al centavo contra el Excel que reemplazó.",
+        "html": true
+      },
+      "g4": {
+        "en": "<b>AI analytics</b> and daily reports emailed at 8 a.m.",
+        "es": "<b>Analítica con IA</b> y reportes diarios enviados por correo a las 8 a.m.",
+        "html": true
+      },
+      "m0": {
+        "en": "Project management for engineering firms",
+        "es": "Gestión de proyectos para empresas de ingeniería"
+      },
+      "m1": {
+        "en": "<b>Floor-plan takeoff:</b> a Python engine reads PDF plans and counts each symbol; a person confirms the result.",
+        "es": "<b>Cálculo de planos:</b> un motor en Python lee los planos en PDF y cuenta cada símbolo; una persona confirma el resultado.",
+        "html": true
+      },
+      "m2": {
+        "en": "<b>Bid analysis with AI:</b> summary, equipment table and a risk panel that quotes the source text.",
+        "es": "<b>Análisis de pliegos con IA:</b> resumen, tabla de equipos y un panel de riesgos con la cita textual.",
+        "html": true
+      },
+      "m3": {
+        "en": "<b>AI daily reports</b> built from the Gantt schedule and the supervisor's notes.",
+        "es": "<b>Reportes diarios con IA</b> armados desde el cronograma Gantt y las notas del supervisor.",
+        "html": true
+      },
+      "m4": {
+        "en": "<b>Gantt, S-curve, cost control, inventory with barcode scanning</b> and branded PDFs.",
+        "es": "<b>Gantt, curva S, control de costos, inventario con escáner</b> y PDFs con marca.",
+        "html": true
+      },
+      "t0": {
+        "en": "Hiring with judgment, for HR teams",
+        "es": "Selección de personal con criterio, para equipos de RRHH"
+      },
+      "t1": {
+        "en": "<b>Ten questions become a job profile:</b> Claude drafts the profile, the posting and weighted criteria for HR to approve.",
+        "es": "<b>Diez preguntas se vuelven un perfil de cargo:</b> Claude redacta el perfil, la publicación y los criterios con pesos para que RRHH apruebe.",
+        "html": true
+      },
+      "t2": {
+        "en": "<b>Each CV scored in under two minutes</b>, with evidence per criterion and three interview questions.",
+        "es": "<b>Cada hoja de vida evaluada en menos de dos minutos</b>, con evidencia por criterio y tres preguntas de entrevista.",
+        "html": true
+      },
+      "t3": {
+        "en": "<b>Reproducible match %</b> calculated from the vacancy's weights, so every recruiter gets the same number.",
+        "es": "<b>Porcentaje de compatibilidad reproducible</b>, calculado con los pesos de la vacante, así todos los reclutadores obtienen el mismo número.",
+        "html": true
+      },
+      "t4": {
+        "en": "<b>Never rejects anyone on its own</b> and ignores age, sex, nationality, religion and photo.",
+        "es": "<b>Nunca descarta a nadie por su cuenta</b> e ignora edad, sexo, nacionalidad, religión y foto.",
+        "html": true
+      }
+    },
+    "static": {
+      "sheetNo": "04/06",
+      "products": [
+        {
+          "name": "Atrio",
+          "ariaLabel": "Atrio",
+          "lowercaseName": false,
+          "kindKey": "a0",
+          "bulletKeys": [
+            "a1",
+            "a2",
+            "a3",
+            "a4"
+          ],
+          "url": "https://app.atrioph.net",
+          "linkText": "app.atrioph.net ↗",
+          "stack": [
+            "Next.js 16",
+            "React 19",
+            "TypeScript",
+            "PostgreSQL 17",
+            "Capacitor",
+            "Claude API",
+            "Yappy"
+          ]
+        },
+        {
+          "name": "NutriSoft",
+          "ariaLabel": "NutriSoft",
+          "lowercaseName": false,
+          "kindKey": "n0",
+          "bulletKeys": [
+            "n1",
+            "n2",
+            "n3",
+            "n4"
+          ],
+          "url": null,
+          "linkText": null,
+          "stack": [
+            "React Native · Expo",
+            "Next.js",
+            "Turborepo",
+            "Supabase",
+            "Edge Functions",
+            "696 tests"
+          ]
+        },
+        {
+          "name": "NexGuard360",
+          "ariaLabel": "NexGuard360",
+          "lowercaseName": false,
+          "kindKey": "g0",
+          "bulletKeys": [
+            "g1",
+            "g2",
+            "g3",
+            "g4"
+          ],
+          "url": "https://www.nexguard360.com",
+          "linkText": "nexguard360.com ↗",
+          "stack": [
+            "Next.js 16",
+            "TypeScript strict",
+            "Zod",
+            "Supabase",
+            "Leaflet",
+            "Claude API",
+            "Resend"
+          ]
+        },
+        {
+          "name": "Modus PM",
+          "ariaLabel": "Modus PM",
+          "lowercaseName": false,
+          "kindKey": "m0",
+          "bulletKeys": [
+            "m1",
+            "m2",
+            "m3",
+            "m4"
+          ],
+          "url": null,
+          "linkText": null,
+          "stack": [
+            "Next.js",
+            "TypeScript",
+            "Python",
+            "FastAPI",
+            "PyMuPDF",
+            "Docker",
+            "Claude API"
+          ]
+        },
+        {
+          "name": "tino",
+          "ariaLabel": "tino",
+          "lowercaseName": true,
+          "kindKey": "t0",
+          "bulletKeys": [
+            "t1",
+            "t2",
+            "t3",
+            "t4"
+          ],
+          "url": "https://www.contratacontino.com",
+          "linkText": "contratacontino.com ↗",
+          "stack": [
+            "React",
+            "Vite PWA",
+            "Supabase",
+            "Vercel Functions",
+            "Claude API",
+            "Resend"
+          ]
+        }
+      ]
+    }
+  },
+  "path": {
+    "i18n": {
+      "paEye": {
+        "en": "The path",
+        "es": "El camino"
+      },
+      "paTitle": {
+        "en": "From security and telecommunications projects to building software",
+        "es": "De proyectos de seguridad y telecomunicaciones a construir software"
+      },
+      "s1t": {
+        "en": "Founder and General Manager, Proytel",
+        "es": "Fundador y Gerente General, Proytel"
+      },
+      "s1p": {
+        "en": "Telecommunications and electronic security. Started with $500, reached $2.5M in revenue in 2019, led 40+ people and delivered 300+ projects: structured cabling, IP video, access control, fire alarms.",
+        "es": "Telecomunicaciones y seguridad electrónica. Empecé con 500 dólares, llegué a 2.5 millones en facturación en 2019, dirigí a más de 40 personas y entregué más de 300 proyectos: cableado estructurado, video IP, control de acceso, alarmas contra incendio."
+      },
+      "s2t": {
+        "en": "Project Manager / Technical Coordinator",
+        "es": "Project Manager / Coordinador Técnico"
+      },
+      "s2p": {
+        "en": "At an engineering, telecommunications and special-systems company, I run projects from proposal to handover: datacenters in several countries of the region, telecom infrastructure, aviation weather systems (AWOS) and BMS. Schedule, costs, subcontractors and the technical relationship with the client; I also write proposals and analyze bid documents. I built the internal tools the team works with: an operations platform, a CRM with costs and bids, petty cash, warehouse, fleet and field documentation. That platform is why I was assigned the regional datacenter projects. I drove the adoption of Claude in the division.",
+        "es": "En una empresa de ingeniería, telecomunicaciones y sistemas especiales dirijo proyectos de la propuesta a la entrega: datacenters en varios países de la región, infraestructura de telecomunicaciones, sistemas aeronáuticos (AWOS) y BMS. Llevo cronograma, costos, subcontratistas y la relación técnica con el cliente; además preparo propuestas y analizo pliegos. Construí las herramientas internas con las que trabaja el equipo: plataforma de operaciones, CRM con costos y pliegos, caja chica, almacén, flota y documentación de campo. Esa plataforma fue la razón de que me asignaran los proyectos regionales de datacenter. Impulsé la adopción de Claude en la división."
+      },
+      "s3t": {
+        "en": "Founder, Nexera",
+        "es": "Fundador, Nexera"
+      },
+      "s3p": {
+        "en": "My SaaS company, incorporated in Panama. Self-taught: everything I know about software I learned by reading documentation and building until it worked.",
+        "es": "Mi empresa de SaaS, constituida en Panamá. Autodidacta: todo lo que sé de software lo aprendí leyendo documentación y construyendo hasta que funcionara."
+      }
+    },
+    "static": {
+      "sheetNo": "05/06",
+      "steps": [
+        {
+          "period": "2006 – 2023",
+          "titleKey": "s1t",
+          "current": false
+        },
+        {
+          "period": "2024 –",
+          "titleKey": "s2t",
+          "current": false
+        },
+        {
+          "period": "2025 –",
+          "titleKey": "s3t",
+          "current": true
+        }
+      ]
+    }
+  },
+  "how": {
+    "i18n": {
+      "hoEye": {
+        "en": "How I work",
+        "es": "Cómo trabajo"
+      },
+      "hoTitle": {
+        "en": "The same four steps on every product",
+        "es": "Los mismos cuatro pasos en cada producto"
+      },
+      "st1": {
+        "en": "STEP 1",
+        "es": "PASO 1"
+      },
+      "st2": {
+        "en": "STEP 2",
+        "es": "PASO 2"
+      },
+      "st3": {
+        "en": "STEP 3",
+        "es": "PASO 3"
+      },
+      "st4": {
+        "en": "STEP 4",
+        "es": "PASO 4"
+      },
+      "h1t": {
+        "en": "Live the problem",
+        "es": "Vivir el problema"
+      },
+      "h1p": {
+        "en": "I sit with the people who do the work and find the step that costs them hours.",
+        "es": "Me siento con la gente que hace el trabajo y encuentro el paso que les cuesta horas."
+      },
+      "h2t": {
+        "en": "Design the data and the rules",
+        "es": "Diseñar los datos y las reglas"
+      },
+      "h2p": {
+        "en": "Tables, roles and security come first. Business rules go into the database, where nobody can skip them.",
+        "es": "Primero van las tablas, los roles y la seguridad. Las reglas del negocio van en la base de datos, donde nadie se las puede saltar."
+      },
+      "h3t": {
+        "en": "Build with AI",
+        "es": "Construir con IA"
+      },
+      "h3p": {
+        "en": "Claude Code writes much of the code. I set the architecture, review every change and decide what ships.",
+        "es": "Claude Code escribe gran parte del código. Yo defino la arquitectura, reviso cada cambio y decido qué sale."
+      },
+      "h4t": {
+        "en": "Test, audit, ship",
+        "es": "Probar, auditar, publicar"
+      },
+      "h4p": {
+        "en": "Automated tests, a security review of each module and a check against real data before every release.",
+        "es": "Pruebas automatizadas, revisión de seguridad de cada módulo y verificación contra datos reales antes de cada versión."
+      },
+      "candid": {
+        "en": "My hand-coding is basic. What I bring is knowing what to build, how to structure it so it holds up, and how to check that it works.",
+        "es": "Mi programación a mano es básica. Lo que aporto es saber qué construir, cómo estructurarlo para que aguante y cómo comprobar que funciona."
+      }
+    },
+    "static": {
+      "sheetNo": "06/06"
+    }
+  },
+  "contact": {
+    "i18n": {
+      "cEye": {
+        "en": "Contact",
+        "es": "Contacto"
+      },
+      "cTitle": {
+        "en": "If your operation still runs on Excel, let's talk",
+        "es": "Si tu operación todavía corre en Excel, hablemos"
+      },
+      "cLead": {
+        "en": "Open to full-time roles, remote work and product projects.",
+        "es": "Abierto a puestos de tiempo completo, trabajo remoto y proyectos de producto."
+      },
+      "cMail": {
+        "en": "Email",
+        "es": "Correo"
+      },
+      "cpy": {
+        "en": "Copy",
+        "es": "Copiar"
+      },
+      "copied": {
+        "en": "Copied",
+        "es": "Copiado"
+      }
+    },
+    "static": {
+      "rows": [
+        {
+          "label": "Email",
+          "labelKey": "cMail",
+          "value": "alexisvieto@gmail.com",
+          "copyValue": "alexisvieto@gmail.com"
+        },
+        {
+          "label": "WhatsApp",
+          "value": "+507 6918-8423",
+          "copyValue": "+50769188423"
+        },
+        {
+          "label": "LinkedIn",
+          "value": "linkedin.com/in/alexis-vieto ↗",
+          "href": "https://www.linkedin.com/in/alexis-vieto"
+        },
+        {
+          "label": "GitHub",
+          "value": "github.com/alexisvieto ↗",
+          "href": "https://github.com/alexisvieto"
+        }
+      ],
+      "footer": [
+        "ALEXIS VIETO · NEXERA · PANAMÁ",
+        "REV. 2026.10"
+      ]
+    }
+  }
+}

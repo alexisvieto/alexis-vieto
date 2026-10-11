@@ -1,0 +1,14 @@
+# Fuentes de video originales (los encodes para el sitio viven en prototype/media)
+Docs/
+
+# Dependencias y temporales
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# Entornos
+.env
+.env.*
+!.env.example
+.vercel/

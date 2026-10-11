@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alexis Vieto · Prototipo v4</title>
+<meta name="description" content="Prototipo de dirección: hero anotado, flujo de automatización y FDE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ================= 00 · HERO ================= -->
+<section class="sheet" id="hero">
+  <div class="scene" aria-hidden="true">
+    <div class="lamp"></div>
+    <div class="setup">
+      <div class="mon l"></div>
+      <div class="mon r"></div>
+      <div class="person"></div>
+      <div class="desk"></div>
+    </div>
+    <div class="vignette"></div>
+    <div class="video-note">Marcador · aquí va el video IA (órbita 360° · speed ramp)</div>
+
+    <!-- Capa de anotaciones sincronizada con el tiempo del video -->
+    <svg id="annot" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- A · cota de monitores + rótulos (tramo frontal lento) -->
+      <g id="a-mon">
+        <line class="ln" x1="430" y1="425" x2="1410" y2="425"/>
+        <line class="ln" x1="430" y1="415" x2="430" y2="435"/>
+        <line class="ln" x1="1410" y1="415" x2="1410" y2="435"/>
+        <text class="lbl r" x="920" y="416" text-anchor="middle">2 × 26″ ultrawide · curvos · 3440 × 1440</text>
+        <path class="ln" d="M700 410 L700 450 L660 450"/>
+        <text class="lbl" x="660" y="470">Claude Code · pruebas en ejecución</text>
+        <path class="ln" d="M1200 410 L1200 450 L1240 450"/>
+        <text class="lbl" x="1240" y="470">Atrio · producción</text>
+      </g>
+      <!-- B · nube de revisión (tramo rápido) -->
+      <g id="a-cloud">
+        <path class="cloud" d="M1180 520 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q22 20 0 40 q22 20 0 40 q-20 22 -40 0 q-20 22 -40 0 q-20 22 -40 0 q-20 22 -40 0 q-20 22 -40 0 q-22 -20 0 -40 q-22 -20 0 -40 z"/>
+        <text class="lbl r" x="1280" y="564" text-anchor="middle">Rev 2026.10</text>
+        <text class="lbl" x="1280" y="582" text-anchor="middle">Nexera</text>
+      </g>
+      <!-- C · cifras con cotas (vuelta al frente): una cifra por cada 200 unidades -->
+      <g id="a-nums">
+        <text class="big" x="800" y="650" text-anchor="middle">20<tspan class="plus">+</tspan></text>
+        <text class="cap" x="800" y="680" text-anchor="middle">años operando</text>
+        <text class="big" x="1000" y="650" text-anchor="middle">300<tspan class="plus">+</tspan></text>
+        <text class="cap" x="1000" y="680" text-anchor="middle">proyectos</text>
+        <text class="big" x="1200" y="650" text-anchor="middle">5</text>
+        <text class="cap" x="1200" y="680" text-anchor="middle">productos vivos</text>
+        <text class="big" x="1400" y="650" text-anchor="middle">20<tspan class="plus">+</tspan></text>
+        <text class="cap" x="1400" y="680" text-anchor="middle">dashboards</text>
+        <line class="ln" x1="700" y1="705" x2="1500" y2="705"/>
+        <line class="ln" x1="700" y1="695" x2="700" y2="715"/><line class="ln" x1="900" y1="695" x2="900" y2="715"/>
+        <line class="ln" x1="1100" y1="695" x2="1100" y2="715"/><line class="ln" x1="1300" y1="695" x2="1300" y2="715"/><line class="ln" x1="1500" y1="695" x2="1500" y2="715"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="frame" aria-hidden="true"><i style="left:-2px;top:-14px">A</i><i style="right:-2px;top:-14px">B</i><i style="left:-2px;bottom:-14px">1</i><i style="right:-2px;bottom:-14px">2</i></div>
+  <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg>00</div>
+  <div class="sheet-title">Lámina 00 · Alexis Vieto · Panamá<b>Portada · Según construido</b></div>
+  <div class="secmark" aria-hidden="true">Sección <span>A</span></div>
+  <button class="audio" id="audio" aria-pressed="false"><span class="bars"><i></i><i></i><i></i><i></i></span>Audio · <span id="audio-state">off</span></button>
+  <div class="speed mono" aria-hidden="true">Velocidad<b id="speed">0.4×</b></div>
+
+  <div class="hero-copy">
+    <h1>Sistemas que<br><em>reemplazan</em> el Excel.</h1>
+    <p class="lede">Web inteligente, aplicaciones, móvil, inteligencia de negocios y automatización. 20 años dirigiendo operaciones reales; hoy construyo el software que esas operaciones necesitaban.</p>
+    <div class="cta">
+      <a class="btn primary" href="#flow-sheet">Ver servicios →</a>
+      <a class="btn" href="#contact">Hablemos</a>
+    </div>
+  </div>
+
+  <div class="titleblock" aria-label="Cuadro de rótulo">
+    <div class="tb-big"><small>Proyecto</small><b data-text="Portafolio · Alexis Vieto"></b></div>
+    <div><small>Dibujó</small><b data-text="A. Vieto + Claude Code"></b></div>
+    <div><small>Escala</small><b data-text="S/E"></b></div>
+    <div class="tb-rev"><small>Revisión</small><b data-text="2026.10"></b></div>
+    <div><small>Lámina</small><b data-text="00 / 05"></b></div>
+  </div>
+</section>
+
+<!-- ================= 02.5 · AUTOMATIZACIÓN ================= -->
+<section class="sheet" id="flow-sheet">
+  <div class="frame" aria-hidden="true"></div>
+  <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg><span style="font-size:19px">02.5</span></div>
+  <div class="sheet-title">Lámina 02.5<b>Servicios · Automatización</b></div>
+  <div class="secmark" aria-hidden="true">Sección <span>B</span></div>
+
+  <div class="chapter-head">
+    <h2>Automatización</h2>
+    <p>Una empresa de alquiler ficticia atiende un pedido completo sin que nadie toque un teclado: llamada, WhatsApp, verificación, precio, cobro y entrega. Cada nodo usa una pieza que ya funciona en producción en mis productos. Toca un nodo para ver dónde.</p>
+  </div>
+
+  <div class="flow-wrap">
+    <div class="flow-top">
+      <div class="counters">
+        <div>Pedidos atendidos<b id="c-orders">1,248</b></div>
+        <div>Respuesta promedio<b id="c-time">41 s</b></div>
+        <div>Cobros confirmados<b id="c-cash" class="red">$0</b></div>
+      </div>
+      <span class="sim">Simulación · datos ficticios</span>
+      <div class="flow-controls">
+        <button class="btn" id="flow-toggle" aria-pressed="false">Pausar</button>
+      </div>
+    </div>
+
+    <div class="exec" id="exec" aria-live="polite"><span class="dot"></span><span id="exec-text">Esperando ejecución…</span><span class="t" id="exec-time"></span><span class="wf">Alquileres Bahía Azul, S.A. · workflow pedido-a-entrega · v3</span></div>
+    <div class="canvas-wrap" id="canvas-wrap">
+      <div class="canvas" id="canvas">
+        <svg id="edges" width="1600" height="420" aria-hidden="true"></svg>
+        <button class="pay-btn" id="pay-btn" type="button">Pagar con Yappy</button>
+        <div class="done" id="done" aria-live="polite">
+          <div class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><div><b>Proceso completado</b><span id="done-sub"></span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-detail" id="flow-detail">
+      <div><h3>Qué pasa aquí</h3><p id="fd-what">Toca un nodo para ver el detalle.</p></div>
+      <div><h3>Con qué se construye</h3><p id="fd-how">—</p></div>
+      <div><h3>Dónde ya lo hice</h3><p id="fd-where">—</p></div>
+    </div>
+  </div>
+
+  <ol class="notes" aria-label="Notas de lámina">
+    <li><h3>Para qué se hizo</h3><p>Para que la empresa responda y cobre a cualquier hora sin sumar personal. Los pedidos llegan por el canal que el cliente prefiere.</p></li>
+    <li><h3>Cómo lo hace</h3><p>WhatsApp Business y telefonía con asistente IA. Extracción de datos con Claude. Inventario y clientes en Supabase con RLS. Yappy y tarjeta con confirmación automática.</p></li>
+    <li><h3>Qué entrega</h3><p>Flujo en producción con monitoreo. Panel de pedidos y cobros. Reglas de negocio documentadas. Traspaso al equipo del cliente.</p></li>
+    <li><h3>Resultados</h3><p>Respuesta en segundos a cualquier hora. Cobro confirmado antes de despachar. Cero recapturas: el pedido viaja de WhatsApp a la entrega sin volver a escribirse.</p></li>
+  </ol>
+
+  <p class="flow-close">Este flujo sirve para la mayoría de las empresas. <em>Cambian los productos, no las piezas.</em></p>
+
+  <div class="titleblock">
+    <div class="tb-big"><small>Proyecto</small><b>Portafolio · Alexis Vieto</b></div>
+    <div><small>Dibujó</small><b>A. Vieto + Claude Code</b></div>
+    <div><small>Escala</small><b>S/E</b></div>
+    <div class="tb-rev"><small>Revisión</small><b>2026.10</b></div>
+    <div><small>Lámina</small><b>02.5 / 05</b></div>
+  </div>
+</section>
+
+<!-- ================= 02.6 · FDE ================= -->
+<section class="sheet" id="fde">
+  <div class="frame" aria-hidden="true"></div>
+  <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg><span style="font-size:19px">02.6</span></div>
+  <div class="sheet-title">Lámina 02.6<b>Servicios · Ingeniería desplegada en sitio</b></div>
+  <div class="secmark" aria-hidden="true">Sección <span>C</span></div>
+
+  <div class="chapter-head">
+    <h2>FDE<span>Forward Deployed Engineer</span></h2>
+    <p>Un ingeniero que se instala dentro de la operación, aprende el proceso real con la gente que lo ejecuta y despliega software sobre ese proceso en semanas. No entrego un sistema genérico para que lo adapten: adapto el sistema a la empresa, en sitio, con sus datos.</p>
+  </div>
+
+  <!-- Detalle A / Detalle B: dos vistas del mismo proceso, dibujadas como detalles de plano -->
+  <div class="details">
+    <figure class="detail before">
+      <figcaption><span class="dn">Detalle A</span>Proceso manual · cierre quincenal de nómina<em>Antes</em></figcaption>
+      <div class="clock"><span id="clk-before">00:00</span><small>horas por cierre</small></div>
+      <div class="xls" aria-hidden="true">
+        <div><span></span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span></div>
+        <div><span>1</span><span>Nombre</span><span>Horas</span><span>Extra</span><span>CSS</span><span>Neto</span></div>
+        <div><span>2</span><span>R. Pérez</span><span>96</span><span>12</span><span>9.75%</span><span>=B2*…</span></div>
+        <div><span>3</span><span>M. Díaz</span><span>104</span><span class="err">#REF!</span><span>9.75%</span><span class="err">#VALUE!</span></div>
+        <div><span>4</span><span>J. Ríos</span><span>88</span><span>4</span><span>9.75%</span><span>=B4*…</span></div>
+      </div>
+      <ul class="mails" aria-label="Correos del cierre manual">
+        <li>RE: RE: planilla quincena 2 (v7 FINAL).xlsx</li>
+        <li>Fwd: marcaciones puesto 14, ¿faltan?</li>
+        <li>RE: reporte de ayer (urgente)</li>
+      </ul>
+    </figure>
+    <figure class="detail after">
+      <figcaption><span class="dn">Detalle B</span>Sistema desplegado · mismo cierre<em>Después</em></figcaption>
+      <div class="clock"><span id="clk-after">00:00</span><small>minutos por cierre</small></div>
+      <ol class="steps">
+        <li><b>1</b><div><h3>Marcación QR + GPS</h3><p>Cada agente marca en su puesto. La hora y el lugar quedan en la base de datos.</p></div></li>
+        <li><b>2</b><div><h3>Nómina calculada</h3><p>Horas, extras y retenciones se calculan desde las marcaciones con la fórmula exacta del Excel que reemplazó. Sale el archivo ACH para el banco.</p></div></li>
+        <li><b>3</b><div><h3>Reporte diario automático</h3><p>Las novedades del turno salen solas por correo cada madrugada, antes de que alguien las pida.</p></div></li>
+      </ol>
+    </figure>
+  </div>
+
+  <!-- Cotas de mejora: dimensiones en redline (antes) y verde (después) -->
+  <div class="dims" aria-label="Cotas de mejora">
+    <svg viewBox="0 0 1400 120" class="dimsvg" id="dim-time" role="img" aria-label="Horas por cierre quincenal: de 6 horas 40 a 12 minutos">
+      <text class="dt" x="0" y="18">Productividad · horas por cierre quincenal</text>
+      <line class="base" x1="0" y1="60" x2="1400" y2="60"/>
+      <g class="before-dim"><line class="ext" x1="0" y1="40" x2="0" y2="80"/><line class="ext" x1="1000" y1="40" x2="1000" y2="80"/><line class="dim red" x1="0" y1="52" x2="1000" y2="52"/><text class="dv red" x="500" y="44" text-anchor="middle">06:40 h · Excel, correos y llamadas</text></g>
+      <g class="after-dim"><line class="ext" x1="0" y1="60" x2="0" y2="100"/><line class="ext" x1="30" y1="60" x2="30" y2="100"/><line class="dim good" x1="0" y1="72" x2="30" y2="72"/><text class="dv good" x="42" y="76">00:12 h · revisar y aprobar</text></g>
+      <text class="dn2" x="1400" y="110" text-anchor="end">ilustrativo · el tiempo real depende de cada operación</text>
+    </svg>
+    <svg viewBox="0 0 1400 120" class="dimsvg" id="dim-steps" role="img" aria-label="Recapturas de datos por cierre: de 3 a 0">
+      <text class="dt" x="0" y="18">Efectividad · veces que el mismo dato se vuelve a escribir</text>
+      <line class="base" x1="0" y1="60" x2="1400" y2="60"/>
+      <g class="before-dim"><line class="ext" x1="0" y1="40" x2="0" y2="80"/><line class="ext" x1="1050" y1="40" x2="1050" y2="80"/><line class="dim red" x1="0" y1="52" x2="1050" y2="52"/><text class="dv red" x="525" y="44" text-anchor="middle">3 · marcaciones → Excel → planilla → banco</text></g>
+      <g class="after-dim"><line class="ext" x1="0" y1="60" x2="0" y2="100"/><line class="dim good" x1="0" y1="72" x2="2" y2="72"/><text class="dv good" x="14" y="76">0 · marcación → nómina → archivo ACH</text></g>
+      <text class="dn2" x="1400" y="110" text-anchor="end">NexGuard360 · src/lib/payroll/engine.ts · ach-generator.ts</text>
+    </svg>
+  </div>
+
+  <ol class="notes" aria-label="Notas de lámina">
+    <li><h3>Qué es</h3><p>Ingeniería desplegada en sitio. Diagnóstico con el proceso real, no con el documentado.</p></li>
+    <li><h3>Cómo lo hacemos</h3><p>Semana 1, diagnóstico en sitio. Semanas 2 a 4, primera versión en producción con datos reales. Iteración sobre lo que la gente usa. Entrega, capacitación y traspaso.</p></li>
+    <li><h3>Qué mejoramos</h3><p>Productividad: horas que desaparecen. Efectividad: errores que dejan de ocurrir. Trazabilidad: cada dato con origen.</p></li>
+    <li><h3>Resultados verificables</h3><p>Fórmula exacta del Excel de nómina replicada y configurable por empresa, con archivo ACH para el banco. Reporte diario que sale solo cada madrugada. Cuotas generadas por cron el día 1 de cada mes.</p></li>
+  </ol>
+
+  <div class="titleblock">
+    <div class="tb-big"><small>Proyecto</small><b>Portafolio · Alexis Vieto</b></div>
+    <div><small>Dibujó</small><b>A. Vieto + Claude Code</b></div>
+    <div><small>Escala</small><b>S/E</b></div>
+    <div class="tb-rev"><small>Revisión</small><b>2026.10</b></div>
+    <div><small>Lámina</small><b>02.6 / 05</b></div>
+  </div>
+</section>
+
+<!-- ================= 02.7 · ANIMACIÓN ================= -->
+<section class="sheet" id="motion">
+  <div class="frame" aria-hidden="true"></div>
+  <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg><span style="font-size:19px">02.7</span></div>
+  <div class="sheet-title">Lámina 02.7<b>Servicios · Animación</b></div>
+  <div class="secmark" aria-hidden="true">Sección <span>D</span></div>
+
+  <div class="chapter-head">
+    <h2>Animación<span>Motion por código para explicar producto</span></h2>
+    <p>Un flujo de producto explicado en segundos, sin grabar pantalla: la pieza se programa, usa datos ficticios y cambia de marca con variables. Las dos de pago salieron del mismo guion con dos marcas; las cinco de acceso son cinco maneras de entrar al mismo producto. Toca una pieza para verla con sonido.</p>
+  </div>
+
+  <div class="pieces" id="pieces" aria-label="Ejemplos de animación"></div>
+  <p class="pieces-note">Más ejemplos se agregan a esta lámina a medida que se producen · Datos de las piezas: ficticios</p>
+
+  <ol class="notes" aria-label="Notas de lámina">
+    <li><h3>Para qué se hizo</h3><p>Para mostrar cómo funciona un sistema antes de que el cliente lo toque: ventas, onboarding, redes y páginas de producto.</p></li>
+    <li><h3>Cómo lo hace</h3><p>Composiciones programadas, no grabaciones. La marca, los textos y los datos viven en variables; el guion y el ritmo son los mismos. Render a 1080p y 60 fps, con o sin audio.</p></li>
+    <li><h3>Qué entrega</h3><p>MP4 por formato (16:9 para web, 9:16 para redes), loop silencioso para páginas y versión con audio, más la fuente editable para producir variantes.</p></li>
+    <li><h3>Resultados</h3><p>Las dos piezas de esta lámina comparten guion: una para Nexera con factura al final, otra adaptada a CenterFit en la mitad del tiempo. Cambiar de marca costó variables, no una producción nueva.</p></li>
+  </ol>
+
+  <div class="titleblock">
+    <div class="tb-big"><small>Proyecto</small><b>Portafolio · Alexis Vieto</b></div>
+    <div><small>Dibujó</small><b>A. Vieto + Claude Code</b></div>
+    <div><small>Escala</small><b>S/E</b></div>
+    <div class="tb-rev"><small>Revisión</small><b>2026.10</b></div>
+    <div><small>Lámina</small><b>02.7 / 05</b></div>
+  </div>
+</section>
+
+<!-- ================= 05 · CONTACTO (mínimo) ================= -->
+<section class="sheet contact" id="contact">
+  <div class="frame" aria-hidden="true"></div>
+  <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg>05</div>
+  <div class="sheet-title">Lámina 05<b>Contacto</b></div>
+  <div class="secmark" aria-hidden="true">Sección <span>E</span></div>
+  <div class="chapter-head">
+    <h2>Hablemos de tu operación.</h2>
+    <p>Escríbeme por el canal que uses. Respondo yo, no un formulario.</p>
+  </div>
+  <ul class="contacts">
+    <li><a href="mailto:alexisvieto@gmail.com"><span>Correo</span><b>alexisvieto@gmail.com</b></a></li>
+    <li><a href="https://wa.me/50769188423" target="_blank" rel="noopener"><span>WhatsApp</span><b>+507 6918-8423</b></a></li>
+    <li><a href="https://www.linkedin.com/in/alexis-vieto" target="_blank" rel="noopener"><span>LinkedIn</span><b>/in/alexis-vieto</b></a></li>
+    <li><a href="https://github.com/alexisvieto" target="_blank" rel="noopener"><span>GitHub</span><b>@alexisvieto</b></a></li>
+    <li><a href="https://www.nexerai.io/v/alexis" target="_blank" rel="noopener"><span>vCard</span><b>nexerai.io/v/alexis</b></a></li>
+  </ul>
+  <div class="titleblock">
+    <div class="tb-big"><small>Proyecto</small><b>Portafolio · Alexis Vieto</b></div>
+    <div><small>Dibujó</small><b>A. Vieto + Claude Code</b></div>
+    <div><small>Escala</small><b>S/E</b></div>
+    <div class="tb-rev"><small>Revisión</small><b>2026.10</b></div>
+    <div><small>Lámina</small><b>05 / 05</b></div>
+  </div>
+</section>
+
+<footer>
+  <span>Alexis Vieto · Rev. 2026.10 · Según construido</span>
+  <span>Prototipo de dirección · F0</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script src="app.js"></script>
+<script src="flow.js"></script>
+<script src="gallery.js"></script>
+</body>
+</html>

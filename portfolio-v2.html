@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Alexis Vieto: full-stack product builder in Panama. 20 years running engineering projects, now building SaaS products with AI.">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Alexis Vieto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: the page is an as-built drawing set. Blueprint hero with a title block, sheets numbered down the page, redline marks only where a number matters. */
+:root{
+  --paper:#f4f6f9; --sheet:#ffffff; --sunk:#e8edf4; --ink:#0f2044; --ink2:#44526d; --ink3:#7b88a1;
+  --line:#d5ddea; --rule:#b9c5d8; --blue:#3d64ad; --blue2:#5b83c9; --soft:#e3ebf8; --grid:rgba(61,100,173,.07);
+  --red:#d9480f; --redsoft:#fde6da;
+  --good:#1d7f55; --goodsoft:#dcf1e6; --warn:#a8650f; --warnsoft:#fbeed7; --bad:#b4373a;
+  --bp:#0c1b3d; --bpink:#eef3fc; --bpink2:#a9badb; --bpline:rgba(169,194,242,.16); --bpred:#ff7a45;
+  --display:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+  --sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#081228; --sheet:#0e1a37; --sunk:#0b1630; --ink:#eef2fa; --ink2:#aab7cf; --ink3:#7584a0;
+  --line:#22335a; --rule:#2f4373; --blue:#7fa3e6; --blue2:#a9c2f2; --soft:#16284f; --grid:rgba(127,163,230,.06);
+  --red:#ff7a45; --redsoft:#3d1e10;
+  --good:#4fc28a; --goodsoft:#0f3527; --warn:#e5a84a; --warnsoft:#3a2a10; --bad:#ef7a7c;
+  --bp:#050d1f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#081228; --sheet:#0e1a37; --sunk:#0b1630; --ink:#eef2fa; --ink2:#aab7cf; --ink3:#7584a0;
+  --line:#22335a; --rule:#2f4373; --blue:#7fa3e6; --blue2:#a9c2f2; --soft:#16284f; --grid:rgba(127,163,230,.06);
+  --red:#ff7a45; --redsoft:#3d1e10;
+  --good:#4fc28a; --goodsoft:#0f3527; --warn:#e5a84a; --warnsoft:#3a2a10; --bad:#ef7a7c;
+  --bp:#050d1f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:74rem;margin:0 auto;padding-inline:20px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue2);outline-offset:2px;border-radius:3px}
+.muted{color:var(--ink2)}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bp);color:var(--bpink);border-bottom:1px solid var(--bpline)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:9px}
+.mark{display:flex;align-items:baseline;gap:10px;color:var(--bpink);text-decoration:none}
+.mark b{font-family:var(--display);font-size:1.35rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase}
+.mark span{font-family:var(--mono);font-size:.7rem;color:var(--bpink2);letter-spacing:.08em}
+.nav{display:flex;align-items:center;gap:20px;font-size:.88rem}
+.nav a{color:var(--bpink2);text-decoration:none;font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase}
+.nav a:hover{color:var(--bpink)}
+.lang{display:flex;border:1px solid var(--bpline);border-radius:6px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font-family:var(--mono);font-size:.74rem;font-weight:600;padding:5px 10px;color:var(--bpink2)}
+.lang button[aria-pressed="true"]{background:#5b83c9;color:#fff}
+@media (max-width:800px){.nav .lk,.mark span{display:none}}
+
+/* hero: blueprint sheet */
+.hero{background:var(--bp);color:var(--bpink);background-image:linear-gradient(var(--bpline) 1px,transparent 1px),linear-gradient(90deg,var(--bpline) 1px,transparent 1px),linear-gradient(rgba(169,194,242,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(169,194,242,.06) 1px,transparent 1px);background-size:96px 96px,96px 96px,24px 24px,24px 24px}
+.hero .wrap{padding-block:56px 48px}
+.frame{border:1.5px solid rgba(169,194,242,.45);outline:1px solid rgba(169,194,242,.18);outline-offset:6px;display:grid;grid-template-columns:minmax(0,1fr) 19rem}
+@media (max-width:900px){.frame{grid-template-columns:1fr}}
+.drawing{padding:36px 34px 34px;display:grid;gap:22px;min-width:0}
+@media (max-width:560px){.drawing{padding:26px 20px}}
+.tag{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bpink2)}
+.tag i{font-style:normal;color:var(--bpred)}
+.hero h1{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2.7rem,7.2vw,5.6rem);line-height:.92;letter-spacing:-.005em;max-width:15ch}
+.hero h1 em{font-style:normal;color:#a9c2f2}
+.hero .lead{font-size:clamp(1.02rem,1.9vw,1.18rem);color:var(--bpink2);max-width:56ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:6px;padding:11px 18px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid transparent;font-family:inherit}
+.btn.pri{background:var(--bpred);color:#1a0b04}
+.btn.pri:hover{filter:brightness(1.07)}
+.btn.ghost{border-color:rgba(169,194,242,.4);color:var(--bpink)}
+.btn.ghost:hover{border-color:var(--bpink)}
+.tb{border-left:1.5px solid rgba(169,194,242,.45);display:grid;grid-template-rows:repeat(6,auto) 1fr;font-family:var(--mono);font-size:.78rem}
+@media (max-width:900px){.tb{border-left:0;border-top:1.5px solid rgba(169,194,242,.45);grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none}}
+.tb div{padding:9px 14px;border-bottom:1px solid rgba(169,194,242,.25);min-width:0}
+.tb div span{display:block;font-size:.64rem;letter-spacing:.14em;color:var(--bpink2);text-transform:uppercase}
+.tb div b{font-weight:600;color:var(--bpink);overflow-wrap:anywhere}
+.tb .st b{color:var(--bpred)}
+.tb .lg{border-bottom:0;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:14px}
+.dims{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:36px}
+@media (max-width:760px){.dims{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dim{min-width:0}
+.dim .ln{position:relative;height:12px;margin-bottom:10px;border-left:1.5px solid var(--bpred);border-right:1.5px solid var(--bpred)}
+.dim .ln::before{content:"";position:absolute;left:0;right:0;top:5px;border-top:1.5px solid var(--bpred)}
+.dim b{display:block;font-family:var(--display);font-size:clamp(2.2rem,4.4vw,3.2rem);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.dim span{display:block;font-size:.86rem;color:var(--bpink2);margin-top:6px}
+
+/* sheets */
+section.sheet{padding-block:76px}
+.shead{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start;margin-bottom:36px}
+.sno{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--red);border:1.5px solid var(--red);border-radius:50%;width:58px;height:58px;display:grid;place-items:center;text-align:center;line-height:1.1}
+.shead .k{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.shead h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,4.6vw,3.3rem);line-height:.95;margin-top:6px;max-width:22ch}
+.shead p{color:var(--ink2);font-size:1.05rem;margin-top:12px;max-width:62ch}
+@media (max-width:560px){.shead{grid-template-columns:1fr;gap:12px}}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1.5px solid var(--rule);background:var(--sheet)}
+.why article{padding:26px 28px;display:grid;gap:10px;align-content:start;min-width:0;border-bottom:1px solid var(--line)}
+.why article:nth-child(odd){border-right:1px solid var(--line)}
+.why article:nth-last-child(-n+2){border-bottom:0}
+.why .n{font-family:var(--mono);font-size:.72rem;color:var(--ink3);letter-spacing:.1em}
+.why h3{font-size:1.2rem;font-weight:700;line-height:1.2}
+.why .proof{font-family:var(--mono);font-size:.76rem;color:var(--red);border-top:1px dashed var(--red);padding-top:8px;margin-top:4px}
+@media (max-width:760px){.why{grid-template-columns:1fr}.why article:nth-child(odd){border-right:0}.why article:nth-last-child(2){border-bottom:1px solid var(--line)}}
+
+/* dashboards */
+.dash{background:var(--sheet);border:1.5px solid var(--rule)}
+.dtabs{display:flex;border-bottom:1.5px solid var(--rule);overflow-x:auto}
+.dtabs button{all:unset;cursor:pointer;white-space:nowrap;padding:12px 18px;font-family:var(--mono);font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);border-right:1px solid var(--line)}
+.dtabs button:hover{color:var(--ink);background:var(--soft)}
+.dtabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.dbody{padding:22px;display:grid;gap:18px}
+.dtop{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.dtop h3{font-size:1.1rem;font-weight:700}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden;flex-wrap:wrap}
+.seg button{all:unset;cursor:pointer;padding:6px 12px;font-size:.84rem;color:var(--ink2);font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--soft);color:var(--ink);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line)}
+.kpi{padding:12px 14px;min-width:0;border-right:1px solid var(--line)}
+.kpi:last-child{border-right:0}
+.kpi>span{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);display:block}
+.kpi b{white-space:nowrap;font-family:var(--display);font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.kpi small{display:inline-block;margin-left:6px;font-family:var(--mono);font-size:.7rem;padding:1px 6px;border-radius:4px;vertical-align:.45em}
+.ok{background:var(--goodsoft);color:var(--good)} .wn{background:var(--warnsoft);color:var(--warn)}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi:nth-child(2){border-right:0}.kpi:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.charts{display:grid;grid-template-columns:3fr 2fr;gap:14px}
+@media (max-width:880px){.charts{grid-template-columns:1fr}}
+.chart{border:1px solid var(--line);padding:14px;min-width:0}
+.chart h4{margin:0 0 4px;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink2)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.78rem;color:var(--ink2);margin-bottom:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+svg.c{width:100%;height:auto;display:block;overflow:visible}
+svg.c text{fill:var(--ink3);font-family:var(--mono);font-size:10px}
+svg.c .gl{stroke:var(--line);stroke-width:1}
+.tip{font-family:var(--mono);font-size:.78rem;color:var(--ink2);min-height:1.4em;margin-top:6px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+td.n{font-variant-numeric:tabular-nums;text-align:right}
+.pill{font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:20px}
+.note{font-size:.84rem;color:var(--ink3)}
+.note b{color:var(--red);font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;margin-right:8px}
+
+/* products */
+.prods{display:grid;gap:0;border:1.5px solid var(--rule);background:var(--sheet)}
+.prod{display:grid;grid-template-columns:4.5rem minmax(0,14rem) minmax(0,1fr);gap:22px;padding:24px;border-bottom:1px solid var(--line)}
+.prod:last-child{border-bottom:0}
+@media (max-width:820px){.prod{grid-template-columns:3.6rem minmax(0,1fr)}.prod .body{grid-column:1/-1}}
+.icon{width:100%;max-width:4.5rem;aspect-ratio:1;height:auto;display:block;border-radius:22%;box-shadow:0 6px 18px -8px rgba(15,32,68,.45)}
+.prod h3{font-family:var(--display);font-size:2rem;font-weight:700;line-height:1}
+.prod h3.lc{font-family:var(--sans);font-weight:700;font-size:1.75rem;letter-spacing:-.03em}
+.prod .kind{font-size:.88rem;color:var(--ink2);margin-top:6px}
+.prod .live{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-family:var(--mono);font-size:.76rem;text-decoration:none;color:var(--blue)}
+.prod .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 3px var(--goodsoft)}
+.prod ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}
+.prod li{padding-left:16px;position:relative;font-size:.95rem;color:var(--ink2)}
+.prod li::before{content:"";position:absolute;left:0;top:.75em;width:8px;height:1.5px;background:var(--blue2)}
+.prod li b{color:var(--ink);font-weight:600}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.stack span{font-family:var(--mono);font-size:.7rem;border:1px solid var(--line);border-radius:3px;padding:2px 7px;color:var(--ink2);background:var(--paper)}
+
+/* path */
+.path{display:grid;border-left:2px solid var(--rule);margin-left:8px}
+.step{position:relative;padding:0 0 32px 30px;display:grid;grid-template-columns:8rem minmax(0,1fr);gap:18px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-8px;top:5px;width:14px;height:14px;background:var(--sheet);border:2px solid var(--blue);transform:rotate(45deg)}
+.step.now::before{background:var(--red);border-color:var(--red)}
+.yr{font-family:var(--mono);font-size:.82rem;color:var(--blue);font-weight:600;padding-top:2px}
+.step h3{font-size:1.12rem;font-weight:700}
+.step p{color:var(--ink2);margin-top:6px;max-width:62ch}
+@media (max-width:600px){.step{grid-template-columns:1fr;gap:4px}}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1.5px solid var(--rule);background:var(--sheet)}
+.how div{padding:20px;min-width:0;border-right:1px solid var(--line)}
+.how div:last-child{border-right:0}
+.how .s{font-family:var(--mono);font-size:.72rem;color:var(--red);font-weight:600;letter-spacing:.1em}
+.how h3{font-size:1.05rem;font-weight:700;margin-top:8px}
+.how p{font-size:.93rem;color:var(--ink2);margin-top:6px}
+@media (max-width:880px){.how{grid-template-columns:repeat(2,minmax(0,1fr))}.how div:nth-child(2){border-right:0}.how div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:480px){.how{grid-template-columns:1fr}.how div{border-right:0;border-bottom:1px solid var(--line)}.how div:last-child{border-bottom:0}}
+.candid{margin-top:22px;border-left:3px solid var(--red);padding:4px 0 4px 16px;max-width:70ch;color:var(--ink)}
+
+/* contact */
+.contact{background:var(--bp);color:var(--bpink);background-image:linear-gradient(var(--bpline) 1px,transparent 1px),linear-gradient(90deg,var(--bpline) 1px,transparent 1px);background-size:96px 96px}
+.contact .wrap{padding-block:64px;display:grid;gap:28px}
+.contact h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2.2rem,5vw,3.6rem);line-height:.95;max-width:18ch;margin-top:8px}
+.contact .lead{color:var(--bpink2);margin-top:12px}
+.rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1.5px solid rgba(169,194,242,.45)}
+@media (max-width:700px){.rows{grid-template-columns:1fr}}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;min-width:0;border-bottom:1px solid rgba(169,194,242,.25)}
+.row:nth-child(odd){border-right:1px solid rgba(169,194,242,.25)}
+.row:nth-last-child(-n+2){border-bottom:0}
+@media (max-width:700px){.row:nth-child(odd){border-right:0}.row:nth-last-child(2){border-bottom:1px solid rgba(169,194,242,.25)}}
+.row span{display:block;font-size:.66rem;color:var(--bpink2);font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.row a,.row strong{color:var(--bpink);font-weight:600;text-decoration:none;overflow-wrap:anywhere}
+.copy{all:unset;cursor:pointer;font-size:.74rem;font-family:var(--mono);padding:5px 9px;border-radius:4px;border:1px solid rgba(169,194,242,.4);color:var(--bpink2);flex:none}
+.copy:hover{color:var(--bpink)}
+footer{background:var(--bp);color:var(--bpink2);font-family:var(--mono);font-size:.74rem;border-top:1px solid var(--bpline)}
+footer .wrap{padding-block:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (prefers-reduced-motion:no-preference){.lnA{transition:stroke-dashoffset .9s ease-out}.br{transition:height .5s ease-out,y .5s ease-out}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="ns-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5E8E74"/><stop offset="1" stop-color="#3C6151"/></linearGradient>
+    <linearGradient id="ng-sh" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1e293b"/><stop offset="100%" stop-color="#0f172a"/></linearGradient>
+  </defs>
+</svg>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top"><b>Alexis Vieto</b><span>NEXERA · PANAMÁ</span></a>
+    <nav class="nav">
+      <a class="lk" href="#why" data-i="nWhy">Why me</a>
+      <a class="lk" href="#live" data-i="nLive">Live demo</a>
+      <a class="lk" href="#work" data-i="nWork">Products</a>
+      <a class="lk" href="#contact" data-i="nContact">Contact</a>
+      <div class="lang" role="group" aria-label="Language"><button id="l-en" type="button" aria-pressed="true">EN</button><button id="l-es" type="button" aria-pressed="false">ES</button></div>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="frame">
+      <div class="drawing">
+        <div class="tag" data-ih="hEye">Full-stack product builder <i>·</i> Panama</div>
+        <h1 data-ih="hTitle">20 years running engineering projects. <em>Now I build the software they needed.</em></h1>
+        <p class="lead" data-i="hLead">I know budgets, crews, clients and deadlines from the inside. I turn that into software with AI, from the data model to the payment button, and I put it in production.</p>
+        <div class="cta">
+          <a class="btn pri" href="#live" data-i="hCta1">Try a live dashboard</a>
+          <a class="btn ghost" href="#contact" data-i="hCta2">Get in touch</a>
+        </div>
+      </div>
+      <div class="tb" aria-label="Title block">
+        <div><span data-i="tb1">Project</span><b data-i="tb1v">Alexis Vieto, portfolio</b></div>
+        <div><span data-i="tb2">Drawn by</span><b data-i="tb2v">A. Vieto with Claude Code</b></div>
+        <div><span data-i="tb3">Scale</span><b>1:1</b></div>
+        <div><span data-i="tb4">Revision</span><b>2026.10</b></div>
+        <div><span data-i="tb5">Sheets</span><b>01 / 06</b></div>
+        <div class="st"><span data-i="tb6">Status</span><b data-i="tb6v">As-built</b></div>
+        <div class="lg"><span data-i="tb7">Builder</span><b>NEXERA</b></div>
+      </div>
+    </div>
+    <div class="dims">
+      <div class="dim"><div class="ln"></div><b>20+</b><span data-i="k1">years delivering field projects</span></div>
+      <div class="dim"><div class="ln"></div><b>300+</b><span data-i="k2">projects delivered at my own company</span></div>
+      <div class="dim"><div class="ln"></div><b>5</b><span data-i="k3">SaaS products built at Nexera</span></div>
+      <div class="dim"><div class="ln"></div><b>20+</b><span data-i="k4">dashboards built into real apps</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+<section class="sheet" id="why">
+  <div class="wrap">
+    <div class="shead">
+      <div class="sno">02<br>/06</div>
+      <div><div class="k" data-i="wEye">Why me</div><h2 data-i="wTitle">I've run the kind of business my software is built for</h2><p data-i="wLead">Four reasons, each with proof on this page.</p></div>
+    </div>
+    <div class="why">
+      <article><span class="n">A</span><h3 data-i="w1t">I understand the operation before I write a line</h3><p class="muted" data-i="w1p">I founded Proytel with $500 and grew it to more than $2.5 million in revenue in 2019, with over 40 people and ISO 9001 certification. Every product I build starts from a problem I lived: Excel files nobody trusts, reports written at night, payments chased by phone.</p><span class="proof" data-i="w1x">17 years running my own company</span></article>
+      <article><span class="n">B</span><h3 data-i="w2t">I finish complete products</h3><p class="muted" data-i="w2p">Login, roles, payments, accounting, PDFs, mobile apps, email and monitoring. Three of my products are live, and one of them runs 696 automated tests.</p><span class="proof" data-i="w2x">5 products · 3 live</span></article>
+      <article><span class="n">C</span><h3 data-i="w3t">I use AI with judgment</h3><p class="muted" data-i="w3p">I build with Claude Code, and I put AI inside my products where it saves hours: daily reports, bid analysis, CV screening. The AI proposes and a person decides. Money and nutrition math run on deterministic code.</p><span class="proof" data-i="w3x">A person approves every AI output</span></article>
+      <article><span class="n">D</span><h3 data-i="w4t">I protect the data</h3><p class="muted" data-i="w4p">Row-level security on every table, so one client never sees another's data. Closed accounting months are locked in the database. The system enforces candidate consent and deletes expired data on schedule.</p><span class="proof" data-i="w4x">Security rules live in the database</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="live" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead">
+      <div class="sno">03<br>/06</div>
+      <div><div class="k" data-i="dEye">Live demo</div><h2 data-i="dTitle">Three dashboards you can use right now</h2><p data-i="dLead">Change the project, the period or the vacancy and the numbers update. They're drawn with plain code inside this page, the same way I build dashboards into my products. No BI license required.</p></div>
+    </div>
+    <div class="dash">
+      <div class="dtabs" role="tablist" aria-label="Dashboards">
+        <button role="tab" id="t-proj" aria-selected="true" data-i="tab1">Project control</button>
+        <button role="tab" id="t-fin" aria-selected="false" data-i="tab2">Building finances</button>
+        <button role="tab" id="t-hire" aria-selected="false" data-i="tab3">Recruiting</button>
+      </div>
+      <div class="dbody" id="p-proj" role="tabpanel">
+        <div class="dtop"><h3 data-i="pjT">Schedule and cost, planned against actual</h3><div class="seg" id="pj-seg"></div></div>
+        <div class="kpis" id="pj-k"></div>
+        <div class="charts">
+          <div class="chart"><h4 data-i="pjC1">S-curve: cumulative progress</h4><div class="legend"><span><i style="background:var(--ink3)"></i><span data-i="lgPlan">Planned</span></span><span><i style="background:var(--blue)"></i><span data-i="lgAct">Actual</span></span><span><i style="background:var(--red)"></i><span data-i="lgToday">Today</span></span></div><svg class="c" id="pj-s" viewBox="0 0 520 240" role="img" aria-label="S-curve"></svg><div class="tip" id="pj-tip"></div></div>
+          <div class="chart"><h4 data-i="pjC2">Cost by category (USD thousands)</h4><div class="legend"><span><i style="background:var(--line)"></i><span data-i="lgBud">Budget</span></span><span><i style="background:var(--blue2)"></i><span data-i="lgSpent">Spent</span></span></div><svg class="c" id="pj-b" viewBox="0 0 340 240" role="img" aria-label="Cost by category"></svg></div>
+        </div>
+      </div>
+      <div class="dbody" id="p-fin" role="tabpanel" hidden>
+        <div class="dtop"><h3 data-i="fnT">Monthly fees: billed, collected and overdue</h3><div class="seg" id="fn-seg"></div></div>
+        <div class="kpis" id="fn-k"></div>
+        <div class="charts">
+          <div class="chart"><h4 data-i="fnC1">Billed vs collected (USD)</h4><div class="legend"><span><i style="background:var(--line)"></i><span data-i="lgBilled">Billed</span></span><span><i style="background:var(--blue)"></i><span data-i="lgColl">Collected</span></span></div><svg class="c" id="fn-b" viewBox="0 0 520 240" role="img" aria-label="Billed vs collected"></svg><div class="tip" id="fn-tip"></div></div>
+          <div class="chart"><h4 data-i="fnC2">Units with overdue fees, by months late</h4><svg class="c" id="fn-a" viewBox="0 0 340 240" role="img" aria-label="Overdue aging"></svg></div>
+        </div>
+      </div>
+      <div class="dbody" id="p-hire" role="tabpanel" hidden>
+        <div class="dtop"><h3 data-i="hrT">From applications to a shortlist, with the reason for each</h3><div class="seg" id="hr-seg"></div></div>
+        <div class="kpis" id="hr-k"></div>
+        <div class="charts">
+          <div class="chart"><h4 data-i="hrC1">Hiring funnel</h4><svg class="c" id="hr-f" viewBox="0 0 520 240" role="img" aria-label="Funnel"></svg></div>
+          <div class="chart"><h4 data-i="hrC2">Top candidates by match</h4><div class="tbl"><table><thead><tr><th data-i="thC">Candidate</th><th data-i="thM" style="text-align:right">Match</th><th data-i="thR">AI says</th></tr></thead><tbody id="hr-t"></tbody></table></div></div>
+        </div>
+      </div>
+      <div class="dbody" style="padding-top:0"><p class="note"><b data-i="demoB">Demo data</b><span data-i="demoT">Every project, building and candidate here is invented. The charts and the math are real code.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="work" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead">
+      <div class="sno">04<br>/06</div>
+      <div><div class="k" data-i="prEye">What I've built</div><h2 data-i="prTitle">Five products, each from a problem I saw in the field</h2></div>
+    </div>
+    <div class="prods">
+      <article class="prod">
+        <svg class="icon" viewBox="0 0 1024 1024" role="img" aria-label="Atrio"><rect width="1024" height="1024" rx="229" fill="#2c5bcb"/><g transform="translate(192,192) scale(6.4)"><path d="M 45.64 18.84 Q 50.00 16.40 54.36 18.84 L 75.24 30.54 Q 79.60 32.99 75.18 35.32 L 54.42 46.27 Q 50.00 48.60 45.58 46.27 L 24.82 35.32 Q 20.40 32.99 24.76 30.54 Z" fill="#ffffff"/><path d="M 19.80 39.20 Q 19.72 34.20 24.07 36.67 L 44.43 48.22 Q 48.78 50.69 48.86 55.69 L 49.21 78.80 Q 49.29 83.79 45.00 81.22 L 24.52 68.92 Q 20.24 66.34 20.16 61.34 Z" fill="#dfe8fb"/><path d="M 75.93 36.67 Q 80.28 34.20 80.20 39.20 L 79.84 61.34 Q 79.76 66.34 75.48 68.92 L 55.00 81.22 Q 50.71 83.79 50.79 78.80 L 51.14 55.69 Q 51.22 50.69 55.57 48.22 Z" fill="#b9caf3"/></g></svg>
+        <div><h3>Atrio</h3><p class="kind" data-i="a0">Condominium management for administrators, gatehouse and residents</p><a class="live" href="https://app.atrioph.net" target="_blank" rel="noopener">app.atrioph.net ↗</a></div>
+        <div class="body"><ul>
+          <li data-ih="a1"><b>Online payments with Yappy</b> that post to each resident's statement automatically.</li>
+          <li data-ih="a2"><b>Full accounting cycle</b> with monthly charges on the 1st and closed months locked in the database.</li>
+          <li data-ih="a3"><b>AI assistant</b> that answers the administrator's questions about finances and operations, with read-only access.</li>
+          <li data-ih="a4"><b>QR visitor passes, packages and a panic button</b>, plus Android and iOS apps.</li>
+        </ul><div class="stack"><span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>PostgreSQL 17</span><span>Capacitor</span><span>Claude API</span><span>Yappy</span></div></div>
+      </article>
+      <article class="prod">
+        <svg class="icon" viewBox="0 0 1024 1024" role="img" aria-label="NutriSoft"><rect width="1024" height="1024" rx="228" fill="url(#ns-bg)"/><g fill="#ffffff"><rect x="500" y="452" width="24" height="268" rx="12"/><ellipse cx="430" cy="470" rx="96" ry="48" transform="rotate(-34 430 470)"/><ellipse cx="594" cy="470" rx="96" ry="48" transform="rotate(34 594 470)"/><circle cx="512" cy="356" r="26" fill-opacity="0.92"/></g></svg>
+        <div><h3>NutriSoft</h3><p class="kind" data-i="n0">Clinic web app and patient mobile app for nutritionists</p></div>
+        <div class="body"><ul>
+          <li data-ih="n1"><b>React Native patient app</b> with the meal plan, progress and messages to the nutritionist.</li>
+          <li data-ih="n2"><b>Deterministic nutrition engine</b> in its own TypeScript package, so every calculation is exact and tested.</li>
+          <li data-ih="n3"><b>Yappy payments</b> run in Edge Functions, so payment secrets never reach the browser.</li>
+          <li data-ih="n4"><b>Clinic operations:</b> online booking, records, cash register, payroll and sales.</li>
+        </ul><div class="stack"><span>React Native · Expo</span><span>Next.js</span><span>Turborepo</span><span>Supabase</span><span>Edge Functions</span><span>696 tests</span></div></div>
+      </article>
+      <article class="prod">
+        <svg class="icon" viewBox="0 0 120 120" role="img" aria-label="NexGuard360"><rect width="120" height="120" rx="27" fill="#0C1528"/><g transform="translate(20,21) scale(.5)"><path d="M10 20 L80 0 L150 20 C150 90 110 130 80 160 C50 130 10 90 10 20 Z" fill="url(#ng-sh)" stroke="#334155" stroke-width="3"/><circle cx="80" cy="80" r="22" fill="none" stroke="#A3E635" stroke-width="5"/><circle cx="80" cy="80" r="5" fill="#A3E635"/><path d="M80 48 V62 M80 98 V112 M48 80 H62 M98 80 H112" stroke="#A3E635" stroke-width="4"/></g></svg>
+        <div><h3>NexGuard360</h3><p class="kind" data-i="g0">ERP for private security companies</p><a class="live" href="https://www.nexguard360.com" target="_blank" rel="noopener">nexguard360.com ↗</a></div>
+        <div class="body"><ul>
+          <li data-ih="g1"><b>Guard check-in with QR and GPS</b>, verified against the post and the shift.</li>
+          <li data-ih="g2"><b>Live fleet map</b> fed by a GPS provider webhook.</li>
+          <li data-ih="g3"><b>Biweekly payroll</b> from clock-ins, matched to the cent against the Excel it replaced.</li>
+          <li data-ih="g4"><b>AI analytics</b> and daily reports emailed at 8 a.m.</li>
+        </ul><div class="stack"><span>Next.js 16</span><span>TypeScript strict</span><span>Zod</span><span>Supabase</span><span>Leaflet</span><span>Claude API</span><span>Resend</span></div></div>
+      </article>
+      <article class="prod">
+        <svg class="icon" viewBox="0 0 120 120" role="img" aria-label="Modus PM"><rect width="120" height="120" rx="27" fill="#0f2044"/><rect x="28" y="28" width="64" height="64" rx="14" fill="#5b83c9"/><path d="M44 76 V45 L60 63 L76 45 V76" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><h3>Modus PM</h3><p class="kind" data-i="m0">Project management for engineering firms</p></div>
+        <div class="body"><ul>
+          <li data-ih="m1"><b>Floor-plan takeoff:</b> a Python engine reads PDF plans and counts each symbol; a person confirms the result.</li>
+          <li data-ih="m2"><b>Bid analysis with AI:</b> summary, equipment table and a risk panel that quotes the source text.</li>
+          <li data-ih="m3"><b>AI daily reports</b> built from the Gantt schedule and the supervisor's notes.</li>
+          <li data-ih="m4"><b>Gantt, S-curve, cost control, inventory with barcode scanning</b> and branded PDFs.</li>
+        </ul><div class="stack"><span>Next.js</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>PyMuPDF</span><span>Docker</span><span>Claude API</span></div></div>
+      </article>
+      <article class="prod">
+        <svg class="icon" viewBox="0 0 512 512" role="img" aria-label="tino"><rect width="512" height="512" rx="115" fill="#0f172a"/><g transform="translate(102 102) scale(7)"><circle cx="22" cy="22" r="16" fill="none" stroke="#334155" stroke-width="6"/><circle cx="22" cy="22" r="16" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round" stroke-dasharray="72.4 100.5" transform="rotate(-90 22 22)"/><circle cx="22" cy="22" r="4.5" fill="#ffffff"/></g></svg>
+        <div><h3 class="lc">tino</h3><p class="kind" data-i="t0">Hiring with judgment, for HR teams</p><a class="live" href="https://www.contratacontino.com" target="_blank" rel="noopener">contratacontino.com ↗</a></div>
+        <div class="body"><ul>
+          <li data-ih="t1"><b>Ten questions become a job profile:</b> Claude drafts the profile, the posting and weighted criteria for HR to approve.</li>
+          <li data-ih="t2"><b>Each CV scored in under two minutes</b>, with evidence per criterion and three interview questions.</li>
+          <li data-ih="t3"><b>Reproducible match %</b> calculated from the vacancy's weights, so every recruiter gets the same number.</li>
+          <li data-ih="t4"><b>Never rejects anyone on its own</b> and ignores age, sex, nationality, religion and photo.</li>
+        </ul><div class="stack"><span>React</span><span>Vite PWA</span><span>Supabase</span><span>Vercel Functions</span><span>Claude API</span><span>Resend</span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="path" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead">
+      <div class="sno">05<br>/06</div>
+      <div><div class="k" data-i="paEye">The path</div><h2 data-i="paTitle">From cabling buildings to building software</h2></div>
+    </div>
+    <div class="path">
+      <div class="step"><div class="yr">2006 – 2023</div><div><h3 data-i="s1t">Founder and General Manager, Proytel</h3><p data-i="s1p">Telecommunications and electronic security. Started with $500, reached $2.5M in revenue in 2019, led 40+ people and delivered 300+ projects: structured cabling, IP video, access control, fire alarms.</p></div></div>
+      <div class="step"><div class="yr">2024 – </div><div><h3 data-i="s2t">Project Manager / Technical Coordinator</h3><p data-i="s2p">At an engineering, telecommunications and special systems company. I built an operations platform that replaced the team's Excel files, and that led to my role running regional datacenter projects.</p></div></div>
+      <div class="step now"><div class="yr">2025 – </div><div><h3 data-i="s3t">Founder, Nexera</h3><p data-i="s3p">My SaaS company, incorporated in Panama. Self-taught: everything I know about software I learned by reading documentation and building until it worked.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="shead">
+      <div class="sno">06<br>/06</div>
+      <div><div class="k" data-i="hoEye">How I work</div><h2 data-i="hoTitle">The same four steps on every product</h2></div>
+    </div>
+    <div class="how">
+      <div><span class="s" data-i="st1">STEP 1</span><h3 data-i="h1t">Live the problem</h3><p data-i="h1p">I sit with the people who do the work and find the step that costs them hours.</p></div>
+      <div><span class="s" data-i="st2">STEP 2</span><h3 data-i="h2t">Design the data and the rules</h3><p data-i="h2p">Tables, roles and security come first. Business rules go into the database, where nobody can skip them.</p></div>
+      <div><span class="s" data-i="st3">STEP 3</span><h3 data-i="h3t">Build with AI</h3><p data-i="h3p">Claude Code writes much of the code. I set the architecture, review every change and decide what ships.</p></div>
+      <div><span class="s" data-i="st4">STEP 4</span><h3 data-i="h4t">Test, audit, ship</h3><p data-i="h4p">Automated tests, a security review of each module and a check against real data before every release.</p></div>
+    </div>
+    <p class="candid" data-i="candid">My hand-coding is basic. What I bring is knowing what to build, how to structure it so it holds up, and how to check that it works.</p>
+  </div>
+</section>
+</main>
+
+<div class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="tag" data-i="cEye">Contact</div>
+      <h2 data-i="cTitle">If your operation still runs on Excel, let's talk</h2>
+      <p class="lead" data-i="cLead">Open to full-time roles, remote work and product projects.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><div><span data-i="cMail">Email</span><strong>alexisvieto@gmail.com</strong></div><button class="copy" type="button" data-copy="alexisvieto@gmail.com" data-i="cpy">Copy</button></div>
+      <div class="row"><div><span>WhatsApp</span><strong>+507 6918-8423</strong></div><button class="copy" type="button" data-copy="+50769188423" data-i="cpy">Copy</button></div>
+      <div class="row"><div><span>LinkedIn</span><a href="https://www.linkedin.com/in/alexis-vieto" target="_blank" rel="noopener">linkedin.com/in/alexis-vieto ↗</a></div></div>
+      <div class="row"><div><span>GitHub</span><a href="https://github.com/alexisvieto" target="_blank" rel="noopener">github.com/alexisvieto ↗</a></div></div>
+    </div>
+  </div>
+</div>
+<footer><div class="wrap"><span>ALEXIS VIETO · NEXERA · PANAMÁ</span><span>REV. 2026.10</span></div></footer>
+
+<script>
+const I={
+en:{nWhy:"Why me",nLive:"Live demo",nWork:"Products",nContact:"Contact",hEye:"Full-stack product builder <i>·</i> Panama",
+hTitle:'20 years running engineering projects. <em>Now I build the software they needed.</em>',
+hLead:"I know budgets, crews, clients and deadlines from the inside. I turn that into software with AI, from the data model to the payment button, and I put it in production.",
+hCta1:"Try a live dashboard",hCta2:"Get in touch",tb1:"Project",tb1v:"Alexis Vieto, portfolio",tb2:"Drawn by",tb2v:"A. Vieto with Claude Code",tb3:"Scale",tb4:"Revision",tb5:"Sheets",tb6:"Status",tb6v:"As-built",tb7:"Builder",
+k1:"years delivering field projects",k2:"projects delivered at my own company",k3:"SaaS products built at Nexera",k4:"dashboards built into real apps",
+wEye:"Why me",wTitle:"I've run the kind of business my software is built for",wLead:"Four reasons, each with proof on this page.",
+w1t:"I understand the operation before I write a line",w1p:"I founded Proytel with $500 and grew it to more than $2.5 million in revenue in 2019, with over 40 people and ISO 9001 certification. Every product I build starts from a problem I lived: Excel files nobody trusts, reports written at night, payments chased by phone.",w1x:"17 years running my own company",
+w2t:"I finish complete products",w2p:"Login, roles, payments, accounting, PDFs, mobile apps, email and monitoring. Three of my products are live, and one of them runs 696 automated tests.",w2x:"5 products · 3 live",
+w3t:"I use AI with judgment",w3p:"I build with Claude Code, and I put AI inside my products where it saves hours: daily reports, bid analysis, CV screening. The AI proposes and a person decides. Money and nutrition math run on deterministic code.",w3x:"A person approves every AI output",
+w4t:"I protect the data",w4p:"Row-level security on every table, so one client never sees another's data. Closed accounting months are locked in the database. The system enforces candidate consent and deletes expired data on schedule.",w4x:"Security rules live in the database",
+dEye:"Live demo",dTitle:"Three dashboards you can use right now",dLead:"Change the project, the period or the vacancy and the numbers update. They're drawn with plain code inside this page, the same way I build dashboards into my products. No BI license required.",
+tab1:"Project control",tab2:"Building finances",tab3:"Recruiting",pjT:"Schedule and cost, planned against actual",pjC1:"S-curve: cumulative progress",pjC2:"Cost by category (USD thousands)",lgPlan:"Planned",lgAct:"Actual",lgToday:"Today",lgBud:"Budget",lgSpent:"Spent",
+fnT:"Monthly fees: billed, collected and overdue",fnC1:"Billed vs collected (USD)",fnC2:"Units with overdue fees, by months late",lgBilled:"Billed",lgColl:"Collected",
+hrT:"From applications to a shortlist, with the reason for each",hrC1:"Hiring funnel",hrC2:"Top candidates by match",thC:"Candidate",thM:"Match",thR:"AI says",
+demoB:"Demo data",demoT:"Every project, building and candidate here is invented. The charts and the math are real code.",
+prEye:"What I've built",prTitle:"Five products, each from a problem I saw in the field",
+a0:"Condominium management for administrators, gatehouse and residents",a1:"<b>Online payments with Yappy</b> that post to each resident's statement automatically.",a2:"<b>Full accounting cycle</b> with monthly charges on the 1st and closed months locked in the database.",a3:"<b>AI assistant</b> that answers the administrator's questions about finances and operations, with read-only access.",a4:"<b>QR visitor passes, packages and a panic button</b>, plus Android and iOS apps.",
+n0:"Clinic web app and patient mobile app for nutritionists",n1:"<b>React Native patient app</b> with the meal plan, progress and messages to the nutritionist.",n2:"<b>Deterministic nutrition engine</b> in its own TypeScript package, so every calculation is exact and tested.",n3:"<b>Yappy payments</b> run in Edge Functions, so payment secrets never reach the browser.",n4:"<b>Clinic operations:</b> online booking, records, cash register, payroll and sales.",
+g0:"ERP for private security companies",g1:"<b>Guard check-in with QR and GPS</b>, verified against the post and the shift.",g2:"<b>Live fleet map</b> fed by a GPS provider webhook.",g3:"<b>Biweekly payroll</b> from clock-ins, matched to the cent against the Excel it replaced.",g4:"<b>AI analytics</b> and daily reports emailed at 8 a.m.",
+m0:"Project management for engineering firms",m1:"<b>Floor-plan takeoff:</b> a Python engine reads PDF plans and counts each symbol; a person confirms the result.",m2:"<b>Bid analysis with AI:</b> summary, equipment table and a risk panel that quotes the source text.",m3:"<b>AI daily reports</b> built from the Gantt schedule and the supervisor's notes.",m4:"<b>Gantt, S-curve, cost control, inventory with barcode scanning</b> and branded PDFs.",
+t0:"Hiring with judgment, for HR teams",t1:"<b>Ten questions become a job profile:</b> Claude drafts the profile, the posting and weighted criteria for HR to approve.",t2:"<b>Each CV scored in under two minutes</b>, with evidence per criterion and three interview questions.",t3:"<b>Reproducible match %</b> calculated from the vacancy's weights, so every recruiter gets the same number.",t4:"<b>Never rejects anyone on its own</b> and ignores age, sex, nationality, religion and photo.",
+paEye:"The path",paTitle:"From cabling buildings to building software",s1t:"Founder and General Manager, Proytel",s1p:"Telecommunications and electronic security. Started with $500, reached $2.5M in revenue in 2019, led 40+ people and delivered 300+ projects: structured cabling, IP video, access control, fire alarms.",
+s2t:"Project Manager / Technical Coordinator",s2p:"At an engineering, telecommunications and special systems company. I built an operations platform that replaced the team's Excel files, and that led to my role running regional datacenter projects.",
+s3t:"Founder, Nexera",s3p:"My SaaS company, incorporated in Panama. Self-taught: everything I know about software I learned by reading documentation and building until it worked.",
+hoEye:"How I work",hoTitle:"The same four steps on every product",st1:"STEP 1",st2:"STEP 2",st3:"STEP 3",st4:"STEP 4",h1t:"Live the problem",h1p:"I sit with the people who do the work and find the step that costs them hours.",h2t:"Design the data and the rules",h2p:"Tables, roles and security come first. Business rules go into the database, where nobody can skip them.",h3t:"Build with AI",h3p:"Claude Code writes much of the code. I set the architecture, review every change and decide what ships.",h4t:"Test, audit, ship",h4p:"Automated tests, a security review of each module and a check against real data before every release.",
+candid:"My hand-coding is basic. What I bring is knowing what to build, how to structure it so it holds up, and how to check that it works.",
+cEye:"Contact",cTitle:"If your operation still runs on Excel, let's talk",cLead:"Open to full-time roles, remote work and product projects.",cMail:"Email",cpy:"Copy",copied:"Copied",
+k_prog:"Actual progress",k_spi:"Schedule index",k_cost:"Spent of budget",k_week:"Week",ahead:"ahead",behind:"behind",onb:"on budget",over:"over",
+weekL:"Wk",tipS:(w,p,a)=>`Week ${w} · planned ${p}% · actual ${a==null?'n/a':a+'%'}`,
+cats:["Equipment","Labor","Subcontracts","Logistics"],projs:["Datacenter rollout","Airport weather stations","Office building BMS"],
+k_coll:"Collection rate",k_billed:"Billed",k_overdue:"Units overdue",k_cash:"Collected",per:["Last 6 months","Last 12 months"],
+months:["Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"],tipF:(m,b,c)=>`${m} · billed $${b.toLocaleString('en-US')} · collected $${c.toLocaleString('en-US')} (${Math.round(c/b*100)}%)`,
+aging:["1 month","2 months","3 months","4+ months"],units:"units",
+vac:["Accounting assistant","Field technician","Sales executive"],stages:["Applied","Evaluated by AI","Shortlisted","Interviewed","Hired"],
+k_apps:"Applications",k_short:"Shortlisted",k_time:"Avg. time to score",k_saved:"Reading hours saved",adv:"Advance",rev:"Review",low:"Not a priority"},
+es:{nWhy:"Por qué yo",nLive:"Demo en vivo",nWork:"Productos",nContact:"Contacto",hEye:"Constructor de productos full stack <i>·</i> Panamá",
+hTitle:'20 años dirigiendo proyectos de ingeniería. <em>Ahora construyo el software que les faltaba.</em>',
+hLead:"Conozco por dentro los presupuestos, las cuadrillas, los clientes y las fechas de entrega. Eso lo convierto en software con IA, desde el modelo de datos hasta el botón de pago, y lo pongo en producción.",
+hCta1:"Prueba un dashboard en vivo",hCta2:"Contáctame",tb1:"Proyecto",tb1v:"Alexis Vieto, portafolio",tb2:"Dibujó",tb2v:"A. Vieto con Claude Code",tb3:"Escala",tb4:"Revisión",tb5:"Hojas",tb6:"Estado",tb6v:"Según construido",tb7:"Constructor",
+k1:"años entregando proyectos de campo",k2:"proyectos entregados con mi propia empresa",k3:"productos SaaS construidos en Nexera",k4:"dashboards construidos dentro de apps reales",
+wEye:"Por qué yo",wTitle:"He dirigido el tipo de negocio para el que construyo software",wLead:"Cuatro razones, cada una con su prueba en esta página.",
+w1t:"Entiendo la operación antes de escribir una línea",w1p:"Fundé Proytel con 500 dólares y la llevé a facturar más de 2.5 millones en 2019, con más de 40 colaboradores y certificación ISO 9001. Cada producto que construyo nace de un problema que viví: Excel en los que nadie confía, reportes escritos de noche, cobros persiguiendo a la gente por teléfono.",w1x:"17 años dirigiendo mi propia empresa",
+w2t:"Termino productos completos",w2p:"Inicio de sesión, roles, pagos, contabilidad, PDFs, apps móviles, correos y monitoreo. Tres de mis productos están en línea, y uno corre 696 pruebas automatizadas.",w2x:"5 productos · 3 en línea",
+w3t:"Uso la IA con criterio",w3p:"Construyo con Claude Code y meto IA en mis productos donde ahorra horas: reportes diarios, análisis de pliegos, evaluación de hojas de vida. La IA propone y una persona decide. Los cálculos de dinero y de nutrición corren con código exacto.",w3x:"Una persona aprueba todo lo que produce la IA",
+w4t:"Protejo los datos",w4p:"Seguridad por fila en cada tabla, para que un cliente nunca vea los datos de otro. Los meses contables cerrados quedan bloqueados en la base de datos. El sistema exige el consentimiento de los candidatos y borra a tiempo los datos vencidos.",w4x:"Las reglas de seguridad viven en la base de datos",
+dEye:"Demo en vivo",dTitle:"Tres dashboards que puedes usar ahora mismo",dLead:"Cambia el proyecto, el periodo o la vacante y los números se actualizan. Están dibujados con código dentro de esta página, igual que los dashboards que construyo en mis productos. Sin licencias de BI.",
+tab1:"Control de proyecto",tab2:"Finanzas del edificio",tab3:"Reclutamiento",pjT:"Cronograma y costos, planificado contra real",pjC1:"Curva S: avance acumulado",pjC2:"Costo por categoría (miles de USD)",lgPlan:"Planificado",lgAct:"Real",lgToday:"Hoy",lgBud:"Presupuesto",lgSpent:"Gastado",
+fnT:"Cuotas mensuales: facturado, cobrado y en mora",fnC1:"Facturado vs cobrado (USD)",fnC2:"Unidades en mora, por meses de atraso",lgBilled:"Facturado",lgColl:"Cobrado",
+hrT:"De las postulaciones a la lista corta, con la razón de cada una",hrC1:"Embudo de selección",hrC2:"Mejores candidatos por compatibilidad",thC:"Candidato",thM:"Compat.",thR:"La IA dice",
+demoB:"Datos de demostración",demoT:"Todos los proyectos, edificios y candidatos son inventados. Los gráficos y los cálculos son código real.",
+prEye:"Lo que he construido",prTitle:"Cinco productos, cada uno nacido de un problema que vi en el campo",
+a0:"Administración de propiedad horizontal para la administración, la garita y los residentes",a1:"<b>Pagos en línea con Yappy</b> que se reflejan solos en el estado de cuenta de cada residente.",a2:"<b>Ciclo contable completo</b> con cargos mensuales el día 1 y meses cerrados bloqueados en la base de datos.",a3:"<b>Asistente con IA</b> que responde las preguntas del administrador sobre finanzas y operación, con acceso de solo lectura.",a4:"<b>Pases de visita con QR, paquetería y botón de pánico</b>, más apps para Android e iOS.",
+n0:"Web de la clínica y app móvil del paciente para nutricionistas",n1:"<b>App del paciente en React Native</b> con su plan de alimentación, su progreso y mensajes a la nutricionista.",n2:"<b>Motor nutricional determinista</b> en su propio paquete de TypeScript, así cada cálculo es exacto y está probado.",n3:"<b>Pagos con Yappy</b> en Edge Functions, así las llaves de pago nunca llegan al navegador.",n4:"<b>Operación de la clínica:</b> reservas en línea, expedientes, caja, planilla y ventas.",
+g0:"ERP para empresas de seguridad privada",g1:"<b>Marcación con QR y GPS</b>, verificada contra el puesto y el turno.",g2:"<b>Mapa de flota en vivo</b> alimentado por el webhook del proveedor GPS.",g3:"<b>Planilla quincenal</b> desde las marcaciones, cuadrada al centavo contra el Excel que reemplazó.",g4:"<b>Analítica con IA</b> y reportes diarios enviados por correo a las 8 a.m.",
+m0:"Gestión de proyectos para empresas de ingeniería",m1:"<b>Cálculo de planos:</b> un motor en Python lee los planos en PDF y cuenta cada símbolo; una persona confirma el resultado.",m2:"<b>Análisis de pliegos con IA:</b> resumen, tabla de equipos y un panel de riesgos con la cita textual.",m3:"<b>Reportes diarios con IA</b> armados desde el cronograma Gantt y las notas del supervisor.",m4:"<b>Gantt, curva S, control de costos, inventario con escáner</b> y PDFs con marca.",
+t0:"Selección de personal con criterio, para equipos de RRHH",t1:"<b>Diez preguntas se vuelven un perfil de cargo:</b> Claude redacta el perfil, la publicación y los criterios con pesos para que RRHH apruebe.",t2:"<b>Cada hoja de vida evaluada en menos de dos minutos</b>, con evidencia por criterio y tres preguntas de entrevista.",t3:"<b>Porcentaje de compatibilidad reproducible</b>, calculado con los pesos de la vacante, así todos los reclutadores obtienen el mismo número.",t4:"<b>Nunca descarta a nadie por su cuenta</b> e ignora edad, sexo, nacionalidad, religión y foto.",
+paEye:"El camino",paTitle:"De cablear edificios a construir software",s1t:"Fundador y Gerente General, Proytel",s1p:"Telecomunicaciones y seguridad electrónica. Empecé con 500 dólares, llegué a 2.5 millones en facturación en 2019, dirigí a más de 40 personas y entregué más de 300 proyectos: cableado estructurado, video IP, control de acceso, alarmas contra incendio.",
+s2t:"Project Manager / Coordinador Técnico",s2p:"En una empresa de ingeniería, telecomunicaciones y sistemas especiales. Construí una plataforma de operaciones que reemplazó los Excel del equipo, y eso me llevó a dirigir los proyectos regionales de datacenter.",
+s3t:"Fundador, Nexera",s3p:"Mi empresa de SaaS, constituida en Panamá. Autodidacta: todo lo que sé de software lo aprendí leyendo documentación y construyendo hasta que funcionara.",
+hoEye:"Cómo trabajo",hoTitle:"Los mismos cuatro pasos en cada producto",st1:"PASO 1",st2:"PASO 2",st3:"PASO 3",st4:"PASO 4",h1t:"Vivir el problema",h1p:"Me siento con la gente que hace el trabajo y encuentro el paso que les cuesta horas.",h2t:"Diseñar los datos y las reglas",h2p:"Primero van las tablas, los roles y la seguridad. Las reglas del negocio van en la base de datos, donde nadie se las puede saltar.",h3t:"Construir con IA",h3p:"Claude Code escribe gran parte del código. Yo defino la arquitectura, reviso cada cambio y decido qué sale.",h4t:"Probar, auditar, publicar",h4p:"Pruebas automatizadas, revisión de seguridad de cada módulo y verificación contra datos reales antes de cada versión.",
+candid:"Mi programación a mano es básica. Lo que aporto es saber qué construir, cómo estructurarlo para que aguante y cómo comprobar que funciona.",
+cEye:"Contacto",cTitle:"Si tu operación todavía corre en Excel, hablemos",cLead:"Abierto a puestos de tiempo completo, trabajo remoto y proyectos de producto.",cMail:"Correo",cpy:"Copiar",copied:"Copiado",
+k_prog:"Avance real",k_spi:"Índice de cronograma",k_cost:"Gastado del presupuesto",k_week:"Semana",ahead:"adelantado",behind:"atrasado",onb:"en presupuesto",over:"excedido",
+weekL:"Sem",tipS:(w,p,a)=>`Semana ${w} · planificado ${p}% · real ${a==null?'n/d':a+'%'}`,
+cats:["Equipos","Mano de obra","Subcontratos","Logística"],projs:["Despliegue de datacenter","Estaciones meteorológicas","BMS de edificio de oficinas"],
+k_coll:"Tasa de cobro",k_billed:"Facturado",k_overdue:"Unidades en mora",k_cash:"Cobrado",per:["Últimos 6 meses","Últimos 12 meses"],
+months:["Nov","Dic","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct"],tipF:(m,b,c)=>`${m} · facturado $${b.toLocaleString('en-US')} · cobrado $${c.toLocaleString('en-US')} (${Math.round(c/b*100)}%)`,
+aging:["1 mes","2 meses","3 meses","4+ meses"],units:"unidades",
+vac:["Asistente contable","Técnico de campo","Ejecutivo de ventas"],stages:["Postularon","Evaluados por IA","Lista corta","Entrevistados","Contratado"],
+k_apps:"Postulaciones",k_short:"En lista corta",k_time:"Tiempo prom. de evaluación",k_saved:"Horas de lectura ahorradas",adv:"Avanzar",rev:"Revisar",low:"No prioritario"}};
+
+let L='en';
+try{const s=localStorage.getItem('av-lang');if(s)L=s;else if((navigator.language||'').toLowerCase().startsWith('es'))L='es'}catch(e){if((navigator.language||'').toLowerCase().startsWith('es'))L='es'}
+const t=k=>I[L][k];
+const $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,anchor){const e=el('text',{x,y,'text-anchor':anchor||'middle'},parent);e.textContent=s;return e}
+const fmt=n=>n.toLocaleString('en-US');
+
+const P=[
+ {w:12,now:8,bud:[420,160,90,40],spentF:[.96,.71,.62,.80],plan:[2,6,12,21,32,45,58,70,81,90,96,100],act:[2,5,11,19,29,43,57,69]},
+ {w:20,now:13,bud:[610,240,180,95],spentF:[.88,.74,.55,.92],plan:[1,2,4,7,10,14,19,25,32,40,48,56,64,71,78,84,89,94,98,100],act:[1,2,3,5,8,11,15,20,26,33,40,47,54]},
+ {w:16,now:11,bud:[280,190,70,30],spentF:[.82,.79,.74,.61],plan:[1,3,7,12,19,27,36,46,56,66,75,83,90,95,98,100],act:[1,4,8,14,22,31,41,52,62,72,80]}];
+let pj=0;
+function drawProject(){
+ const p=P[pj];const a=p.act[p.act.length-1],pl=p.plan[p.now-1],spi=a/pl;
+ const bud=p.bud.reduce((s,v)=>s+v,0),spent=p.bud.reduce((s,v,i)=>s+Math.round(v*p.spentF[i]),0);
+ const costPct=Math.round(spent/bud*100);const earned=Math.round(bud*a/100);
+ $('pj-k').innerHTML=
+ `<div class="kpi"><span>${t('k_week')}</span><b>${p.now}<i style="font-style:normal;font-size:1.1rem;color:var(--ink3)"> / ${p.w}</i></b></div>`+
+ `<div class="kpi"><span>${t('k_prog')}</span><b>${a}%</b><small class="${a>=pl?'ok':'wn'}">${t('lgPlan').toLowerCase()} ${pl}%</small></div>`+
+ `<div class="kpi"><span>${t('k_spi')} (SPI)</span><b>${spi.toFixed(2)}</b><small class="${spi>=1?'ok':'wn'}">${spi>=1?t('ahead'):t('behind')}</small></div>`+
+ `<div class="kpi"><span>${t('k_cost')}</span><b>${costPct}%</b><small class="${spent<=earned?'ok':'wn'}">${spent<=earned?t('onb'):t('over')}</small></div>`;
+ const s=$('pj-s');s.innerHTML='';const W=520,H=240,l=36,r=10,tp=10,b=26,iw=W-l-r,ih=H-tp-b;
+ const X=i=>l+iw*(i)/(p.w-1),Y=v=>tp+ih*(1-v/100);
+ [0,25,50,75,100].forEach(v=>{el('line',{x1:l,x2:W-r,y1:Y(v),y2:Y(v),class:'gl'},s);txt(s,l-6,Y(v)+3,v+'%','end')});
+ const step=p.w>14?4:2;for(let i=0;i<p.w;i+=step)txt(s,X(i),H-8,t('weekL')+' '+(i+1));
+ el('line',{x1:X(p.now-1),x2:X(p.now-1),y1:tp,y2:tp+ih,stroke:'var(--red)','stroke-dasharray':'3 4','stroke-width':1.5},s);
+ const path=arr=>arr.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join(' ');
+ el('path',{d:path(p.plan),fill:'none',stroke:'var(--ink3)','stroke-width':2,'stroke-dasharray':'5 4'},s);
+ const area=path(p.act)+` L${X(p.act.length-1)} ${Y(0)} L${X(0)} ${Y(0)} Z`;
+ el('path',{d:area,fill:'var(--blue)',opacity:.10},s);
+ const ln=el('path',{d:path(p.act),fill:'none',stroke:'var(--blue)','stroke-width':2.6,'stroke-linejoin':'round',class:'lnA'},s);
+ const len=ln.getTotalLength?ln.getTotalLength():0;if(len){ln.style.strokeDasharray=len;ln.style.strokeDashoffset=len;requestAnimationFrame(()=>requestAnimationFrame(()=>{ln.style.strokeDashoffset=0}))}
+ el('circle',{cx:X(p.act.length-1),cy:Y(a),r:4.5,fill:'var(--blue)',stroke:'var(--sheet)','stroke-width':2},s);
+ const dot=el('circle',{r:4,fill:'var(--sheet)',stroke:'var(--ink)','stroke-width':1.5,opacity:0},s);
+ const hit=el('rect',{x:l,y:tp,width:iw,height:ih,fill:'transparent'},s);
+ const tip=$('pj-tip');tip.textContent=t('tipS')(p.now,pl,a);
+ hit.addEventListener('pointermove',e=>{const rc=s.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width;let i=Math.round((x-l)/iw*(p.w-1));i=Math.max(0,Math.min(p.w-1,i));const av=p.act[i];dot.setAttribute('cx',X(i));dot.setAttribute('cy',Y(av==null?p.plan[i]:av));dot.setAttribute('opacity',1);tip.textContent=t('tipS')(i+1,p.plan[i],av)});
+ hit.addEventListener('pointerleave',()=>{dot.setAttribute('opacity',0);tip.textContent=t('tipS')(p.now,pl,a)});
+ const g=$('pj-b');g.innerHTML='';const BW=340,BH=240,bl=32,bb=40,bt=10,bih=BH-bt-bb,max=Math.ceil(Math.max(...p.bud)/100)*100;
+ const YB=v=>bt+bih*(1-v/max);[0,max/2,max].forEach(v=>{el('line',{x1:bl,x2:BW-4,y1:YB(v),y2:YB(v),class:'gl'},g);txt(g,bl-5,YB(v)+3,v,'end')});
+ const gw=(BW-bl-8)/4;p.bud.forEach((v,i)=>{const x0=bl+8+i*gw,w=gw*.36,sp=Math.round(v*p.spentF[i]);
+  el('rect',{x:x0,y:YB(v),width:w,height:YB(0)-YB(v),rx:2,fill:'var(--line)'},g);
+  const br=el('rect',{x:x0+w+3,y:YB(0),width:w,height:0,rx:2,fill:'var(--blue2)',class:'br'},g);requestAnimationFrame(()=>requestAnimationFrame(()=>{br.setAttribute('y',YB(sp));br.setAttribute('height',YB(0)-YB(sp))}));
+  txt(g,x0+w+1.5,BH-24,t('cats')[i]);txt(g,x0+w+1.5,BH-10,Math.round(p.spentF[i]*100)+'%')});
+}
+function segs(id,labels,cur,on){const c=$(id);c.innerHTML='';labels.forEach((lb,i)=>{const b=document.createElement('button');b.type='button';b.textContent=lb;b.setAttribute('aria-pressed',i===cur);b.addEventListener('click',()=>on(i));c.appendChild(b)})}
+
+const F={billed:[18400,18400,18900,18900,18900,18900,19350,19350,19350,19350,19800,19800],coll:[16200,17900,15600,17100,17600,16900,18300,17700,18100,18600,18900,19100],aging:[14,7,4,3],units:120};
+let fp=1;
+function drawFin(){
+ const n=fp?12:6,off=12-n,B=F.billed.slice(off),C=F.coll.slice(off),M=t('months').slice(off);
+ const tb=B.reduce((s,v)=>s+v,0),tc=C.reduce((s,v)=>s+v,0),rate=tc/tb*100,od=F.aging.reduce((s,v)=>s+v,0);
+ $('fn-k').innerHTML=
+ `<div class="kpi"><span>${t('k_billed')}</span><b>$${fmt(tb)}</b></div>`+
+ `<div class="kpi"><span>${t('k_cash')}</span><b>$${fmt(tc)}</b></div>`+
+ `<div class="kpi"><span>${t('k_coll')}</span><b>${rate.toFixed(1)}%</b><small class="${rate>=93?'ok':'wn'}">${rate>=93?'≥ 93%':'< 93%'}</small></div>`+
+ `<div class="kpi"><span>${t('k_overdue')}</span><b>${od}<i style="font-style:normal;font-size:1.1rem;color:var(--ink3)"> / ${F.units}</i></b></div>`;
+ const s=$('fn-b');s.innerHTML='';const W=520,H=240,l=44,r=6,tp=10,b=26,iw=W-l-r,ih=H-tp-b,max=24000;
+ const Y=v=>tp+ih*(1-v/max);[0,8000,16000,24000].forEach(v=>{el('line',{x1:l,x2:W-r,y1:Y(v),y2:Y(v),class:'gl'},s);txt(s,l-6,Y(v)+3,'$'+(v/1000)+'k','end')});
+ const gw=iw/n,tip=$('fn-tip');
+ const last=n-1;tip.textContent=t('tipF')(M[last],B[last],C[last]);
+ B.forEach((v,i)=>{const x0=l+i*gw+gw*.14,w=gw*.34;
+  el('rect',{x:x0,y:Y(v),width:w,height:Y(0)-Y(v),rx:2,fill:'var(--line)'},s);
+  const br=el('rect',{x:x0+w+2,y:Y(0),width:w,height:0,rx:2,fill:'var(--blue)',class:'br'},s);requestAnimationFrame(()=>requestAnimationFrame(()=>{br.setAttribute('y',Y(C[i]));br.setAttribute('height',Y(0)-Y(C[i]))}));
+  txt(s,l+i*gw+gw/2,H-8,M[i]);
+  const hit=el('rect',{x:l+i*gw,y:tp,width:gw,height:ih,fill:'transparent'},s);
+  hit.addEventListener('pointerenter',()=>{tip.textContent=t('tipF')(M[i],v,C[i])});
+ });
+ const g=$('fn-a');g.innerHTML='';const BW=340,BH=240,bl=74,rr=40,rowH=(BH-20)/4,mx=Math.max(...F.aging);
+ const cols=['var(--blue2)','var(--warn)','var(--warn)','var(--bad)'];
+ F.aging.forEach((v,i)=>{const y=10+i*rowH+rowH*.22,h=rowH*.5,w=(BW-bl-rr)*v/mx;
+  txt(g,bl-8,y+h/2+4,t('aging')[i],'end');
+  el('rect',{x:bl,y,width:BW-bl-rr,height:h,rx:3,fill:'var(--sunk)'},g);
+  el('rect',{x:bl,y,width:w,height:h,rx:3,fill:cols[i]},g);
+  const tt=txt(g,bl+w+6,y+h/2+4,v+' '+t('units'),'start');tt.style.fill='var(--ink2)'});
+}
+
+const R=[
+ {f:[312,312,18,8,1],time:'1m 42s',c:[['A-104',86,'adv'],['A-221',81,'adv'],['A-057',77,'adv'],['A-188',69,'rev'],['A-240',58,'rev'],['A-013',44,'low']]},
+ {f:[146,146,12,6,1],time:'1m 31s',c:[['T-019',88,'adv'],['T-102',79,'adv'],['T-077',72,'rev'],['T-130',66,'rev'],['T-045',61,'rev'],['T-008',39,'low']]},
+ {f:[228,228,15,7,0],time:'1m 55s',c:[['V-066',83,'adv'],['V-150',80,'adv'],['V-021',74,'rev'],['V-199',70,'rev'],['V-090',52,'low'],['V-117',47,'low']]}];
+let hv=0;
+function drawHire(){
+ const r=R[hv];const hours=Math.round(r.f[0]*15/60);
+ $('hr-k').innerHTML=
+ `<div class="kpi"><span>${t('k_apps')}</span><b>${r.f[0]}</b></div>`+
+ `<div class="kpi"><span>${t('k_short')}</span><b>${r.f[2]}</b><small class="ok">${(r.f[2]/r.f[0]*100).toFixed(1)}%</small></div>`+
+ `<div class="kpi"><span>${t('k_time')}</span><b>${r.time}</b></div>`+
+ `<div class="kpi"><span>${t('k_saved')}</span><b>~${hours} h</b></div>`;
+ const s=$('hr-f');s.innerHTML='';const W=520,H=240,l=128,rr=56,rowH=(H-10)/5,mx=r.f[0];
+ r.f.forEach((v,i)=>{const y=6+i*rowH+rowH*.16,h=rowH*.62,w=Math.max(3,(W-l-rr)*Math.sqrt(v/mx));
+  txt(s,l-10,y+h/2+4,t('stages')[i],'end');
+  const br=el('rect',{x:l,y,width:3,height:h,rx:3,fill:i<2?'var(--blue2)':'var(--blue)',opacity:i===1?.7:1},s);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{br.style.transition='width .5s ease-out';br.setAttribute('width',w)}));
+  const tt=txt(s,l+w+8,y+h/2+4,String(v),'start');tt.style.fill='var(--ink)';tt.style.fontWeight='600'});
+ const map={adv:['ok','adv'],rev:['wn','rev'],low:['','low']};
+ $('hr-t').innerHTML=r.c.map(([id,m,k])=>`<tr><td>#${id}</td><td class="n">${m}%</td><td><span class="pill ${map[k][0]}" style="${k==='low'?'background:var(--sunk);color:var(--ink2)':''}">${t(map[k][1])}</span></td></tr>`).join('');
+}
+
+const tabs=[['t-proj','p-proj'],['t-fin','p-fin'],['t-hire','p-hire']];
+let cur=0;
+function showTab(i){cur=i;tabs.forEach(([tb,pn],j)=>{$(tb).setAttribute('aria-selected',j===i);$(pn).hidden=j!==i});render();}
+tabs.forEach(([tb],i)=>$(tb).addEventListener('click',()=>showTab(i)));
+function render(){
+ if(cur===0){segs('pj-seg',t('projs'),pj,i=>{pj=i;render()});drawProject()}
+ if(cur===1){segs('fn-seg',t('per'),fp,i=>{fp=i;render()});drawFin()}
+ if(cur===2){segs('hr-seg',t('vac'),hv,i=>{hv=i;render()});drawHire()}
+}
+function setLang(l){L=l;try{localStorage.setItem('av-lang',l)}catch(e){}
+ document.documentElement.lang=l;
+ document.querySelectorAll('[data-i]').forEach(e=>{const v=I[l][e.dataset.i];if(typeof v==='string')e.textContent=v});
+ document.querySelectorAll('[data-ih]').forEach(e=>{const v=I[l][e.dataset.ih];if(typeof v==='string')e.innerHTML=v});
+ $('l-en').setAttribute('aria-pressed',l==='en');$('l-es').setAttribute('aria-pressed',l==='es');render()}
+$('l-en').addEventListener('click',()=>setLang('en'));$('l-es').addEventListener('click',()=>setLang('es'));
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy;
+ const sel=()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling.querySelector('strong'));const s=getSelection();s.removeAllRanges();s.addRange(r)};
+ const done=()=>{b.textContent=t('copied');setTimeout(()=>{b.textContent=t('cpy')},1600)};
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v).then(done).catch(sel)}else sel()}));
+setLang(L);
+</script>
+
+</body>
+</html>

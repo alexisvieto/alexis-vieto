@@ -1,0 +1,23 @@
+/* Design tokens from portfolio-v2.html, copied literally (light :root, dark via prefers-color-scheme and [data-theme="dark"]). */
+:root{
+  --paper:#f4f6f9; --sheet:#ffffff; --sunk:#e8edf4; --ink:#0f2044; --ink2:#44526d; --ink3:#7b88a1;
+  --line:#d5ddea; --rule:#b9c5d8; --blue:#3d64ad; --blue2:#5b83c9; --soft:#e3ebf8; --grid:rgba(61,100,173,.07);
+  --red:#d9480f; --redsoft:#fde6da;
+  --good:#1d7f55; --goodsoft:#dcf1e6; --warn:#a8650f; --warnsoft:#fbeed7; --bad:#b4373a;
+  --bp:#0c1b3d; --bpink:#eef3fc; --bpink2:#a9badb; --bpline:rgba(169,194,242,.16); --bpred:#ff7a45;
+  --display:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+  --sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#081228; --sheet:#0e1a37; --sunk:#0b1630; --ink:#eef2fa; --ink2:#aab7cf; --ink3:#7584a0;
+  --line:#22335a; --rule:#2f4373; --blue:#7fa3e6; --blue2:#a9c2f2; --soft:#16284f; --grid:rgba(127,163,230,.06);
+  --red:#ff7a45; --redsoft:#3d1e10;
+  --good:#4fc28a; --goodsoft:#0f3527; --warn:#e5a84a; --warnsoft:#3a2a10; --bad:#ef7a7c;
+  --bp:#050d1f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#081228; --sheet:#0e1a37; --sunk:#0b1630; --ink:#eef2fa; --ink2:#aab7cf; --ink3:#7584a0;
+  --line:#22335a; --rule:#2f4373; --blue:#7fa3e6; --blue2:#a9c2f2; --soft:#16284f; --grid:rgba(127,163,230,.06);
+  --red:#ff7a45; --redsoft:#3d1e10;
+  --good:#4fc28a; --goodsoft:#0f3527; --warn:#e5a84a; --warnsoft:#3a2a10; --bad:#ef7a7c;
+  --bp:#050d1f; color-scheme:dark}
