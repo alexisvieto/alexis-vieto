@@ -60,7 +60,7 @@
         <button class="vnext" type="button" aria-label="Pieza siguiente">›</button>
         <span class="vstate" aria-live="polite"></span>
       </div>
-      <div class="vbar" role="slider" aria-label="Progreso" tabindex="0"><i></i></div>
+      <div class="vbar" role="slider" aria-label="Progreso del video" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
       <div class="vfoot">
         <div class="vmeta"><b></b><span></span><p></p></div>
         <div class="vctl">
@@ -84,7 +84,8 @@
     $('.vmeta b', dlg).textContent = p.title;
     $('.vmeta span', dlg).textContent = `${p.brand} · ${p.dur} · ${p.spec}`;
     $('.vmeta p', dlg).textContent = p.what;
-    v.poster = `media/${p.id}.jpg`; v.src = `media/${p.id}.mp4`; v.currentTime = 0;
+    v.poster = `media/${p.id}.jpg`; v.src = `media/${p.id}.mp4`; v.currentTime = 0; v.setAttribute('aria-label', `${p.title} · ${p.brand}`);
+    vstate.textContent = 'Cargando…'; v.addEventListener('canplay', () => { if (vstate.textContent === 'Cargando…') vstate.textContent = ''; }, { once: true });
     fill.style.transform = 'scaleX(0)'; vtime.textContent = `0:00 / ${p.dur.replace(' s', '')}`;
     // Con sonido si el navegador lo permite; si no, arranca en silencio y el altavoz queda listo para activarlo
     v.play().then(() => setPlay(true)).catch(() => {
@@ -106,7 +107,16 @@
   $('.vnext', dlg).addEventListener('click', () => load(cur + 1));
   dlg.addEventListener('click', e => { if (e.target === dlg) close(); }); // clic fuera
   dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });   // Esc
-  dlg.addEventListener('keydown', e => { if (e.key === 'ArrowRight') load(cur + 1); if (e.key === 'ArrowLeft') load(cur - 1); if (e.key === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); toggle(); } });
+  dlg.addEventListener('keydown', e => {
+    if (e.target === bar) { // con el slider enfocado, las flechas buscan ±5 s
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); v.currentTime = Math.max(0, Math.min(v.duration || 0, v.currentTime + (e.key === 'ArrowRight' ? 5 : -5))); return; }
+      if (e.key === 'Home') { e.preventDefault(); v.currentTime = 0; return; }
+      if (e.key === 'End') { e.preventDefault(); v.currentTime = v.duration || 0; return; }
+    }
+    if (e.key === 'ArrowRight') load(cur + 1); if (e.key === 'ArrowLeft') load(cur - 1);
+    if (e.key === ' ' && e.target.tagName !== 'BUTTON') { e.preventDefault(); toggle(); }
+    if (e.key.toLowerCase() === 'm' && e.target.tagName !== 'BUTTON') { e.preventDefault(); btnMute.click(); }
+  });
   const toggle = () => { v.paused ? v.play().then(() => setPlay(true)) : (v.pause(), setPlay(false)); };
   btnPlay.addEventListener('click', toggle);
   $('.vscreen', dlg).addEventListener('click', e => { if (e.target === v) toggle(); });

@@ -78,4 +78,18 @@
         .from($$('.after-dim .ext, .after-dim .dv', svg), { opacity: 0, duration: .3 }, '<.1');
     });
   })();
+
+  /* ---------- 05 · Contacto: copiar correo con aviso ---------- */
+  (function contact() {
+    const btn = document.querySelector('.contacts .copy'), toast = document.querySelector('#toast');
+    if (!btn || !toast) return;
+    let timer;
+    const say = msg => { toast.textContent = msg; toast.classList.add('show'); clearTimeout(timer); timer = setTimeout(() => toast.classList.remove('show'), 2200); };
+    btn.addEventListener('click', async () => {
+      const v = btn.dataset.copy;
+      try { await navigator.clipboard.writeText(v); say('Correo copiado: ' + v); return; } catch {}
+      try { const t = document.createElement('textarea'); t.value = v; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0'; document.body.append(t); t.select(); const ok = document.execCommand('copy'); t.remove(); if (ok) { say('Correo copiado: ' + v); return; } } catch {}
+      say('Copia este correo: ' + v);
+    });
+  })();
 })();

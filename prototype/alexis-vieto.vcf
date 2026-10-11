@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Vieto;Alexis;;;
+FN:Alexis Vieto
+ORG:Nexera
+TITLE:Fundador · Productos SaaS para operaciones reales
+TEL;TYPE=CELL,VOICE:+50769188423
+EMAIL;TYPE=INTERNET:alexisvieto@gmail.com
+URL:https://alexis-vieto.vercel.app
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/alexis-vieto
+ADR;TYPE=WORK:;;;Panamá;;;Panamá
+NOTE:Web inteligente · aplicaciones · móvil · inteligencia de negocios · automatización con agentes · FDE
+END:VCARD

@@ -64,7 +64,7 @@
   <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg>00</div>
   <div class="sheet-title">Lámina 00 · Alexis Vieto · Panamá<b>Portada · Según construido</b></div>
   <div class="secmark" aria-hidden="true">Sección <span>A</span></div>
-  <button class="audio" id="audio" aria-pressed="false"><span class="bars"><i></i><i></i><i></i><i></i></span>Audio · <span id="audio-state">off</span></button>
+  <button class="audio" id="audio" aria-pressed="false" hidden><span class="bars"><i></i><i></i><i></i><i></i></span>Audio · <span id="audio-state">off</span></button>
   <div class="speed mono" aria-hidden="true">Velocidad<b id="speed">0.4×</b></div>
 
   <div class="hero-copy">
@@ -135,13 +135,14 @@
     </div>
     <div class="agents-grid">
       <div>
-        <div class="screen">
+        <div class="screen" tabindex="0" role="button" aria-label="Reproducir o pausar el video de agentes de contabilidad">
           <video preload="metadata" muted playsinline loop poster="media/nexera-agentes-contabilidad.jpg" aria-label="Agentes de contabilidad · Nexera">
             <source src="media/nexera-agentes-contabilidad.mp4" type="video/mp4">
           </video>
           <div class="bar"><i></i></div>
           <button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w1" d="M16 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M18.5 7a7 7 0 0 1 0 10"/></svg></button>
           <span class="state" aria-live="polite"></span>
+          <span class="bigplay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
         </div>
         <p class="vcap"><b>Agentes de contabilidad · Nexera</b> · 30 s · 1920 × 1080 · escenario de ejemplo: 1,000 facturas recibidas, 1,000 emitidas, 98.6% conciliado sin intervención</p>
         <ul class="roles" aria-label="Los siete agentes">
@@ -228,22 +229,29 @@
     </figure>
   </div>
 
-  <!-- Cotas de mejora: dimensiones en redline (antes) y verde (después) -->
-  <div class="dims" aria-label="Cotas de mejora">
-    <svg viewBox="0 0 1400 120" class="dimsvg" id="dim-time" role="img" aria-label="Horas por cierre quincenal: de 6 horas 40 a 12 minutos">
-      <text class="dt" x="0" y="18">Productividad · horas por cierre quincenal</text>
-      <line class="base" x1="0" y1="60" x2="1400" y2="60"/>
-      <g class="before-dim"><line class="ext" x1="0" y1="40" x2="0" y2="80"/><line class="ext" x1="1000" y1="40" x2="1000" y2="80"/><line class="dim red" x1="0" y1="52" x2="1000" y2="52"/><text class="dv red" x="500" y="44" text-anchor="middle">06:40 h · Excel, correos y llamadas</text></g>
-      <g class="after-dim"><line class="ext" x1="0" y1="60" x2="0" y2="100"/><line class="ext" x1="30" y1="60" x2="30" y2="100"/><line class="dim good" x1="0" y1="72" x2="30" y2="72"/><text class="dv good" x="42" y="76">00:12 h · revisar y aprobar</text></g>
-      <text class="dn2" x="1400" y="110" text-anchor="end">ilustrativo · el tiempo real depende de cada operación</text>
-    </svg>
-    <svg viewBox="0 0 1400 120" class="dimsvg" id="dim-steps" role="img" aria-label="Recapturas de datos por cierre: de 3 a 0">
-      <text class="dt" x="0" y="18">Efectividad · veces que el mismo dato se vuelve a escribir</text>
-      <line class="base" x1="0" y1="60" x2="1400" y2="60"/>
-      <g class="before-dim"><line class="ext" x1="0" y1="40" x2="0" y2="80"/><line class="ext" x1="1050" y1="40" x2="1050" y2="80"/><line class="dim red" x1="0" y1="52" x2="1050" y2="52"/><text class="dv red" x="525" y="44" text-anchor="middle">3 · marcaciones → Excel → planilla → banco</text></g>
-      <g class="after-dim"><line class="ext" x1="0" y1="60" x2="0" y2="100"/><line class="dim good" x1="0" y1="72" x2="2" y2="72"/><text class="dv good" x="14" y="76">0 · marcación → nómina → archivo ACH</text></g>
-      <text class="dn2" x="1400" y="110" text-anchor="end">NexGuard360 · src/lib/payroll/engine.ts · ach-generator.ts</text>
-    </svg>
+  <!-- Curvas en S: productividad y efectividad después del despliegue (se dibujan al entrar en pantalla) -->
+  <div class="charts">
+    <figure class="chart" data-chart="prod">
+      <figcaption>Productividad · tiempo de cierre quincenal liberado</figcaption>
+      <div class="chart-top"><b class="now">0%</b><span>del tiempo de cierre liberado · ilustrativo, depende de cada operación</span></div>
+      <div class="plot"></div>
+      <ul class="legend">
+        <li><i class="sw red"></i>Antes · 06:40 h por cierre (Excel, correos y llamadas)</li>
+        <li><i class="sw good"></i>Después · 00:12 h por cierre (revisar y aprobar)</li>
+        <li><i class="sw dash"></i>Meta · 97% del tiempo liberado</li>
+      </ul>
+    </figure>
+    <figure class="chart" data-chart="efec">
+      <figcaption>Efectividad · recapturas del mismo dato eliminadas</figcaption>
+      <div class="chart-top"><b class="now">0%</b><span>de las recapturas eliminadas · NexGuard360 · src/lib/payroll/engine.ts · ach-generator.ts</span></div>
+      <div class="plot"></div>
+      <ul class="legend">
+        <li><i class="sw red"></i>Antes · 3 recapturas por dato (marcaciones → Excel → planilla → banco)</li>
+        <li><i class="sw blue"></i>Después · 0 (marcación → nómina → archivo ACH)</li>
+        <li><i class="sw dash"></i>Meta · 100% de las recapturas eliminadas</li>
+      </ul>
+    </figure>
+    <p class="charts-hint">Pasa el cursor o usa las flechas sobre cada curva para leer el valor por semana.</p>
   </div>
 
   <ol class="notes" aria-label="Notas de lámina">
@@ -303,13 +311,18 @@
     <h2>Hablemos de tu operación.</h2>
     <p>Escríbeme por el canal que uses. Respondo yo, no un formulario.</p>
   </div>
+  <a class="wa-primary" href="https://wa.me/50769188423?text=Hola%20Alexis%2C%20vi%20tu%20portafolio%20y%20quiero%20hablar%20de%20mi%20operaci%C3%B3n." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.1 19.2z"/><path d="M9 9.5c.3 2.3 2.2 4.2 4.5 4.5l1-1.2 2 .9-.4 1.6c-3.8.6-8-3.6-7.4-7.4L10.3 7l.9 2z"/></svg>
+    <span><b>Escríbeme por WhatsApp</b><small>+507 6918-8423 · respondo el mismo día · GMT-5</small></span>
+    <i aria-hidden="true">→</i>
+  </a>
   <ul class="contacts">
-    <li><a href="mailto:alexisvieto@gmail.com"><span>Correo</span><b>alexisvieto@gmail.com</b></a></li>
-    <li><a href="https://wa.me/50769188423" target="_blank" rel="noopener"><span>WhatsApp</span><b>+507 6918-8423</b></a></li>
-    <li><a href="https://www.linkedin.com/in/alexis-vieto" target="_blank" rel="noopener"><span>LinkedIn</span><b>/in/alexis-vieto</b></a></li>
-    <li><a href="https://github.com/alexisvieto" target="_blank" rel="noopener"><span>GitHub</span><b>@alexisvieto</b></a></li>
-    <li><a href="https://www.nexerai.io/v/alexis" target="_blank" rel="noopener"><span>vCard</span><b>nexerai.io/v/alexis</b></a></li>
+    <li><button type="button" class="copy" data-copy="alexisvieto@gmail.com"><span>Correo</span><b>alexisvieto@gmail.com</b><small>Clic para copiar</small></button></li>
+    <li><a href="https://www.linkedin.com/in/alexis-vieto" target="_blank" rel="noopener"><span>LinkedIn</span><b>/in/alexis-vieto</b><small>Abre en pestaña nueva</small></a></li>
+    <li><a href="https://github.com/alexisvieto" target="_blank" rel="noopener"><span>GitHub</span><b>@alexisvieto</b><small>Abre en pestaña nueva</small></a></li>
+    <li><a href="alexis-vieto.vcf" download="alexis-vieto.vcf"><span>vCard</span><b>Guardar contacto</b><small>Descarga un archivo .vcf</small></a></li>
   </ul>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <div class="titleblock">
     <div class="tb-big"><small>Proyecto</small><b>Portafolio · Alexis Vieto</b></div>
     <div><small>Dibujó</small><b>A. Vieto + Claude Code</b></div>
@@ -331,5 +344,6 @@
 <script src="flow.js"></script>
 <script src="gallery.js"></script>
 <script src="agents.js"></script>
+<script src="charts.js"></script>
 </body>
 </html>
