@@ -561,3 +561,7 @@ html{scrollbar-color:var(--rule) var(--bp)}
   #pay-btn{width:calc(100% - 68px)}
 }
 @media (prefers-reduced-motion:reduce){ .wa-float{animation:none} }
+
+.notes .steps-list{margin:0;padding-left:18px;font-size:14px;color:var(--ink2);max-width:52ch}
+.notes .steps-list li{padding:2px 0;list-style:decimal}
+.notes .steps-list li::marker{color:var(--red);font:700 12px var(--mono)}
