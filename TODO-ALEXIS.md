@@ -2,6 +2,9 @@
 
 Lo mínimo que solo Alexis puede dar. Todo lo demás lo saco de los repos. Cuando una línea se cumple, se marca y se anota dónde quedó el material.
 
+## Video del hero, versión cinematográfica realista (11-oct-2026, sin HeyGen)
+- [ ] **Generar 3 clips** en Kling 2.x, Runway Gen-4 o Veo 3 con los prompts de `reference\video\hero-cinematico.md` (órbita A, órbita B, entrada a la pantalla) y dejarlos en `reference\video\raw\` con los nombres indicados. La toma 4 (dentro del código, servicios en 3D) la construyo yo por código. Si prefieres, dame acceso a una de esas cuentas y lo genero yo.
+
 ## Para F0 (bloquea el prototipo)
 - [ ] **HeyGen requiere plan pago para generar video por API** (error 402 `plan_upgrade_required`, 11-oct-2026; tu cuenta está en plan free). Opciones: (a) subir a plan Creator en https://app.heygen.com/home?upgrade y yo ejecuto todo; (b) usar Kling 2.x o Runway Gen-4 desde tu cuenta con los prompts de `reference\video\prompts.md`, y me dejas los clips en `reference\video\raw\`. Recomiendo (a): puedo iterar sin pedirte nada.
 - [ ] **Fotos de referencia para el video con IA:** 4–6 fotos recientes con buena luz: frente, 3/4, perfil, sentado de cuerpo entero. Dejarlas en `C:\dev-portafolio\reference\alexis\`. Ya cuento con `C:\dev\nexera-web\public\team\alexis.webp`.
