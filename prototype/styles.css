@@ -545,3 +545,19 @@ html{scrollbar-color:var(--rule) var(--bp)}
   .ssvg .mnote{display:none}
   .chart-top b{font-size:36px}
 }
+
+/* ---------- Botón flotante de WhatsApp (ícono oficial, verde de marca) ---------- */
+:root{--wa:#25D366;--wa-dark:#128C7E}
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:45;display:flex;align-items:center;gap:0;height:58px;padding:0;border-radius:29px;background:var(--wa);color:#fff;box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 0 rgba(37,211,102,.5);transition:box-shadow .25s,transform .25s,padding .25s;animation:wa-ping 2.4s 3}
+.wa-float svg{width:58px;height:58px;padding:11px;flex:none}
+.wa-float span{max-width:0;overflow:hidden;white-space:nowrap;font:700 13px var(--text);letter-spacing:.02em;transition:max-width .3s,padding .3s}
+.wa-float:hover,.wa-float:focus-visible{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.5);background:var(--wa-dark)}
+.wa-float:hover span,.wa-float:focus-visible span{max-width:120px;padding-right:18px}
+.wa-float:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@keyframes wa-ping{0%{box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 0 rgba(37,211,102,0)}}
+@media (max-width:700px){
+  .wa-float{right:14px;bottom:14px;height:52px;border-radius:26px}
+  .wa-float svg{width:52px;height:52px;padding:10px}
+  #pay-btn{width:calc(100% - 68px)}
+}
+@media (prefers-reduced-motion:reduce){ .wa-float{animation:none} }
