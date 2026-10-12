@@ -20,7 +20,7 @@ Lo mínimo que solo Alexis puede dar. Todo lo demás lo saco de los repos. Cuand
 - **Atrio:** Yappy es andamiaje (`createYappyOrder` devuelve `ready:false`). No se afirma "pagos Yappy reflejados" en Atrio; sí en NutriSoft (Edge Functions `yappy-orden` / `yappy-ipn`, pendiente de confirmar con su ficha).
 - **"Cuadrada al centavo contra el Excel"** viene de la bitácora (CLAUDE.md) y del prompt maestro, no de una prueba automatizada. Lo publico como "fórmula exacta del Excel replicada", no como "$0.00 de diferencia". Si tienes una comparación real quincena a quincena, se puede citar.
 - **tino:** 0 pruebas automatizadas; WhatsApp abre `wa.me`, no envía solo. No se afirma envío automático por WhatsApp.
-- **NutriSoft:** cifras reales mejores que las del playbook: 189 migraciones (no 179) y 729 pruebas (no 696). La app Expo está archivada; lo que existe es la PWA de la paciente empaquetada para Play Store. **Ojo:** la landing de NutriSoft (`apps/web/src/app/page.tsx` L167) anuncia el conteo de calorías por foto, que no está construido; conviene quitarlo de ahí.
+- **NutriSoft:** cifras reales mejores que las del playbook: 189 migraciones (no 179) y 729 pruebas (no 696). La app Expo está archivada; lo que existe es la PWA de la paciente empaquetada para Play Store. **Resuelto 11-oct-2026:** la landing de NutriSoft ya no anuncia el conteo de calorías por foto; el bloque "Nuevo" muestra el chat en vivo (commit f4f6b9e en el repo NutriSoft).
 - **Modus PM:** `public/` contiene el logo de un cliente real; no se usará en capturas. Solo 21 migraciones versionadas (el resto del esquema se aplicó por MCP) y sin pruebas de RLS en el repo; no se afirmará "RLS verificado" para Modus.
 
 ## Lámina 02.2 · Desarrollo de aplicaciones (11-oct-2026)
