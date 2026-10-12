@@ -27,6 +27,9 @@ Lo mínimo que solo Alexis puede dar. Todo lo demás lo saco de los repos. Cuand
 - [ ] **Capturas reales** de cada producto (laptop y teléfono) con datos de prueba, para sustituir el logo solo por logo + captura en cada tarjeta. Dejarlas en `reference\capturas\<producto>\`.
 - [x] Railway retirado: Alexis confirmó que despliega en Vercel y versiona en GitHub (11-oct-2026).
 
+## MCP (12-oct-2026)
+- [ ] **Servidor MCP de demostración sobre Atrio** para el caso de producto: tres operaciones de solo lectura (saldo de una unidad, morosidad del mes, próximas reservas) protegidas por RLS, publicado como evidencia de que los agentes se conectan a los sistemas por el estándar MCP. Una tarde con Claude Code; entra con los casos de producto (F5).
+
 ## Lámina 02.5 · Automatización (proyecto confidencial, 11-oct-2026)
 - [ ] **Cifra de costos:** me diste "costos operativos reducidos en un 365%". Una reducción no puede superar el 100%, así que no la publiqué. ¿Qué significa el 365? Opciones probables: retorno de la inversión de 365% (se ganó 3.65 veces lo invertido), costos reducidos en 36.5%, o costos de 3.65× menores (una reducción del 73%). Con tu respuesta la agrego al párrafo y a "Resultados". El 80% menos horas sí está publicado.
 - [ ] Confirmar si puedo decir el rubro con esa precisión ("distribución de carne nacional e importada") o prefieres algo más genérico ("distribuidora de alimentos").

@@ -170,7 +170,7 @@
     <div><dt>Web</dt><dd>React 19 y Next.js 16 (App Router, Server Actions), React + Vite, Tailwind CSS v4, Zod y Leaflet.</dd></div>
     <div><dt>Backend y datos</dt><dd>PostgreSQL 17 sobre Supabase, con multiempresa y Row Level Security, funciones atómicas para pagos y contabilidad, pg_cron, Realtime, Auth y Storage. La lógica de servidor corre en Node.js (Vercel Functions) y Supabase Edge Functions. Los microservicios en Python (FastAPI, PyMuPDF, Docker) leen planos PDF con visión por IA.</dd></div>
     <div><dt>Móvil</dt><dd>iOS y Android con React Native (Expo) en monorepo Turborepo, apps web empaquetadas con Capacitor, y PWA instalables con modo offline y Web Push.</dd></div>
-    <div><dt>IA</dt><dd>API de Claude con tool use, siempre de solo lectura y con aprobación humana. También uso Gemini.</dd></div>
+    <div><dt>IA</dt><dd>API de Claude con tool use y servidores MCP, siempre de solo lectura y con aprobación humana. También uso Gemini.</dd></div>
     <div><dt>Integraciones</dt><dd>Pagos con Yappy, Resend, webhooks GPS, Odoo y exportación a PDF y Excel.</dd></div>
     <div><dt>Calidad y operación</dt><dd>Vitest, Playwright y pruebas SQL (729 pruebas en NutriSoft), con despliegue en Vercel, monitoreo con Sentry y control de versiones en GitHub.</dd></div>
   </dl>
@@ -262,7 +262,7 @@
         </ul>
       </div>
       <div class="side">
-        <div class="blk"><h4>Qué cambia y cómo los construimos</h4><p>La automatización clásica se rompe cuando el caso no está previsto. Un agente lee el caso, consulta lo que necesita y propone qué hacer; la persona pasa de capturar a aprobar. Los construimos con modelos de Claude y herramientas acotadas por rol (solo lectura donde debe serlo), permisos en la base de datos y registro de cada acción, y el agente escala lo que no puede sostener con evidencia. Nunca decide un pago ni un despido; prepara la decisión.</p></div>
+        <div class="blk"><h4>Qué cambia y cómo los construimos</h4><p>La automatización clásica se rompe cuando el caso no está previsto. Un agente lee el caso, consulta lo que necesita y propone qué hacer; la persona pasa de capturar a aprobar. Los construimos con modelos de Claude y herramientas acotadas por rol (solo lectura donde debe serlo), permisos en la base de datos y registro de cada acción, y el agente escala lo que no puede sostener con evidencia. Los agentes acceden a los sistemas por esas herramientas, con el estándar MCP cuando el cliente ya usa Claude o ChatGPT. Nunca decide un pago ni un despido; prepara la decisión.</p></div>
         <div class="blk"><h4>Dónde ya funcionan y qué entrega</h4>
           <ul class="where">
             <li><b>Atrio</b> · asistente del administrador con 12 herramientas de solo lectura, limitadas por RLS; redacción de comunicados con la voz del PH.</li>
