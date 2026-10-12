@@ -3,15 +3,16 @@ import puppeteer from 'puppeteer-core';
 import fs from 'node:fs';
 import path from 'node:path';
 const here = path.resolve(process.env.HERO_DIR);
-const out = path.join(here, 'frames4'); fs.mkdirSync(out, { recursive: true });
+const PW = +(process.env.PW || 1920), PH = +(process.env.PH || 1080);
+const out = path.join(here, process.env.OUT || 'frames4'); fs.mkdirSync(out, { recursive: true });
 const FPS = 30, DUR = 10, N = FPS * DUR;
 const chrome = process.argv[2];
 const url = process.argv[3] || 'http://127.0.0.1:4180/toma4.html';
 const only = process.argv[4] ? process.argv[4].split(',').map(Number) : null; // vista previa: lista de segundos
 const browser = await puppeteer.launch({
   executablePath: chrome, headless: 'new',
-  args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check', '--window-size=1920,1080'],
-  defaultViewport: { width: 1920, height: 1080, deviceScaleFactor: 1 },
+  args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check', `--window-size=${PW},${PH}`],
+  defaultViewport: { width: PW, height: PH, deviceScaleFactor: 1 },
 });
 const page = await browser.newPage();
 page.on('pageerror', e => console.error('pageerror:', e.message));

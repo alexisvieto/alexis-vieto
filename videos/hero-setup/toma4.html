@@ -39,12 +39,17 @@ import * as THREE from 'three';
 // Las fuentes deben estar cargadas antes de dibujar cualquier textura
 await Promise.all([document.fonts.load('600 120px "Geist"'), document.fonts.load('800 120px "Barlow Condensed"'), document.fonts.load('500 36px "Geist Mono"'), document.fonts.load('700 44px "Geist Mono"')]);
 await document.fonts.ready;
-const W = 1920, H = 1080, DUR = 10;
+const PORTRAIT = new URLSearchParams(location.search).has('portrait') || innerHeight > innerWidth;
+const W = PORTRAIT ? 1080 : 1920, H = PORTRAIT ? 1920 : 1080, DUR = 10;
+const TS = PORTRAIT ? .72 : 1, HOLDZ = PORTRAIT ? -9.5 : -8.5, PX = PORTRAIT ? .5 : 1;
+document.documentElement.style.width = W + 'px'; document.documentElement.style.height = H + 'px'; document.body.style.width = W + 'px'; document.body.style.height = H + 'px';
+for (const id of ['bg', 'c']) { const e = document.getElementById(id); e.style.width = W + 'px'; e.style.height = H + 'px'; if (e.tagName === 'CANVAS') { e.width = W; e.height = H; } }
+if (PORTRAIT) { document.getElementById('bg').src = 't3-last-9x16.png'; document.getElementById('tb').style.transform = 'scale(.78)'; document.getElementById('tb').style.transformOrigin = 'right bottom'; }
 const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true, alpha: true, preserveDrawingBuffer: true });
 renderer.setSize(W, H, false); renderer.setPixelRatio(1);
 const scene = new THREE.Scene();
 scene.fog = new THREE.Fog(0x07122c, 8, 34);
-const cam = new THREE.PerspectiveCamera(42, W / H, .1, 100);
+const cam = new THREE.PerspectiveCamera(PORTRAIT ? 72 : 42, W / H, .1, 100);
 cam.position.set(0, 0, 0);
 
 /* ---------- Fragmentos de código real (texturas en canvas) ---------- */
@@ -87,7 +92,7 @@ const rig = new THREE.Group(); scene.add(rig);
 rig.add(new THREE.Points(pg, new THREE.PointsMaterial({ color: 0x7fa3e6, size: .05, transparent: true, opacity: .7 })));
 
 /* ---------- Servicios: texto 3D (cara + extrusión simulada por capas) ---------- */
-const SERVICES = ['Desarrollo de Software', 'Aplicaciones iOS y Android', 'Automatización', 'Desarrollo Web Inteligente', 'Generación de Video', 'FDE · Forward Deployed Engineer', 'Animaciones'];
+const SERVICES = ['Desarrollo de Software', 'Aplicaciones iOS y Android', 'Automatización', 'Desarrollo Web Inteligente', 'FDE · Forward Deployed Engineer', 'Animaciones'];
 function titleGroup(label, index) {
   const g = new THREE.Group();
   const w = 1600, h = 300;
@@ -107,7 +112,7 @@ function titleGroup(label, index) {
   const lineMat = new THREE.LineBasicMaterial({ color: 0xff7a45, transparent: true, opacity: 0 });
   const L = (a, b) => new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a), new THREE.Vector3(...b)]), lineMat);
   const cota = new THREE.Group(); cota.add(L([-3.5, -1.2, 0], [3.5, -1.2, 0]), L([-3.5, -1.3, 0], [-3.5, -1.1, 0]), L([3.5, -1.3, 0], [3.5, -1.1, 0]));
-  const labMat = new THREE.MeshBasicMaterial({ map: textTexture(`SERVICIO 0${index + 1} / 07`, { font: '500 40px "Geist Mono"', color: '#ff7a45', w: 700, h: 70, pad: 10 }), transparent: true, opacity: 0 });
+  const labMat = new THREE.MeshBasicMaterial({ map: textTexture(`SERVICIO 0${index + 1} / 06`, { font: '500 40px "Geist Mono"', color: '#ff7a45', w: 700, h: 70, pad: 10 }), transparent: true, opacity: 0 });
   const lab = new THREE.Mesh(new THREE.PlaneGeometry(2.2, .22), labMat); lab.position.set(-2.4, -1.42, 0); cota.add(lab);
   g.add(plate, edge, face, cota);
   g.userData.mats = [faceMat, plateMat, edgeMat, lineMat, labMat]; g.userData.maxOp = [1, .55, .45, .9, 1];
@@ -122,23 +127,23 @@ const tl = gsap.timeline({ paused: true });
 tl.to(bg, { opacity: 0, duration: .7, ease: 'power2.out' }, 0);
 tl.to(camState, { z: -9, duration: DUR, ease: 'none' }, 0);
 // Posiciones de estacionamiento: muro curvo en perspectiva
-const park = [[-13.5, 1.9, -21, .6], [-9, -1.4, -19.5, .4], [-4.5, 2.1, -18.5, .2], [0, -3.1, -18.5, 0], [4.5, 2.1, -18.5, -.2], [9, -1.4, -19.5, -.4], [13.5, 1.9, -21, -.6]];
+const park = [[-12.5, 1.9, -21, .55], [-7.5, -1.6, -19.5, .35], [-2.6, 2.2, -18.5, .12], [2.6, -2.2, -18.5, -.12], [7.5, 1.6, -19.5, -.35], [12.5, -1.9, -21, -.55]].map(([x, y, z, ry]) => [x * PX, y * (PORTRAIT ? 1.6 : 1), z, ry]);
 SERVICES.forEach((_, i) => {
-  const g = titles[i]; const t0 = .5 + i * 1.15;
+  const g = titles[i]; const t0 = .5 + i * 1.3;
   const st = { s: .2, o: 0 };
   tl.add(() => { g.visible = true; }, t0);
   const op = { v: 0 }; const mats = g.userData.mats, mx = g.userData.maxOp;
   tl.set(g.position, { x: 0, y: 0, z: -10.5 }, t0);
   tl.set(g.rotation, { y: .18, x: .06 }, t0);
-  tl.set(g.scale, { x: .95, y: .95, z: .95 }, t0);
+  tl.set(g.scale, { x: .95 * TS, y: .95 * TS, z: .95 * TS }, t0);
   tl.to(op, { v: 1, duration: .45, ease: 'power2.out', onUpdate: () => mats.forEach((m, k) => m.opacity = mx[k] * op.v) }, t0);
-  tl.to(g.position, { z: -8.5, duration: .6, ease: 'power3.out' }, t0);
-  tl.to(g.scale, { x: 1, y: 1, z: 1, duration: .6, ease: 'power3.out' }, t0);
+  tl.to(g.position, { z: HOLDZ, duration: .6, ease: 'power3.out' }, t0);
+  tl.to(g.scale, { x: TS, y: TS, z: TS, duration: .6, ease: 'power3.out' }, t0);
   tl.to(g.rotation, { y: 0, x: 0, duration: .6, ease: 'power3.out' }, t0);
   const [px, py, pz, ry] = park[i];
   tl.to(g.position, { x: px, y: py, z: pz, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
   tl.to(g.rotation, { y: ry, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
-  tl.to(g.scale, { x: .9, y: .9, z: .9, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
+  tl.to(g.scale, { x: .9 * TS, y: .9 * TS, z: .9 * TS, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
   // Estacionado: se atenúa para que el siguiente título se lea limpio
   tl.to(op, { v: .5, duration: .5, ease: 'power2.inOut', onUpdate: () => mats.forEach((m, k) => m.opacity = mx[k] * op.v) }, t0 + 1.0);
 });
