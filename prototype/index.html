@@ -99,12 +99,104 @@
   </div>
 </section>
 
+<!-- ================= 02.2 · DESARROLLO DE APLICACIONES WEB Y MÓVIL ================= -->
+<section class="sheet" id="apps">
+  <div class="frame" aria-hidden="true"></div>
+  <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg><span style="font-size:19px">02.2</span></div>
+  <div class="sheet-title">Lámina 02.2<b>Servicios · Desarrollo de aplicaciones web y móvil</b></div>
+  <div class="secmark" aria-hidden="true">Sección <span>B</span></div>
+
+  <div class="chapter-head">
+    <h2>Desarrollo de Aplicaciones<span>Web y móvil, en producción</span></h2>
+    <p>Construyo software en Python, TypeScript y JavaScript con Claude Code: yo defino la arquitectura, el modelo de datos y la seguridad, y reviso y pruebo cada entrega. Cinco productos en producción lo respaldan.</p>
+  </div>
+
+  <!-- Productos: logo, una línea, stack, estado, enlace -->
+  <ul class="products" aria-label="Productos construidos">
+    <li class="product">
+      <a class="plink" href="https://app.atrioph.net" target="_blank" rel="noopener">
+        <img class="plogo" src="media/logos/atrio.svg" alt="" width="64" height="64">
+        <span class="pstate live">En línea</span>
+        <b>Atrio</b>
+        <p>Administración de propiedad horizontal con contabilidad de partida doble, pagos en línea y asistente IA para el administrador.</p>
+        <small>Next.js 16 · Supabase · Capacitor · Claude · pg_cron</small>
+        <em>app.atrioph.net</em>
+      </a>
+    </li>
+    <li class="product">
+      <div class="plink">
+        <img class="plogo" src="media/logos/nutrisoft.svg" alt="" width="64" height="64">
+        <span class="pstate pilot">Piloto</span>
+        <b>NutriSoft</b>
+        <p>Clínicas de nutrición: app de la paciente con chat en vivo, motor de planes determinista, reservas en línea con Yappy, expedientes y caja.</p>
+        <small>Turborepo · Next.js · Supabase · Edge Functions · PWA</small>
+        <em>729 pruebas · 49/49 tablas con RLS</em>
+      </div>
+    </li>
+    <li class="product">
+      <a class="plink" href="https://www.nexguard360.com" target="_blank" rel="noopener">
+        <img class="plogo" src="media/logos/nexguard360.svg" alt="" width="64" height="64">
+        <span class="pstate live">En línea</span>
+        <b>NexGuard360</b>
+        <p>ERP de seguridad privada: marcación QR y GPS, flota en vivo, nómina desde marcaciones con archivo ACH, reportes diarios.</p>
+        <small>Next.js 16 · Supabase · Leaflet · Zod · Resend</small>
+        <em>nexguard360.com</em>
+      </a>
+    </li>
+    <li class="product">
+      <div class="plink">
+        <img class="plogo" src="media/logos/modus.svg" alt="" width="64" height="64">
+        <span class="pstate pilot">Piloto</span>
+        <b>Modus PM</b>
+        <p>Gestión de proyectos de ingeniería: conteo de planos confirmado por una persona, análisis de pliegos con IA, Gantt con curva S, cotizaciones a Excel.</p>
+        <small>Next.js · Supabase · FastAPI · PyMuPDF · Docker · Sentry</small>
+        <em>67 tablas · 2 microservicios Python</em>
+      </div>
+    </li>
+    <li class="product">
+      <a class="plink" href="https://www.contratacontino.com" target="_blank" rel="noopener">
+        <img class="plogo" src="media/logos/tino.svg" alt="" width="64" height="64">
+        <span class="pstate live">En línea</span>
+        <b>tino</b>
+        <p>Selección de personal con criterio: perfil de cargo, portal de postulación, lectura de CV y puntaje de candidatos con IA. El reclutador decide.</p>
+        <small>React + Vite · Tailwind v4 · Supabase · Vercel Functions · Claude</small>
+        <em>contratacontino.com</em>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Ficha técnica: la leyenda del servicio, como especificaciones de plano -->
+  <dl class="spec" aria-label="Especificaciones técnicas">
+    <div><dt>Web</dt><dd>React 19 y Next.js 16 (App Router, Server Actions), React + Vite, Tailwind CSS v4, Zod y Leaflet.</dd></div>
+    <div><dt>Backend y datos</dt><dd>PostgreSQL 17 sobre Supabase, con multiempresa y Row Level Security, funciones atómicas para pagos y contabilidad, pg_cron, Realtime, Auth y Storage. La lógica de servidor corre en Node.js (Vercel Functions) y Supabase Edge Functions. Los microservicios en Python (FastAPI, PyMuPDF, Docker) leen planos PDF con visión por IA.</dd></div>
+    <div><dt>Móvil</dt><dd>iOS y Android con React Native (Expo) en monorepo Turborepo, apps web empaquetadas con Capacitor, y PWA instalables con modo offline y Web Push.</dd></div>
+    <div><dt>IA</dt><dd>API de Claude con tool use, siempre de solo lectura y con aprobación humana. También uso Gemini.</dd></div>
+    <div><dt>Integraciones</dt><dd>Pagos con Yappy, Resend, webhooks GPS, Odoo y exportación a PDF y Excel.</dd></div>
+    <div><dt>Calidad y operación</dt><dd>Vitest, Playwright y pruebas SQL (729 pruebas en NutriSoft), con despliegue en Vercel y Railway, monitoreo con Sentry y control de versiones en GitHub.</dd></div>
+  </dl>
+
+  <ol class="notes" aria-label="Notas de lámina">
+    <li><h3>Para qué se hizo</h3><p>Operaciones que viven en Excel y chats se rompen cuando la empresa crece. Construyo la aplicación que sostiene el proceso completo, para el personal, el cliente y la administración.</p></li>
+    <li><h3>Cómo lo hace</h3><p>Un solo modelo de datos, roles y permisos aplicados en la base de datos, funciones de servidor atómicas, PDFs con la marca de la empresa y tareas automáticas. La ficha técnica de arriba es el stack real de los cinco productos.</p></li>
+    <li><h3>Qué entrega</h3><p>Apps de personal, cliente y administración sobre un mismo backend, publicadas o instalables, con documentación por rol y traspaso.</p></li>
+    <li><h3>Resultados</h3><p>Atrio: 86 tablas, 62 funciones de base de datos, 96 páginas, cuotas generadas el día 1. NexGuard360: 45 de 45 tablas con RLS y 167 políticas. NutriSoft: 729 pruebas, incluida una que falla si alguna tabla queda sin proteger.</p></li>
+  </ol>
+
+  <div class="titleblock">
+    <div class="tb-big"><small>Proyecto</small><b>Portafolio · Alexis Vieto</b></div>
+    <div><small>Dibujó</small><b>A. Vieto + Claude Code</b></div>
+    <div><small>Escala</small><b>S/E</b></div>
+    <div class="tb-rev"><small>Revisión</small><b>2026.10</b></div>
+    <div><small>Lámina</small><b>02.2 / 05</b></div>
+  </div>
+</section>
+
 <!-- ================= 02.5 · AUTOMATIZACIÓN ================= -->
 <section class="sheet" id="flow-sheet">
   <div class="frame" aria-hidden="true"></div>
   <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg><span style="font-size:19px">02.5</span></div>
   <div class="sheet-title">Lámina 02.5<b>Servicios · Automatización</b></div>
-  <div class="secmark" aria-hidden="true">Sección <span>B</span></div>
+  <div class="secmark" aria-hidden="true">Sección <span>C</span></div>
 
   <div class="chapter-head">
     <h2>Automatización<span>Sistemas que reemplazan el Excel.</span></h2>
@@ -207,7 +299,7 @@
   <div class="frame" aria-hidden="true"></div>
   <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg><span style="font-size:19px">02.6</span></div>
   <div class="sheet-title">Lámina 02.6<b>Servicios · Ingeniería desplegada en sitio</b></div>
-  <div class="secmark" aria-hidden="true">Sección <span>C</span></div>
+  <div class="secmark" aria-hidden="true">Sección <span>D</span></div>
 
   <div class="chapter-head">
     <h2>FDE<span>Forward Deployed Engineer</span></h2>
@@ -289,7 +381,7 @@
   <div class="frame" aria-hidden="true"></div>
   <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg><span style="font-size:19px">02.7</span></div>
   <div class="sheet-title">Lámina 02.7<b>Servicios · Animación</b></div>
-  <div class="secmark" aria-hidden="true">Sección <span>D</span></div>
+  <div class="secmark" aria-hidden="true">Sección <span>E</span></div>
 
   <div class="chapter-head">
     <h2>Animación<span>Motion por código para explicar producto</span></h2>
@@ -320,7 +412,7 @@
   <div class="frame" aria-hidden="true"></div>
   <div class="badge" aria-hidden="true"><svg viewBox="0 0 68 68"><circle cx="34" cy="34" r="32"/></svg>05</div>
   <div class="sheet-title">Lámina 05<b>Contacto</b></div>
-  <div class="secmark" aria-hidden="true">Sección <span>E</span></div>
+  <div class="secmark" aria-hidden="true">Sección <span>F</span></div>
   <div class="chapter-head">
     <h2>Hablemos de tu operación.</h2>
     <p>Escríbeme por el canal que uses. Respondo yo, no un formulario.</p>

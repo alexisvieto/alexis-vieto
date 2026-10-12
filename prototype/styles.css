@@ -601,3 +601,31 @@ h1.h1-name{font-size:clamp(44px,6vw,92px)}
 .hero-copy .lede{margin-top:14px;max-width:520px}
 .hero-copy{transition:opacity .6s ease}
 @media (max-width:700px){ .services-line{font-size:11px} }
+
+/* ---------- 02.2 · Desarrollo de aplicaciones: productos y ficha técnica ---------- */
+.products{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line2);margin-top:8px}
+.product{background:rgba(7,18,44,.7)}
+.plink{display:flex;flex-direction:column;gap:10px;padding:22px 20px 20px;height:100%;position:relative;transition:background .25s}
+a.plink:hover{background:var(--soft)}
+.plogo{width:64px;height:64px;border-radius:14px;display:block;margin-bottom:6px}
+.pstate{position:absolute;right:14px;top:14px;font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:4px 7px;border:1px solid}
+.pstate.live{color:var(--good);border-color:var(--good)}
+.pstate.pilot{color:var(--warn);border-color:var(--warn)}
+.plink b{font:800 26px/1 var(--display);color:var(--ink);text-transform:none}
+.plink p{font-size:13px;color:var(--ink2);margin:0;flex:1}
+.plink small{font:500 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);line-height:1.6}
+.plink em{font:500 11px var(--mono);letter-spacing:.08em;color:var(--blue2);font-style:normal}
+.spec{margin:28px 0 0;border:1px solid var(--line2);background:rgba(7,18,44,.5)}
+.spec > div{display:grid;grid-template-columns:200px 1fr;gap:18px;padding:14px 20px;border-top:1px solid var(--line)}
+.spec > div:first-child{border-top:0}
+.spec dt{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red);padding-top:3px}
+.spec dd{margin:0;font-size:14px;color:var(--ink2);max-width:90ch}
+.sheet .secmark span{text-transform:none}
+@media (max-width:1200px){ .products{grid-template-columns:repeat(3,1fr)} .product:nth-child(4),.product:nth-child(5){border-top:1px solid var(--line)} }
+@media (max-width:980px){
+  .products{grid-template-columns:1fr 1fr}
+  .spec > div{grid-template-columns:1fr;gap:6px;padding:12px 14px}
+  .plink b{font-size:22px}
+  .plink small,.pstate{font-size:11px}
+}
+@media (max-width:480px){ .products{grid-template-columns:1fr} }
