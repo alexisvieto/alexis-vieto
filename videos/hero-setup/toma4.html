@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Toma 4 · dentro del código</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Geist+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Geist:wght@500;600&family=Geist+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#07122c}
   #bg{position:absolute;inset:0;width:1920px;height:1080px;object-fit:cover;opacity:1}
@@ -21,7 +21,7 @@
 </head>
 <body>
 <img id="bg" src="t3-last.png" alt="">
-<span style="position:absolute;opacity:0;font:800 20px 'Barlow Condensed'">Barlow</span><span style="position:absolute;opacity:0;font:500 20px 'Geist Mono'">Mono</span>
+<span style="position:absolute;opacity:0;font:800 20px 'Barlow Condensed'">Barlow</span><span style="position:absolute;opacity:0;font:600 20px 'Geist'">Geist</span><span style="position:absolute;opacity:0;font:500 20px 'Geist Mono'">Mono</span>
 <canvas id="c" width="1920" height="1080"></canvas>
 <div id="grain"></div>
 <div id="vig"></div>
@@ -37,7 +37,7 @@
 <script type="module">
 import * as THREE from 'three';
 // Las fuentes deben estar cargadas antes de dibujar cualquier textura
-await Promise.all([document.fonts.load('800 120px "Barlow Condensed"'), document.fonts.load('500 36px "Geist Mono"'), document.fonts.load('700 44px "Geist Mono"')]);
+await Promise.all([document.fonts.load('600 120px "Geist"'), document.fonts.load('800 120px "Barlow Condensed"'), document.fonts.load('500 36px "Geist Mono"'), document.fonts.load('700 44px "Geist Mono"')]);
 await document.fonts.ready;
 const W = 1920, H = 1080, DUR = 8;
 const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true, alpha: true, preserveDrawingBuffer: true });
@@ -90,22 +90,27 @@ rig.add(new THREE.Points(pg, new THREE.PointsMaterial({ color: 0x7fa3e6, size: .
 const SERVICES = ['Automatización', 'Desarrollo Web Inteligente', 'Generación de Video', 'FDE · Forward Deployed Engineer', 'Animaciones'];
 function titleGroup(label, index) {
   const g = new THREE.Group();
-  const w = 1600, h = 300; const c = document.createElement('canvas'); c.width = w; c.height = h; const ctx = c.getContext('2d');
-  let size = 190; ctx.font = `800 ${size}px "Barlow Condensed"`; while (ctx.measureText(label.toUpperCase()).width > w - 80 && size > 60) { size -= 6; ctx.font = `800 ${size}px "Barlow Condensed"`; }
-  const draw = (color) => { const cc = document.createElement('canvas'); cc.width = w; cc.height = h; const g = cc.getContext('2d'); g.font = `800 ${size}px "Barlow Condensed"`; g.fillStyle = color; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(label.toUpperCase(), w / 2, h / 2 + 8); const t = new THREE.CanvasTexture(cc); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t; };
-  const geo = new THREE.PlaneGeometry(7, 1.3125);
-  const face = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: draw('#eef2fa'), transparent: true }));
-  g.add(face);
-  const side = draw('#3d64ad');
-  for (let i = 1; i <= 14; i++) { const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: side, transparent: true, opacity: 1 })); m.position.set(i * .012, -i * .012, -i * .03); g.add(m); }
-  // Cota redline debajo
-  const cota = new THREE.Group();
-  const lineMat = new THREE.LineBasicMaterial({ color: 0xff7a45 });
+  const w = 1600, h = 300;
+  const cc = document.createElement('canvas'); cc.width = w; cc.height = h; const ctx = cc.getContext('2d');
+  let size = 150; const setFont = () => { ctx.font = `600 ${size}px "Geist"`; ctx.letterSpacing = (-size * .02) + 'px'; };
+  setFont(); while (ctx.measureText(label).width > w - 160 && size > 70) { size -= 4; setFont(); }
+  ctx.fillStyle = '#eef2fa'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(label, w / 2, h / 2 + 6);
+  const tex = new THREE.CanvasTexture(cc); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+  const faceMat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: 0 });
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(7, 1.3125), faceMat); face.position.z = .02;
+  // Placa de vidrio oscuro con borde fino (material del sitio), detrás del texto
+  const plateMat = new THREE.MeshBasicMaterial({ color: 0x0e1a37, transparent: true, opacity: 0 });
+  const plate = new THREE.Mesh(new THREE.PlaneGeometry(7.6, 1.9), plateMat);
+  const edgeMat = new THREE.LineBasicMaterial({ color: 0xa9c2f2, transparent: true, opacity: 0 });
+  const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(7.6, 1.9)), edgeMat); edge.position.z = .005;
+  // Cota redline y rótulo mono
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xff7a45, transparent: true, opacity: 0 });
   const L = (a, b) => new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a), new THREE.Vector3(...b)]), lineMat);
-  cota.add(L([-3.2, -.9, 0], [3.2, -.9, 0]), L([-3.2, -1.02, 0], [-3.2, -.78, 0]), L([3.2, -1.02, 0], [3.2, -.78, 0]));
-  const lab = new THREE.Mesh(new THREE.PlaneGeometry(2.2, .22), new THREE.MeshBasicMaterial({ map: textTexture(`SERVICIO 0${index + 1} / 05`, { font: '700 44px "Geist Mono"', color: '#ff7a45', w: 700, h: 70, pad: 10 }), transparent: true }));
-  lab.position.set(-2.1, -1.12, 0); cota.add(lab);
-  g.add(cota);
+  const cota = new THREE.Group(); cota.add(L([-3.5, -1.2, 0], [3.5, -1.2, 0]), L([-3.5, -1.3, 0], [-3.5, -1.1, 0]), L([3.5, -1.3, 0], [3.5, -1.1, 0]));
+  const labMat = new THREE.MeshBasicMaterial({ map: textTexture(`SERVICIO 0${index + 1} / 05`, { font: '500 40px "Geist Mono"', color: '#ff7a45', w: 700, h: 70, pad: 10 }), transparent: true, opacity: 0 });
+  const lab = new THREE.Mesh(new THREE.PlaneGeometry(2.2, .22), labMat); lab.position.set(-2.4, -1.42, 0); cota.add(lab);
+  g.add(plate, edge, face, cota);
+  g.userData.mats = [faceMat, plateMat, edgeMat, lineMat, labMat]; g.userData.maxOp = [1, .55, .45, .9, 1];
   g.visible = false; rig.add(g); return g;
 }
 const titles = SERVICES.map(titleGroup);
@@ -122,13 +127,18 @@ SERVICES.forEach((_, i) => {
   const g = titles[i]; const t0 = .5 + i * 1.25;
   const st = { s: .2, o: 0 };
   tl.add(() => { g.visible = true; }, t0);
-  tl.set(g.position, { x: 0, y: 0, z: -30 }, t0);
-  tl.set(g.rotation, { y: .7, x: .2 }, t0);
+  const op = { v: 0 }; const mats = g.userData.mats, mx = g.userData.maxOp;
+  tl.set(g.position, { x: 0, y: 0, z: -10.5 }, t0);
+  tl.set(g.rotation, { y: .18, x: .06 }, t0);
+  tl.set(g.scale, { x: .95, y: .95, z: .95 }, t0);
+  tl.to(op, { v: 1, duration: .45, ease: 'power2.out', onUpdate: () => mats.forEach((m, k) => m.opacity = mx[k] * op.v) }, t0);
   tl.to(g.position, { z: -8.5, duration: .6, ease: 'power3.out' }, t0);
+  tl.to(g.scale, { x: 1, y: 1, z: 1, duration: .6, ease: 'power3.out' }, t0);
   tl.to(g.rotation, { y: 0, x: 0, duration: .6, ease: 'power3.out' }, t0);
   const [px, py, pz, ry] = park[i];
   tl.to(g.position, { x: px, y: py, z: pz, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
   tl.to(g.rotation, { y: ry, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
+  tl.to(g.scale, { x: .9, y: .9, z: .9, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
 });
 // Cierre: la cámara frena, se escribe el rótulo, fundido a plano nocturno
 const TB = [['tb1', 'Portafolio · Alexis Vieto'], ['tb2', 'A. Vieto + Claude Code'], ['tb3', 'Rev 2026.10'], ['tb4', 'Según construido']];
