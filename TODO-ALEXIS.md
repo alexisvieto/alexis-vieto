@@ -27,6 +27,10 @@ Lo mínimo que solo Alexis puede dar. Todo lo demás lo saco de los repos. Cuand
 - [ ] **Capturas reales** de cada producto (laptop y teléfono) con datos de prueba, para sustituir el logo solo por logo + captura en cada tarjeta. Dejarlas en `reference\capturas\<producto>\`.
 - [x] Railway retirado: Alexis confirmó que despliega en Vercel y versiona en GitHub (11-oct-2026).
 
+## Sitio para reclutadores (12-oct-2026)
+- [ ] **CV en PDF (EN y ES)** para que el botón "Request my CV" pase a ser descarga directa. Dejarlos en `recruitermedia` como `alexis-vieto-cv-en.pdf` y `alexis-vieto-cv-es.pdf`.
+- [ ] Revisar que el texto en inglés suene a ti (lo escribí yo a partir de tus textos aprobados).
+
 ## MCP (12-oct-2026)
 - [ ] **Servidor MCP de demostración sobre Atrio** para el caso de producto: tres operaciones de solo lectura (saldo de una unidad, morosidad del mes, próximas reservas) protegidas por RLS, publicado como evidencia de que los agentes se conectan a los sistemas por el estándar MCP. Una tarde con Claude Code; entra con los casos de producto (F5).
 
