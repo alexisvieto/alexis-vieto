@@ -10,7 +10,8 @@
 |---|---|---|
 | Kicker | Alexis Vieto · Panama | Alexis Vieto · Panamá |
 | Titular | Alexis Vieto (decisión de Alexis, 11-oct-2026: el hero lleva el nombre y la línea de cinco servicios; "Sistemas que reemplazan el Excel" baja a subtítulo del capítulo Automatización) | Alexis Vieto |
-| Línea de servicios | Automation · Smart Web Development · Video Generation · FDE · Animation | Automatización · Desarrollo Web Inteligente · Generación de Video · FDE · Animaciones |
+| Línea de servicios | AI-agent Automation · Smart Web Development · Video Generation · FDE · Animation | Automatización con agentes de IA · Desarrollo Web Inteligente · Generación de Video · FDE · Animaciones |
+| Frase (decidido 11-oct-2026: la IA se nombra como método y producto, nunca como adjetivo suelto) | 20 years running real operations; today I build the software those operations needed, with Claude Code and AI agents. | 20 años dirigiendo operaciones reales; hoy construyo el software que esas operaciones necesitaban, con Claude Code y agentes de IA. |
 | Línea | Smart web, applications, mobile, business intelligence and automation. 20 years running real operations; now I build the software those operations needed. | Web inteligente, aplicaciones, móvil, inteligencia de negocios y automatización. 20 años dirigiendo operaciones reales; hoy construyo el software que esas operaciones necesitaban. |
 | CTA 1 / 2 | See services → / Let's talk | Ver servicios → / Hablemos |
 | Cotas | 20+ years in operations · 300+ projects delivered · 5 products in production · 20+ dashboards | 20+ años en operaciones · 300+ proyectos entregados · 5 productos en producción · 20+ dashboards |
