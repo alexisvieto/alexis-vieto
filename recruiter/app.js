@@ -14,6 +14,7 @@
     const dict = lang === 'es' ? ES : EN;
     nodes.forEach(n => { const v = dict[n.dataset.i]; if (v != null) n.innerHTML = v; });
     document.documentElement.lang = lang;
+    $$('.cvlink').forEach(x => x.setAttribute('href', `media/alexis-vieto-cv-${lang}.pdf`));
     document.title = titles[lang];
     $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
     try { localStorage.setItem('av-lang', lang); } catch {}

@@ -4,7 +4,7 @@ window.I18N_ES = {
   hKick: 'Panamá · abierto a roles remotos y presenciales',
   hLead: 'Diseño, construyo y despliego sistemas con IA dentro de operaciones reales: agentes, integraciones y el software que los rodea.',
   f1: 'años dirigiendo operaciones de ingeniería', f2: 'proyectos entregados', f3: 'productos de software en producción o piloto', f4: 'agentes de IA construidos',
-  c1: 'Ver el trabajo', c2: 'Pedir mi CV',
+  c1: 'Ver el trabajo', c2: 'Descargar CV (PDF)',
 
   wT: 'Por qué yo', wL: 'He dirigido el tipo de operación para la que hoy construyo software. Cuatro razones, cada una con su prueba en esta página.',
   w1t: 'Entiendo la operación antes de escribir una línea',
@@ -66,6 +66,7 @@ window.I18N_ES = {
   h2t: 'Diseñar los datos y las reglas', h2p: 'Primero las tablas, los roles y la seguridad. Las reglas del negocio van en la base de datos, donde nadie se las salta.',
   h3t: 'Construir con IA', h3p: 'Claude Code escribe gran parte del código. Yo defino la arquitectura, reviso cada cambio y decido qué sale.',
   h4t: 'Probar, auditar, publicar', h4p: 'Pruebas automatizadas, revisión de seguridad de cada módulo y verificación con datos reales antes de cada versión.',
+  sx9: 'Certificaciones', sx9d: 'Anthropic Claude Partner Network (en curso, 2026): rutas Claude Certified Developer, Associate y Architect; Auditor Interno ISO 9001 (SGS); MCSE, CompTIA A+ y Network+; Bosch, Honeywell, Hikvision y Panduit',
   sx1: 'Web', sx2: 'Backend y datos', sx3: 'Móvil', sx4: 'IA', sx5: 'Integraciones', sx6: 'Calidad y operación', sx7: 'Gestión', sx8: 'Idiomas',
   sx2d: 'PostgreSQL 17 sobre Supabase con multiempresa y seguridad por fila, funciones atómicas para pagos y contabilidad, pg_cron, Realtime, Auth, Storage; Node.js en Vercel Functions y Supabase Edge Functions; microservicios en Python (FastAPI, PyMuPDF, Docker)',
   sx3d: 'iOS y Android con React Native (Expo) en monorepo Turborepo, apps web empaquetadas con Capacitor, PWA instalables con modo offline y Web Push',
@@ -76,7 +77,7 @@ window.I18N_ES = {
   sx8d: 'Español (nativo); inglés: lectura y escritura técnica sólidas, conversación intermedia',
 
   kT: 'Hablemos', kL: 'Respondo el mismo día, GMT-5.',
-  k1: 'Correo · clic para copiar', k3: 'Pedir por correo',
+  k1: 'Correo · clic para copiar', k3: 'Descargar',
   kS: '¿Buscas un contratista y no una contratación? Mi sitio de servicios está en <a href="https://alexis-vieto.vercel.app" target="_blank" rel="noopener">alexis-vieto.vercel.app</a>.',
   toastCopied: 'Correo copiado', toastCopy: 'Copia este correo',
 };
