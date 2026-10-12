@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const here = path.resolve(process.env.HERO_DIR);
 const out = path.join(here, 'frames4'); fs.mkdirSync(out, { recursive: true });
-const FPS = 30, DUR = 8, N = FPS * DUR;
+const FPS = 30, DUR = 10, N = FPS * DUR;
 const chrome = process.argv[2];
 const url = process.argv[3] || 'http://127.0.0.1:4180/toma4.html';
 const only = process.argv[4] ? process.argv[4].split(',').map(Number) : null; // vista previa: lista de segundos
