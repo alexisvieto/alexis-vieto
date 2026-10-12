@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#07122c"/>
+  <rect x="6.5" y="6.5" width="51" height="51" rx="8" fill="none" stroke="#7fa3e6" stroke-width="1.5"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="30" fill="#eef2fa">AV</text>
+  <line x1="14" y1="50" x2="50" y2="50" stroke="#ff7a45" stroke-width="1.5"/>
+  <line x1="14" y1="47" x2="14" y2="53" stroke="#ff7a45" stroke-width="1.5"/>
+  <line x1="50" y1="47" x2="50" y2="53" stroke="#ff7a45" stroke-width="1.5"/>
+</svg>
