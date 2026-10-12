@@ -25,7 +25,7 @@ Lo mínimo que solo Alexis puede dar. Todo lo demás lo saco de los repos. Cuand
 
 ## Lámina 02.2 · Desarrollo de aplicaciones (11-oct-2026)
 - [ ] **Capturas reales** de cada producto (laptop y teléfono) con datos de prueba, para sustituir el logo solo por logo + captura en cada tarjeta. Dejarlas en `reference\capturas\<producto>\`.
-- [ ] Confirmar "Railway" como plataforma de despliegue (no aparece en los repos revisados; lo publiqué porque viene de tu leyenda).
+- [x] Railway retirado: Alexis confirmó que despliega en Vercel y versiona en GitHub (11-oct-2026).
 
 ## Lámina 02.5 · Automatización (proyecto confidencial, 11-oct-2026)
 - [ ] **Cifra de costos:** me diste "costos operativos reducidos en un 365%". Una reducción no puede superar el 100%, así que no la publiqué. ¿Qué significa el 365? Opciones probables: retorno de la inversión de 365% (se ganó 3.65 veces lo invertido), costos reducidos en 36.5%, o costos de 3.65× menores (una reducción del 73%). Con tu respuesta la agrego al párrafo y a "Resultados". El 80% menos horas sí está publicado.
