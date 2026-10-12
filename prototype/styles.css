@@ -629,3 +629,6 @@ a.plink:hover{background:var(--soft)}
   .plink small,.pstate{font-size:11px}
 }
 @media (max-width:480px){ .products{grid-template-columns:1fr} }
+
+/* Móvil: la capa de anotaciones del video no cabe junto al texto del hero */
+@media (max-width:980px){ #annot{display:none} }
