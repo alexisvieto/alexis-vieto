@@ -24,6 +24,7 @@
     if (video) {
       const tall = matchMedia('(max-aspect-ratio: 3/4)').matches;
       const base = tall ? video.dataset.srcTall : video.dataset.srcWide;
+      if (tall) video.poster = base + '.jpg';
       if (!tall) { const w = document.createElement('source'); w.src = base + '.webm'; w.type = 'video/webm'; video.append(w); }
       const m = document.createElement('source'); m.src = base + '.mp4'; m.type = 'video/mp4'; video.append(m);
       if (RM || (navigator.connection && navigator.connection.saveData)) { video.removeAttribute('autoplay'); video.pause(); }
