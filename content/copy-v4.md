@@ -14,7 +14,7 @@
 | Frase (decidido 11-oct-2026: la IA se nombra como método y producto, nunca como adjetivo suelto) | 20 years running real operations; today I build the software those operations needed, with Claude Code and AI agents. | 20 años dirigiendo operaciones reales; hoy construyo el software que esas operaciones necesitaban, con Claude Code y agentes de IA. |
 | Línea | Smart web, applications, mobile, business intelligence and automation. 20 years running real operations; now I build the software those operations needed. | Web inteligente, aplicaciones, móvil, inteligencia de negocios y automatización. 20 años dirigiendo operaciones reales; hoy construyo el software que esas operaciones necesitaban. |
 | CTA 1 / 2 | See services → / Let's talk | Ver servicios → / Hablemos |
-| Cotas | 20+ years in operations · 300+ projects delivered · 5 products in production · 20+ dashboards | 20+ años en operaciones · 300+ proyectos entregados · 5 productos en producción · 20+ dashboards |
+| Cotas | 20+ years in operations · 300+ projects delivered · 5 products in production · 25+ AI agents | 20+ años en operaciones · 300+ proyectos entregados · 5 productos en producción · 25+ agentes de IA (cifra de Alexis, 11-oct-2026; sustituye a "20+ dashboards") |
 | Rótulo | Project: Portfolio · Alexis Vieto / Drawn by: A. Vieto + Claude Code / Scale 1:1 / Rev 2026.10 / Sheet 00/05 / Status: As built | Proyecto: Portafolio · Alexis Vieto / Dibujó: A. Vieto + Claude Code / Escala 1:1 / Rev 2026.10 / Lámina 00/05 / Estado: Según construido |
 | Anotaciones del video | 2 × 26″ ultrawide · Claude Code · tests running · Atrio · production · Rev 2026.10 · Nexera | 2 × 26″ ultrawide · Claude Code · pruebas en ejecución · Atrio · producción · Rev 2026.10 · Nexera |
 
