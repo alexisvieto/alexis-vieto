@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Toma 4 · dentro del código</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Geist+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#07122c}
+  #bg{position:absolute;inset:0;width:1920px;height:1080px;object-fit:cover;opacity:1}
+  canvas{position:absolute;inset:0}
+  #grain{position:absolute;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:screen;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  #vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(75% 65% at 50% 50%,transparent 55%,rgba(3,8,22,.75) 100%)}
+  #tb{position:absolute;right:64px;bottom:56px;display:grid;grid-template-columns:auto auto auto auto;border:1px solid rgba(169,194,242,.35);background:rgba(7,18,44,.82);font:500 15px "Geist Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:#eef2fa;opacity:0}
+  #tb div{padding:12px 18px;border-left:1px solid rgba(169,194,242,.2)}
+  #tb div:first-child{border-left:0}
+  #tb small{display:block;font-size:11px;color:#7584a0;margin-bottom:6px;letter-spacing:.14em}
+  #tb .rev{color:#ff7a45}
+  #fade{position:absolute;inset:0;background:#07122c;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<img id="bg" src="t3-last.png" alt="">
+<span style="position:absolute;opacity:0;font:800 20px 'Barlow Condensed'">Barlow</span><span style="position:absolute;opacity:0;font:500 20px 'Geist Mono'">Mono</span>
+<canvas id="c" width="1920" height="1080"></canvas>
+<div id="grain"></div>
+<div id="vig"></div>
+<div id="tb">
+  <div><small>Proyecto</small><b id="tb1"></b></div>
+  <div><small>Dibujó</small><b id="tb2"></b></div>
+  <div><small>Revisión</small><b class="rev" id="tb3"></b></div>
+  <div><small>Estado</small><b id="tb4"></b></div>
+</div>
+<div id="fade"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+// Las fuentes deben estar cargadas antes de dibujar cualquier textura
+await Promise.all([document.fonts.load('800 120px "Barlow Condensed"'), document.fonts.load('500 36px "Geist Mono"'), document.fonts.load('700 44px "Geist Mono"')]);
+await document.fonts.ready;
+const W = 1920, H = 1080, DUR = 8;
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H, false); renderer.setPixelRatio(1);
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x07122c, 8, 34);
+const cam = new THREE.PerspectiveCamera(42, W / H, .1, 100);
+cam.position.set(0, 0, 0);
+
+/* ---------- Fragmentos de código real (texturas en canvas) ---------- */
+const SNIPPETS = [
+  'create or replace function public.claim_screening(p_org uuid)',
+  'order by created_at for update skip locked limit 1',
+  'export async function processFortnightPayroll(',
+  'await supabase.rpc("confirm_yappy_payment", { order_id })',
+  'it("ninguna tabla de public sin RLS activa", async () => {',
+  'alter table applications enable row level security;',
+  'const quote = buildQuote(items, priceList, itbms(0.07))',
+  'select cron.schedule(\'generate-monthly-charges\', \'0 6 1 * *\')',
+  'const ach = generateAchFile(payroll, bank)',
+  'webhook.verify(signature, timingSafeEqual)',
+  'await resend.emails.send({ to: contacts, html: report })',
+  'const { data } = await claude.messages.create({ tools })',
+];
+const COLORS = ['#a9c2f2', '#4fc28a', '#eef2fa', '#7fa3e6', '#e5a84a'];
+function textTexture(txt, { font = '500 36px "Geist Mono"', color = '#a9c2f2', w = 1400, h = 64, pad = 8 } = {}) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d'); g.font = font; g.fillStyle = color; g.textBaseline = 'middle'; g.fillText(txt, pad, h / 2);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
+}
+const frags = [];
+let seed = 7; const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+for (let i = 0; i < 70; i++) {
+  const txt = SNIPPETS[i % SNIPPETS.length];
+  const tex = textTexture(txt, { color: COLORS[i % COLORS.length] });
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(7, 0.32), new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: .55, depthWrite: false }));
+  const x = (rnd() - .5) * 26, y = (rnd() - .5) * 14, z = -4 - rnd() * 30;
+  m.position.set(x, y, z); m.rotation.y = (rnd() - .5) * .9; m.rotation.x = (rnd() - .5) * .3;
+  m.userData = { x, y, z, dx: (rnd() - .5) * .4, dy: (rnd() - .5) * .3 };
+  scene.add(m); frags.push(m);
+}
+// Partículas de luz
+const pg = new THREE.BufferGeometry(); const pts = [];
+for (let i = 0; i < 900; i++) pts.push((rnd() - .5) * 40, (rnd() - .5) * 24, -7 - rnd() * 34);
+pg.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
+const rig = new THREE.Group(); scene.add(rig);
+rig.add(new THREE.Points(pg, new THREE.PointsMaterial({ color: 0x7fa3e6, size: .05, transparent: true, opacity: .7 })));
+
+/* ---------- Servicios: texto 3D (cara + extrusión simulada por capas) ---------- */
+const SERVICES = ['Automatización', 'Desarrollo Web Inteligente', 'Generación de Video', 'FDE · Forward Deployed Engineer', 'Animaciones'];
+function titleGroup(label, index) {
+  const g = new THREE.Group();
+  const w = 1600, h = 300; const c = document.createElement('canvas'); c.width = w; c.height = h; const ctx = c.getContext('2d');
+  let size = 190; ctx.font = `800 ${size}px "Barlow Condensed"`; while (ctx.measureText(label.toUpperCase()).width > w - 80 && size > 60) { size -= 6; ctx.font = `800 ${size}px "Barlow Condensed"`; }
+  const draw = (color) => { const cc = document.createElement('canvas'); cc.width = w; cc.height = h; const g = cc.getContext('2d'); g.font = `800 ${size}px "Barlow Condensed"`; g.fillStyle = color; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(label.toUpperCase(), w / 2, h / 2 + 8); const t = new THREE.CanvasTexture(cc); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t; };
+  const geo = new THREE.PlaneGeometry(7, 1.3125);
+  const face = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: draw('#eef2fa'), transparent: true }));
+  g.add(face);
+  const side = draw('#3d64ad');
+  for (let i = 1; i <= 14; i++) { const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: side, transparent: true, opacity: 1 })); m.position.set(i * .012, -i * .012, -i * .03); g.add(m); }
+  // Cota redline debajo
+  const cota = new THREE.Group();
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xff7a45 });
+  const L = (a, b) => new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a), new THREE.Vector3(...b)]), lineMat);
+  cota.add(L([-3.2, -.9, 0], [3.2, -.9, 0]), L([-3.2, -1.02, 0], [-3.2, -.78, 0]), L([3.2, -1.02, 0], [3.2, -.78, 0]));
+  const lab = new THREE.Mesh(new THREE.PlaneGeometry(2.2, .22), new THREE.MeshBasicMaterial({ map: textTexture(`SERVICIO 0${index + 1} / 05`, { font: '700 44px "Geist Mono"', color: '#ff7a45', w: 700, h: 70, pad: 10 }), transparent: true }));
+  lab.position.set(-2.1, -1.12, 0); cota.add(lab);
+  g.add(cota);
+  g.visible = false; rig.add(g); return g;
+}
+const titles = SERVICES.map(titleGroup);
+
+/* ---------- Línea de tiempo determinista ---------- */
+const bg = document.getElementById('bg'), tb = document.getElementById('tb'), fade = document.getElementById('fade');
+const camState = { z: 0, rx: 0 };
+const tl = gsap.timeline({ paused: true });
+tl.to(bg, { opacity: 0, duration: .7, ease: 'power2.out' }, 0);
+tl.to(camState, { z: -9, duration: DUR, ease: 'none' }, 0);
+// Posiciones de estacionamiento: muro curvo en perspectiva
+const park = [[-10.5, 1.6, -19, .5], [-5.3, -1.5, -17.5, .25], [0, 1.7, -17, 0], [5.3, -1.4, -17.5, -.25], [10.5, 1.5, -19, -.5]];
+SERVICES.forEach((_, i) => {
+  const g = titles[i]; const t0 = .5 + i * 1.25;
+  const st = { s: .2, o: 0 };
+  tl.add(() => { g.visible = true; }, t0);
+  tl.set(g.position, { x: 0, y: 0, z: -30 }, t0);
+  tl.set(g.rotation, { y: .7, x: .2 }, t0);
+  tl.to(g.position, { z: -8.5, duration: .6, ease: 'power3.out' }, t0);
+  tl.to(g.rotation, { y: 0, x: 0, duration: .6, ease: 'power3.out' }, t0);
+  const [px, py, pz, ry] = park[i];
+  tl.to(g.position, { x: px, y: py, z: pz, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
+  tl.to(g.rotation, { y: ry, duration: .5, ease: 'power2.inOut' }, t0 + 1.0);
+});
+// Cierre: la cámara frena, se escribe el rótulo, fundido a plano nocturno
+const TB = [['tb1', 'Portafolio · Alexis Vieto'], ['tb2', 'A. Vieto + Claude Code'], ['tb3', 'Rev 2026.10'], ['tb4', 'Según construido']];
+tl.to(tb, { opacity: 1, duration: .3 }, 6.7);
+TB.forEach(([id, txt], i) => { const o = { n: 0 }; tl.to(o, { n: txt.length, duration: .35, ease: 'none', onUpdate: () => document.getElementById(id).textContent = txt.slice(0, Math.round(o.n)) }, 6.8 + i * .22); });
+tl.to(fade, { opacity: 1, duration: .5, ease: 'power2.in' }, DUR - .5);
+
+function render(t) {
+  tl.seek(t, false);
+  cam.position.z = camState.z; rig.position.z = camState.z;
+  frags.forEach(m => { const u = m.userData; m.position.x = u.x + Math.sin(t * .6 + u.z) * u.dx; m.position.y = u.y + Math.cos(t * .5 + u.x) * u.dy; });
+  renderer.render(scene, cam);
+}
+window.seek = t => { render(t); return 'ok ' + t.toFixed(3); };
+document.fonts.ready.then(() => { render(0); window.READY = true; });
+</script>
+</body>
+</html>

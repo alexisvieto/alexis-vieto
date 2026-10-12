@@ -16,43 +16,41 @@
     return gsap.to(o, { n: text.length, duration: dur, delay, ease: 'none', onUpdate: () => node.textContent = text.slice(0, Math.round(o.n)) });
   }
 
-  /* ---------- 00 · HERO: línea de tiempo de 14 s (simula el video) ---------- */
+  /* ---------- 00 · HERO: video real + anotaciones sincronizadas con su tiempo ---------- */
   (function hero() {
     const tbFields = $$('#hero .titleblock b[data-text]');
+    const video = $('#hero-video');
+    // Fuente según orientación: 16:9 en escritorio, 9:16 en teléfono vertical
+    if (video) {
+      const tall = matchMedia('(max-aspect-ratio: 3/4)').matches;
+      const base = tall ? video.dataset.srcTall : video.dataset.srcWide;
+      if (!tall) { const w = document.createElement('source'); w.src = base + '.webm'; w.type = 'video/webm'; video.append(w); }
+      const m = document.createElement('source'); m.src = base + '.mp4'; m.type = 'video/mp4'; video.append(m);
+      if (RM || (navigator.connection && navigator.connection.saveData)) { video.removeAttribute('autoplay'); video.pause(); }
+    }
     if (RM) { tbFields.forEach(b => b.textContent = b.dataset.text); return; }
     tbFields.forEach((b, i) => typeInto(b, b.dataset.text, .5, .4 + i * .45));
-    const speed = $('#speed');
-    const sp = { v: .4 };
-    const upd = () => speed.textContent = sp.v.toFixed(1) + '×';
-    const tl = gsap.timeline({ repeat: -1 });
-    // 0–3 s · tramo frontal lento: cota de monitores y rótulos
-    tl.set(sp, { v: .4 })
-      .fromTo('#a-mon', { opacity: 0 }, { opacity: 1, duration: .5 }, 0)
-      .from('#a-mon .ln', { scaleX: 0, transformOrigin: 'left center', duration: .8, stagger: .08 }, 0)
-      .to('#a-mon', { opacity: 0, duration: .4 }, 3.2)
-      // 3–7 s · tramo rápido: speed ramp y nube de revisión
-      .to(sp, { v: 2.8, duration: 1.2, ease: 'power2.in', onUpdate: upd }, 3)
-      .fromTo('#a-cloud', { opacity: 0, scale: .8, transformOrigin: '1450px 560px' }, { opacity: 1, scale: 1, duration: .5, ease: 'back.out(2)' }, 3.6)
-      .to('#a-cloud', { opacity: 0, duration: .3 }, 7)
-      // 7–12 s · vuelta al frente: desacelera y entran las cifras con cotas
-      .to(sp, { v: .4, duration: 1.4, ease: 'power3.out', onUpdate: upd }, 7)
-      .fromTo('#a-nums', { opacity: 0 }, { opacity: 1, duration: .4 }, 8)
-      .from('#a-nums .big, #a-nums .cap', { y: 24, opacity: 0, duration: .7, stagger: .06, ease: 'power3.out' }, 8)
-      .from('#a-nums line', { scaleX: 0, transformOrigin: 'left center', duration: .8, stagger: .05 }, 8.3)
-      .to('#a-nums', { opacity: 0, duration: .5 }, 12.6)
-      .to({}, { duration: .6 });
-    // contadores de las cifras
+    // Línea de tiempo pausada, en segundos del video (27.6 s): se busca con video.currentTime
+    const tl = gsap.timeline({ paused: true });
+    // 0.4–2.4 s · frente, lento: cota de monitores y rótulos
+    tl.fromTo('#a-mon', { opacity: 0 }, { opacity: 1, duration: .5 }, .4)
+      .from('#a-mon .ln', { scaleX: 0, transformOrigin: 'left center', duration: .8, stagger: .08 }, .4)
+      .to('#a-mon', { opacity: 0, duration: .4 }, 2.4)
+      // 5.8–8.6 s · por detrás: nube de revisión
+      .fromTo('#a-cloud', { opacity: 0, scale: .8, transformOrigin: '1280px 560px' }, { opacity: 1, scale: 1, duration: .5, ease: 'back.out(2)' }, 5.8)
+      .to('#a-cloud', { opacity: 0, duration: .3 }, 8.6)
+      // 9.8–12.2 s · vuelta al frente: cifras con cotas
+      .fromTo('#a-nums', { opacity: 0 }, { opacity: 1, duration: .4 }, 9.8)
+      .from('#a-nums .big, #a-nums .cap', { y: 24, opacity: 0, duration: .7, stagger: .06, ease: 'power3.out' }, 9.8)
+      .from('#a-nums line', { scaleX: 0, transformOrigin: 'left center', duration: .8, stagger: .05 }, 10.1)
+      .to('#a-nums', { opacity: 0, duration: .5 }, 12.2)
+      .to({}, { duration: 15.4 }); // el resto del video (entrada al código y servicios) va sin anotaciones
     $$('#a-nums .big').forEach(t => {
       const first = t.firstChild; const target = parseInt(first.textContent, 10); const o = { n: 0 };
-      tl.to(o, { n: target, duration: 1.2, ease: 'power2.out', onUpdate: () => first.textContent = Math.round(o.n) }, 8);
+      tl.to(o, { n: target, duration: 1.2, ease: 'power2.out', onUpdate: () => first.textContent = Math.round(o.n) }, 9.8);
     });
-    // Botón de audio (sin pista aún: solo el estado)
-    const audio = $('#audio');
-    audio.addEventListener('click', () => {
-      const on = audio.classList.toggle('on');
-      audio.setAttribute('aria-pressed', on);
-      $('#audio-state').textContent = on ? 'on' : 'off';
-    });
+    const sync = () => { if (video && !video.paused) tl.time(video.currentTime); requestAnimationFrame(sync); };
+    if (video) requestAnimationFrame(sync); else tl.play();
   })();
 
   /* ---------- 02.6 · FDE: relojes y cotas de mejora ---------- */
