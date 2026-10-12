@@ -44,7 +44,10 @@
       .from('#a-nums .big, #a-nums .cap', { y: 24, opacity: 0, duration: .7, stagger: .06, ease: 'power3.out' }, 9.8)
       .from('#a-nums line', { scaleX: 0, transformOrigin: 'left center', duration: .8, stagger: .05 }, 10.1)
       .to('#a-nums', { opacity: 0, duration: .5 }, 12.2)
-      .to({}, { duration: 15.4 }); // el resto del video (entrada al código y servicios) va sin anotaciones
+      // 19.6–27.4 s · dentro del código: el texto del hero se atenúa para que los servicios en 3D se lean
+      .to('.hero-copy', { opacity: .18, duration: .8 }, 19.6)
+      .to('.hero-copy', { opacity: 1, duration: .6 }, 27.0)
+      .to({}, { duration: .3 }, 27.3);
     $$('#a-nums .big').forEach(t => {
       const first = t.firstChild; const target = parseInt(first.textContent, 10); const o = { n: 0 };
       tl.to(o, { n: target, duration: 1.2, ease: 'power2.out', onUpdate: () => first.textContent = Math.round(o.n) }, 9.8);

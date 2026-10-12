@@ -594,3 +594,10 @@ html{scrollbar-color:var(--rule) var(--bp)}
 /* ---------- Hero: video real ---------- */
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#07122c}
 .scene .vignette{background:linear-gradient(180deg,rgba(4,11,29,.15) 0%,transparent 30%,transparent 50%,rgba(4,11,29,.9) 100%),linear-gradient(90deg,rgba(4,11,29,.7) 0%,transparent 45%)}
+
+/* ---------- Hero: nombre + servicios; el video manda ---------- */
+h1.h1-name{font-size:clamp(44px,6vw,92px)}
+.services-line{margin:14px 0 0;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue2);max-width:640px;line-height:1.7}
+.hero-copy .lede{margin-top:14px;max-width:520px}
+.hero-copy{transition:opacity .6s ease}
+@media (max-width:700px){ .services-line{font-size:11px} }
