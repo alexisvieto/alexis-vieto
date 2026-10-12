@@ -72,7 +72,7 @@ window.I18N_ES = {
   sx3d: 'iOS y Android con React Native (Expo) en monorepo Turborepo, apps web empaquetadas con Capacitor, PWA instalables con modo offline y Web Push',
   sx4d: 'API de Claude con tool use y servidores MCP, de solo lectura por defecto y con aprobación humana; Gemini',
   sx5d: 'Pagos con Yappy, Resend, webhooks GPS, Odoo, exportación a PDF y Excel',
-  sx6d: 'Vitest, Playwright, pruebas SQL; Vercel, Sentry, GitHub',
+  sx6d: 'Vitest, Playwright, pruebas SQL; Vercel, Railway, Sentry, GitHub',
   sx7d: 'Propuestas y análisis de pliegos, control de cronograma y costos, subcontratistas, líder técnico ante el cliente; operación ISO 9001',
   sx8d: 'Español (nativo); inglés: lectura y escritura técnica sólidas, conversación intermedia',
 
